@@ -39,6 +39,12 @@ public:
 //    PUBLIC METHODS
 //==============================
 
+virtual void Division(); //methode qui gere la division des bacteries (x2)
+virtual void Deplacement(); //methode qui gere le deplacement des bacteries sur la map
+virtual void Death(); //methode qui gere la mort des bacteries (argument death :D)
+virtual void Switchtype(); //methode qui va changer le type des bacteries si elles sont mutées ou pas (ex: passer de S à L ou L à S)
+virtual void Print(); //afficher etat bacteries / coordonnes eventuellement etc ..
+
 protected:
 //==============================
 //    PROTECTED METHODS
@@ -47,7 +53,15 @@ protected:
 //==============================
 //    ATTRIBUTES
 //==============================
+int coord[2]; //tableau de coordonnees [x,y]
+float p_death; //probabilité de mort (=0.02)
+float p_mutation; //probabilité de mutation (0)
+float W_min; //seuil minimum de fitness (=0.001)
 
+//Concentration intracellulaire des métabolites
+float A_int;
+float B_int;
+float C_int;
 
 //==============================
 //    GETTER DEFINITION
