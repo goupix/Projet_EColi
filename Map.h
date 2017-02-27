@@ -9,7 +9,10 @@
  * @class Character
  * @brief Creates a Character
  */
-#include<vector>
+#include "Bacterie.h"
+#include "Lignee_A.h"
+#include "Lignee_B.h"
+#include <vector>
 
 class Map
 {
@@ -44,7 +47,9 @@ void placeBacteries(); // cree et positionne les bacteries
 void bougeMetabo(); // bouge les metabolites
 void update(); // les bacteries se nourrissent, metabolisent, mutent, se divisent, meurent eventuellement
 void renouvelle(); //reinitialise le milieu de culture
-int* count();// decompte le nombre de bacteries des lignees S et L
+int* count();// compte le nombre de bacteries des lignees S et L
+
+
 protected:
 //==============================
 //    PROTECTED METHODS
