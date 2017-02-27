@@ -17,7 +17,6 @@ public:
 //    CONSTRUCTORS
 //==============================
   Bacterie();
-
 //==============================
 //    DESTRUCTOR
 //==============================
@@ -38,6 +37,7 @@ public:
 //==============================
 //    PUBLIC METHODS
 //==============================
+virtual void Describe();
 /*
 virtual void Division(); //methode qui gere la division des bacteries (x2)
 virtual void Deplacement(); //methode qui gere le deplacement des bacteries sur la map
