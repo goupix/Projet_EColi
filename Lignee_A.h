@@ -1,5 +1,5 @@
 #ifndef LIGNEE_A
-
+#define LIGNEE_A
 //==============================
 //    INCLUDES 
 //==============================
@@ -8,19 +8,20 @@
  * @class Bacteries
  * @brief Creates a Character
  */
+#include "Bacterie.h"
 
-class Lignee_A
-{
+class Lignee_A: public Bacterie{
+
 public:
 //==============================
 //    CONSTRUCTORS
 //==============================
-  Lignee_A();
+Lignee_A();
 
 //==============================
 //    DESTRUCTOR
 //==============================
-  virtual ~Lignee_A();
+virtual ~Lignee_A();
 
 //==============================
 //    GETTERS
@@ -60,6 +61,6 @@ protected:
 //==============================
 //    OPERATOR DEFINITION
 //==============================
-
+};
 
 #endif // LIGNEE_A

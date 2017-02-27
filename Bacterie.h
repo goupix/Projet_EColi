@@ -9,7 +9,7 @@
  * @class Bacterie
  * @brief 
  */
-
+#include"Metabolite.h"
 class Bacterie
 {
 public:
@@ -38,13 +38,13 @@ public:
 //==============================
 //    PUBLIC METHODS
 //==============================
-
+/*
 virtual void Division(); //methode qui gere la division des bacteries (x2)
 virtual void Deplacement(); //methode qui gere le deplacement des bacteries sur la map
 virtual void Death(); //methode qui gere la mort des bacteries (argument death :D)
 virtual void Switchtype(); //methode qui va changer le type des bacteries si elles sont mutées ou pas (ex: passer de S à L ou L à S)
 virtual void Print(); //afficher etat bacteries / coordonnes eventuellement etc ..
-
+*/
 protected:
 //==============================
 //    PROTECTED METHODS
@@ -75,6 +75,6 @@ float C_int;
 //==============================
 //    OPERATOR DEFINITION
 //==============================
+};
 
-
-#endif // BACTERIE.H
+#endif // BACTERIE_H

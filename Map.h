@@ -6,12 +6,11 @@
 //==============================
 
 /**
- * @class Character
- * @brief Creates a Character
+ * @class Map
+ * @brief Creates a Map of cells
  */
 #include "Bacterie.h"
-#include "Lignee_A.h"
-#include "Lignee_B.h"
+#include "Metabolite.h"
 #include <vector>
 
 class Map
@@ -66,8 +65,8 @@ int T; //temps de simulation
 int t; //temps de renouvellement
 int temps; //temps reel de la simulation
 int h; //pas de temps
-Bacterie* Metaboliste[3][width][height]; //grille des concentrations en metabolites
-std::vector<Bacterie*> listeBacteries(width*height);
+Metabolite** Metaboliste; //grille des concentrations en metabolites
+std::vector<Bacterie*> listeBacteries;
 
 
 //==============================

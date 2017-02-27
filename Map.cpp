@@ -2,9 +2,11 @@
 //    INCLUDES
 //==============================
 #include "Map.h"
-#include<iostream>
-#include<string>
+#include "Metabolite.h"
+#include <iostream>
+#include <string>
 using namespace std;
+
 //==============================
 //    DEFINITION STATIC ATTRIBUTES
 //==============================
@@ -14,7 +16,7 @@ using namespace std;
 //==============================
 Map::Map(){
   width=32;
-  heigth=32;
+  height=32;
   A_init=10;
   D=0.1;
   T=10000;
@@ -26,7 +28,7 @@ Map::Map(){
 //==============================
 //    DESTRUCTOR
 //==============================
-
+Map::~Map(){}
 
 //==============================
 //    PUBLIC METHODS
