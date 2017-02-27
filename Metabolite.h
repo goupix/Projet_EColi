@@ -10,13 +10,14 @@
  * @brief Creates a Character
  */
 #include "Bacterie.h"
+
 class Metabolite
 {
 public:
 //==============================
 //    CONSTRUCTORS
 //==============================
-  Metabolite();
+  Metabolite(float A_init, Bacterie* cible);
 
 //==============================
 //    DESTRUCTOR
@@ -26,11 +27,17 @@ public:
 //==============================
 //    GETTERS
 //==============================
-
+  float GetA();
+  float GetB();
+  float GetC();
+  Bacterie* Getptr();
 //==============================
 //    SETTERS
 //==============================
-
+  void SetA(float a);
+  void SetB(float b);
+  void SetC(float c);
+  void Setptr(Bacterie* cible);
 //==============================
 //    OPERATORS
 //==============================
@@ -47,10 +54,10 @@ protected:
 //==============================
 //    ATTRIBUTES
 //==============================
-float A;
-float B;
-float C;
-Bacterie* ptr;
+  float A;
+  float B;
+  float C;
+  Bacterie* ptr;
 
 //==============================
 //    GETTER DEFINITION
