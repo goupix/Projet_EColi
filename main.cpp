@@ -10,6 +10,9 @@ using namespace std;
 int main(){
 
   Map grille1=Map();
+  Bacterie b=Bacterie();
+  Metabolite m=Metabolite();
+  grille1.placeBacteries();
   return 0;
 }
 

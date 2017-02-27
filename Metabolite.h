@@ -9,7 +9,7 @@
  * @class Bacteries
  * @brief Creates a Character
  */
-
+#include "Bacterie.h"
 class Metabolite
 {
 public:
@@ -50,6 +50,7 @@ protected:
 float A;
 float B;
 float C;
+Bacterie* ptr;
 
 //==============================
 //    GETTER DEFINITION

@@ -9,7 +9,7 @@
  * @class Bacterie
  * @brief 
  */
-#include"Metabolite.h"
+
 class Bacterie
 {
 public:

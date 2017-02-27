@@ -14,7 +14,13 @@
 //==============================
 //    CONSTRUCTORS
 //==============================
-Metabolite::Metabolite(){}
+Metabolite::Metabolite(){
+  A=1;
+  B=1;
+  C=1;
+  ptr=&Bacterie();
+
+}
 
 
 
