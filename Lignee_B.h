@@ -16,7 +16,9 @@ public:
 //==============================
 //    CONSTRUCTORS
 //==============================
-  Lignee_B();
+  Lignee_B(int x, int y);
+  Lignee_B(int x, int y, float a, float b, float c);
+
 
 //==============================
 //    DESTRUCTOR
@@ -39,6 +41,8 @@ public:
 //    PUBLIC METHODS
 //==============================
 
+virtual void Describe();
+
 protected:
 //==============================
 //    PROTECTED METHODS
@@ -47,7 +51,10 @@ protected:
 //==============================
 //    ATTRIBUTES
 //==============================
-
+float Rbb;
+float Rbc;
+float& w=C_int;
+char type='B';
 
 //==============================
 //    GETTER DEFINITION
