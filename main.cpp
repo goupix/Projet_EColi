@@ -8,11 +8,11 @@
 using namespace std;
 
 int main(){
-/* Test de la classe Map
+/* Test de la classe Map*/
 
   Map environnement=Map();
   environnement.placeBacteries();
-  cout<<"Case 1, A: "<< environnement.GetGrille()[0][0].GetA() <<endl;*/
+  /*cout<<"Case 1, A: "<< environnement.GetGrille()[0][0].GetA() <<endl;*/
 
 /*Test de la classe Bacterie*/
   cout<<""<<endl;

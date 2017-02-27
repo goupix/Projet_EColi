@@ -4,6 +4,9 @@
 #include "Map.h"
 #include <iostream>
 #include <string>
+#include <algorithm>    // std::random_shuffle
+#include <vector>       // std::vector
+
 using namespace std;
 
 //==============================
@@ -35,9 +38,35 @@ Metabolite** Map::GetGrille(){
 }
 
 void Map::placeBacteries(){
-  for(int i=0; i<width; i++){
-    for(int j=0; i<height; i++){
-	  Grille[i][j]=*new Metabolite(A_init, new Bacterie());  
-	  }
+
+  vector<int> tableDeNombres;
+  for(int i=0; i<(height*width)/2; i++){
+    tableDeNombres.push_back(0);
   }
+  for(int i=(height*width)/2; i<=height*width; i++){
+    tableDeNombres.push_back(1);
+  }
+  random_shuffle(tableDeNombres.begin(), tableDeNombres.end());
+
+  /*for (vector<int>::iterator it=tableDeNombres.begin(); it!=tableDeNombres.end(); ++it){
+    cout << ' ' << *it;
+  }
+
+  for(int k=0; k<width*height; k++){
+    for(int i=0; i<width; i++){
+      for(int j=0; j<height; j++){
+        if(tableDeNombres[k]==0){
+
+	        Grille[i][j]=*new Metabolite(A_init, Bacterie* new Lignee_A(i,j)); 
+          
+        }
+
+        else{
+  
+          Grille[i][j]=*new Metabolite(A_init, Bacterie* new Lignee_B(i,j));
+        }
+        
+	    }
+    }
+  }*/
 }

@@ -11,6 +11,8 @@
  */
 #include "Bacterie.h"
 #include "Metabolite.h"
+#include "Lignee_B.h"
+#include "Lignee_A.h"
 #include <vector>
 
 class Map
