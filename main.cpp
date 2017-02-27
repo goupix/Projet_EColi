@@ -11,8 +11,8 @@ int main(){
 
   Map grille1=Map();
   Bacterie b=Bacterie();
-  Metabolite m=Metabolite();
   grille1.placeBacteries();
+  cout<<"Case 1, A: "<< grille1.GetGrille()[0][0].GetA() <<endl;
   return 0;
 }
 

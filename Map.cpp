@@ -2,7 +2,6 @@
 //    INCLUDES
 //==============================
 #include "Map.h"
-#include "Metabolite.h"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -15,8 +14,6 @@ using namespace std;
 //    CONSTRUCTORS
 //==============================
 Map::Map(){
-  width=32;
-  height=32;
   A_init=10;
   D=0.1;
   T=10000;
@@ -33,11 +30,14 @@ Map::~Map(){}
 //==============================
 //    PUBLIC METHODS
 //==============================
+Metabolite** Map::GetGrille(){
+  return Grille;
+}
 
 void Map::placeBacteries(){
   for(int i=0; i<width; i++){
     for(int j=0; i<height; i++){
-	  Grille[i][j]=*new Metabolite();  
-	}
+	  Grille[i][j]=*new Metabolite(A_init, new Bacterie());  
+	  }
   }
 }

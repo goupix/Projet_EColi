@@ -29,7 +29,7 @@ virtual ~Map();
 //==============================
 //    GETTERS
 //==============================
-  
+Metabolite** GetGrille();
 
 //==============================
 //    SETTERS
@@ -73,8 +73,6 @@ Metabolite** Grille; //grille des concentrations en metabolites
 //==============================
 //    GETTER DEFINITION
 //==============================
-
-Metabolite** GetGrille();
 
 //==============================
 //    SETTER DEFINITION
