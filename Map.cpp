@@ -47,26 +47,31 @@ void Map::placeBacteries(){
     tableDeNombres.push_back(1);
   }
   random_shuffle(tableDeNombres.begin(), tableDeNombres.end());
+  vector<Bacterie*> tableDeBacteries;
 
   /*for (vector<int>::iterator it=tableDeNombres.begin(); it!=tableDeNombres.end(); ++it){
     cout << ' ' << *it;
-  }
+  }*/
 
-  for(int k=0; k<width*height; k++){
+  int compteur=0;
+  while(compteur<width*height){
     for(int i=0; i<width; i++){
       for(int j=0; j<height; j++){
-        if(tableDeNombres[k]==0){
+        if(tableDeNombres[compteur]==0){
 
-	        Grille[i][j]=*new Metabolite(A_init, Bacterie* new Lignee_A(i,j)); 
-          
+          Lignee_A* a= new Lignee_A(i,j);
+	        Grille[i][j]=Metabolite(A_init, a); 
+          compteur++;
         }
 
         else{
-  
-          Grille[i][j]=*new Metabolite(A_init, Bacterie* new Lignee_B(i,j));
+          
+          Lignee_B* b= new Lignee_B(i,j);
+          Grille[i][j]=Metabolite(A_init, b);
+          compteur++;
         }
         
 	    }
     }
-  }*/
+  }
 }
