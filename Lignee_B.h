@@ -43,6 +43,7 @@ public:
 
 virtual void Describe();
 
+virtual void Death();
 protected:
 //==============================
 //    PROTECTED METHODS

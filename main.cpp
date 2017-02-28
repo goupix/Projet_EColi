@@ -42,6 +42,9 @@ int main(){
   /*Constructeur 2*/
   Lignee_A a2= Lignee_A(15,20,5.3,0.1,0.6);
   a2.Describe();
+  
+  Bacterie f=Bacterie();
+  f.Death();
 
 
 

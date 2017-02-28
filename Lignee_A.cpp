@@ -55,3 +55,5 @@ void Lignee_A::Describe(){
 	cout<< "Elle présente une concentration interne en A: "<<A_int<<", en B: "<<B_int<<" et en C: "<<C_int<<endl<<" ainsi qu'une fitness de "<<w<<endl;
 
 }
+
+void Lignee_A::Death(){}

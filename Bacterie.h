@@ -1,6 +1,7 @@
 #ifndef BACTERIE_H
 #define BACTERIE_H 
 
+
 //==============================
 //    INCLUDES 
 //==============================
@@ -38,6 +39,8 @@ public:
 //    PUBLIC METHODS
 //==============================
 virtual void Describe();
+
+virtual void Death();
 /*
 virtual void Division(); //methode qui gere la division des bacteries (x2)
 virtual void Deplacement(); //methode qui gere le deplacement des bacteries sur la map
