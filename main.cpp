@@ -29,6 +29,10 @@ int main(){
   cout<<""<<endl;
   Bacterie t=Bacterie();
   t.Describe();
+  t.Deplacement();
+  t.Describe();
+  t.Deplacement();
+  t.Describe();
 
 /*Test de la classe Lignee_B*/
   /*Constructeur 1*/

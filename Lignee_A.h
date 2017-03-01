@@ -42,6 +42,7 @@ virtual ~Lignee_A();
 
 virtual void Describe();
 virtual void Death();
+virtual void Deplacement();
 
 protected:
 //==============================

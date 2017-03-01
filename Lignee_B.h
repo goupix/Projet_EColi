@@ -44,6 +44,9 @@ public:
 virtual void Describe();
 
 virtual void Death();
+virtual void Deplacement();
+
+
 protected:
 //==============================
 //    PROTECTED METHODS

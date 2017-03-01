@@ -57,3 +57,4 @@ void Lignee_B::Describe(){
 }
 
 void Lignee_B::Death(){}
+void Lignee_B::Deplacement(){Bacterie::Deplacement();}
