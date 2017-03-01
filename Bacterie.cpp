@@ -7,7 +7,6 @@
 using std::cout;
 using std::endl;
 
-
 //==============================
 //    DEFINITION STATIC ATTRIBUTES
 //==============================
@@ -18,6 +17,11 @@ using std::endl;
 //    CONSTRUCTORS
 //==============================
 Bacterie::Bacterie(){
+/*depl.push_back(1);
+depl.push_back(2);
+depl.push_back(3);
+depl.push_back(4);*/
+srand(time(NULL));
 coord[0]=0; 
 coord[1]=0;
 
@@ -59,4 +63,50 @@ void Bacterie::Death(){
       }
      }
     }
-        
+
+void Bacterie::Deplacement(){
+    int alea=rand()%4+1;
+	//std::random_shuffle(depl.begin(), depl.end());
+	switch ()
+	{
+    	case 1:
+    		if (coord[0] == 31) {
+    			coord[0] = 0;
+    		}
+    		else {
+    			coord[0] ++;
+    		}
+        	break;
+
+    	case 2:
+    		if (coord[0] == 0) {
+    			coord[0] = 31;
+    		}
+    		else {
+    			coord[0] --;
+    		}
+
+    		break;
+
+    	case 3:
+    		if (coord[1] == 31) {
+    			coord[1] = 0;
+    		}
+    		else {
+    			coord[1] ++;
+    		}
+			break;
+
+    	case 4:
+    		if (coord[1] == 0) {
+    			coord[1] = 31;
+    		}
+    		else {
+    			coord[1] --;
+    		}
+			break;
+    	
+    	default :
+    		break;
+	}
+}
