@@ -42,7 +42,7 @@ public:
 //==============================
 
 virtual void Describe();
-
+Bacterie* Division();
 virtual void Death();
 virtual void Deplacement();
 
