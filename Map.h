@@ -31,7 +31,7 @@ virtual ~Map();
 //==============================
 //    GETTERS
 //==============================
-Metabolite** GetGrille();
+Metabolite*** GetGrille();
 
 //==============================
 //    SETTERS
@@ -68,7 +68,7 @@ int T; //temps de simulation
 int t; //temps de renouvellement
 int temps; //temps reel de la simulation
 int h; //pas de temps
-Metabolite** Grille; //grille des concentrations en metabolites
+Metabolite*** Grille; //grille des concentrations en metabolites
 
 
 

@@ -33,12 +33,12 @@ Map::~Map(){}
 //==============================
 //    PUBLIC METHODS
 //==============================
-Metabolite** Map::GetGrille(){
+Metabolite*** Map::GetGrille(){
   return Grille;
 }
 
 void Map::placeBacteries(){
-
+  
   vector<int> tableDeNombres;
   for(int i=0; i<(height*width)/2; i++){
     tableDeNombres.push_back(0);
@@ -49,25 +49,26 @@ void Map::placeBacteries(){
   random_shuffle(tableDeNombres.begin(), tableDeNombres.end());
   vector<Bacterie*> tableDeBacteries;
 
-  /*for (vector<int>::iterator it=tableDeNombres.begin(); it!=tableDeNombres.end(); ++it){
+  for (vector<int>::iterator it=tableDeNombres.begin(); it!=tableDeNombres.end(); ++it){
     cout << ' ' << *it;
-  }*/
+  }
 
   int compteur=0;
   while(compteur<width*height){
     for(int i=0; i<width; i++){
       for(int j=0; j<height; j++){
         if(tableDeNombres[compteur]==0){
+          cout<<"i est "<<i<<"j est " <<j<<"compteur est" <<compteur<<endl;
 
           Lignee_A* a= new Lignee_A(i,j);
-	        Grille[i][j]=Metabolite(A_init, a); 
+	        Grille[i][j]= new Metabolite(A_init, a); 
           compteur++;
         }
 
         else{
-          
+          cout<<i<<j<<compteur<<endl;
           Lignee_B* b= new Lignee_B(i,j);
-          Grille[i][j]=Metabolite(A_init, b);
+          Grille[i][j]= new Metabolite(A_init, b);
           compteur++;
         }
         

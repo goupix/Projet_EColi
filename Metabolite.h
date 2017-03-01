@@ -45,7 +45,8 @@ public:
 //==============================
 //    PUBLIC METHODS
 //==============================
-
+  void Describe();
+  
 protected:
 //==============================
 //    PROTECTED METHODS

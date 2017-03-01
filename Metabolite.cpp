@@ -3,7 +3,7 @@
 //==============================
 #include "Metabolite.h"
 #include <iostream>
-
+using namespace std;
 
 //==============================
 //    DEFINITION STATIC ATTRIBUTES
@@ -62,6 +62,12 @@ void Metabolite::SetC(float c){
 
 void Metabolite::Setptr(Bacterie* cible){
   ptr=cible;
+}
+
+void Metabolite::Describe(){
+  cout<<"Cette case contient les concentrations A,B et C suivante: "<<A<<", "<<B<<" et "<<C<<"."<<endl;
+  cout<<"Elle contient une bacterie. "<<endl;
+  ptr->Describe();
 }
 
 

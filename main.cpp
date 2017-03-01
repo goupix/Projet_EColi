@@ -12,7 +12,16 @@ int main(){
 
   Map environnement=Map();
   /*environnement.placeBacteries();
-  cout<<"Case 1, A: "<< environnement.GetGrille()[0][0].GetA() <<endl;*/
+  cout<<"Case 1, A: "<< environnement.GetGrille()[0][0]->GetA() <<endl;*/
+
+
+/*Test de la classe Metabolite*/
+  cout<<""<<endl;
+  cout<<"########## Constructeur par défaut de la classe Metabolite ##########"<<endl;
+  cout<<""<<endl;
+  Bacterie* t1=new Bacterie;
+  Metabolite m1=Metabolite(2.0, t1);
+  m1.Describe();
 
 /*Test de la classe Bacterie*/
   cout<<""<<endl;
