@@ -5,7 +5,8 @@
 //==============================
 //    INCLUDES 
 //==============================
-
+#include <algorithm>    // std::random_shuffle
+#include <vector>       // std::vector
 /**
  * @class Bacterie
  * @brief 
@@ -41,10 +42,10 @@ public:
 virtual void Describe();
 
 virtual void Death();
-/*
-virtual void Division(); //methode qui gere la division des bacteries (x2)
+
+//virtual void Division(); //methode qui gere la division des bacteries (x2)
 virtual void Deplacement(); //methode qui gere le deplacement des bacteries sur la map
-virtual void Death(); //methode qui gere la mort des bacteries (argument death :D)
+/*
 virtual void Switchtype(); //methode qui va changer le type des bacteries si elles sont mutées ou pas (ex: passer de S à L ou L à S)
 virtual void Print(); //afficher etat bacteries / coordonnes eventuellement etc ..
 */
@@ -65,7 +66,7 @@ float W_min; //seuil minimum de fitness (=0.001)
 float A_int;
 float B_int;
 float C_int;
-
+//std::vector<int> depl;
 //==============================
 //    GETTER DEFINITION
 //==============================
