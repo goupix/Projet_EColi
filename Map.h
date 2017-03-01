@@ -45,9 +45,9 @@ Metabolite*** GetGrille();
 //    PUBLIC METHODS
 //==============================
 void placeBacteries(); // cree et positionne les bacteries 
-/*
 void bougeMetabo(); // bouge les metabolites
-void update(); // les bacteries se nourrissent, metabolisent, mutent, se divisent, meurent eventuellement
+void Death();
+/*void update(); // les bacteries se nourrissent, metabolisent, mutent, se divisent, meurent eventuellement
 void renouvelle(); //reinitialise le milieu de culture
 int* count();// compte le nombre de bacteries des lignees S et L
 */
@@ -60,8 +60,8 @@ protected:
 //==============================
 //    ATTRIBUTES
 //==============================
-int width=32; //longueur grille
-int height=32;//hauteur grille
+static constexpr int width=32; //longueur grille
+static constexpr int height=32;//hauteur grille
 float A_init; //concentration initiale en glucose
 float D; //coef de diffusion
 int T; //temps de simulation

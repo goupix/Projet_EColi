@@ -11,8 +11,10 @@ int main(){
 /* Test de la classe Map*/
 
   Map environnement=Map();
-  /*environnement.placeBacteries();
-  cout<<"Case 1, A: "<< environnement.GetGrille()[0][0]->GetA() <<endl;*/
+  environnement.placeBacteries();
+  cout<<"Case 1 contient un concentration en A de: "<< environnement.GetGrille()[0][0]->GetA() <<endl;
+  cout<<"Case 1 contient une bactérie"<<endl;
+  (environnement.GetGrille()[0][0]->Getptr())->Describe();
 
 
 /*Test de la classe Metabolite*/

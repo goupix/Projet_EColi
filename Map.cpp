@@ -23,6 +23,10 @@ Map::Map(){
   t=200;
   temps=0;
   h=1;
+  Grille=new Metabolite**[height];
+  for(int i=0; i<height; i++){
+    Grille[i]=new Metabolite*[width];
+  }
 }
 
 //==============================
@@ -34,6 +38,7 @@ Map::~Map(){}
 //    PUBLIC METHODS
 //==============================
 Metabolite*** Map::GetGrille(){
+
   return Grille;
 }
 
@@ -49,24 +54,23 @@ void Map::placeBacteries(){
   random_shuffle(tableDeNombres.begin(), tableDeNombres.end());
   vector<Bacterie*> tableDeBacteries;
 
-  for (vector<int>::iterator it=tableDeNombres.begin(); it!=tableDeNombres.end(); ++it){
+  /*for (vector<int>::iterator it=tableDeNombres.begin(); it!=tableDeNombres.end(); ++it){
     cout << ' ' << *it;
-  }
+  }*/
 
   int compteur=0;
   while(compteur<width*height){
     for(int i=0; i<width; i++){
       for(int j=0; j<height; j++){
         if(tableDeNombres[compteur]==0){
-          cout<<"i est "<<i<<"j est " <<j<<"compteur est" <<compteur<<endl;
-
+    
           Lignee_A* a= new Lignee_A(i,j);
 	        Grille[i][j]= new Metabolite(A_init, a); 
           compteur++;
         }
 
         else{
-          cout<<i<<j<<compteur<<endl;
+          
           Lignee_B* b= new Lignee_B(i,j);
           Grille[i][j]= new Metabolite(A_init, b);
           compteur++;
@@ -75,4 +79,8 @@ void Map::placeBacteries(){
 	    }
     }
   }
+}
+
+void Map::bougeMetabo(){
+
 }
