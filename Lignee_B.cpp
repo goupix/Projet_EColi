@@ -83,5 +83,5 @@ void Lignee_B::Describe(){
 }
 
 int Lignee_B::Death(){Bacterie::Death();}
-void Lignee_B::Deplacement(){Bacterie::Deplacement();}
+/*void Lignee_B::Deplacement(){Bacterie::Deplacement();}*/
 char Lignee_B::Gettype(){Bacterie::Gettype();}

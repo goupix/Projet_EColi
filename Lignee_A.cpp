@@ -87,5 +87,5 @@ Bacterie* Lignee_A::Division(){
 
 
 int Lignee_A::Death(){Bacterie::Death();}
-void Lignee_A::Deplacement(){Bacterie::Deplacement();}
+/*void Lignee_A::Deplacement(){Bacterie::Deplacement();}*/
 char Lignee_A::Gettype(){Bacterie::Gettype();}

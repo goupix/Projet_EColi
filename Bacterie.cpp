@@ -48,7 +48,7 @@ char Bacterie::Gettype(){
   return type;
 }
 
-void Bacterie::Deplacement(){
+/*void Bacterie::Deplacement(){
     int alea=rand()%4+1;
   //std::random_shuffle(depl.begin(), depl.end());
   switch (alea)
@@ -93,7 +93,7 @@ void Bacterie::Deplacement(){
       default :
         break;
   }
-}
+}*/
 
 
 
@@ -113,7 +113,7 @@ int Bacterie::Death(){
 }
 
 Bacterie* Bacterie::Division(){
-  
+
 }
 
 

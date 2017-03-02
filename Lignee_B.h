@@ -44,7 +44,7 @@ public:
   virtual void Describe();
   virtual Bacterie* Division();
   virtual int Death();
-  virtual void Deplacement();
+  /*virtual void Deplacement();*/
   virtual char Gettype();
 
 protected:

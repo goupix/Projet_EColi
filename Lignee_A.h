@@ -42,7 +42,7 @@ virtual ~Lignee_A();
 
 virtual void Describe();
 virtual int Death();
-virtual void Deplacement();
+/*virtual void Deplacement();*/
 virtual Bacterie* Division();
 virtual char Gettype();
 
