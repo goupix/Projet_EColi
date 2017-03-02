@@ -81,9 +81,158 @@ void Map::placeBacteries(){
   }
 }
 
-void Map::bougeMetabo(){
+void Map::bougeMetabo(int x, int y){
+  float newA;
+  float newB;
+  float newC;
 
-}
+  newA=Grille[x][y]->GetA();
+  newB=Grille[x][y]->GetB();
+  newC=Grille[x][y]->GetC();
+
+  vector<Metabolite*> voisins;
+
+
+  
+  if(x!=0 && x!=31 && y!=0 && y!=31){
+
+    for(int i=-1; i<2;i++){
+      for(int j=-1; j<2; j++){
+        voisins.push_back(Grille[x+i][y+j]);
+      
+      }
+    }
+  }
+  
+
+  else if(x==0 && y!=0 && y!=31){
+    for(int i=0; i<2;i++){
+      for(int j=-1; j<2; j++){
+        voisins.push_back(Grille[x+i][y+j]);
+      
+      }
+    }
+    voisins.push_back(Grille[31][y-1]);
+    voisins.push_back(Grille[31][y]);
+    voisins.push_back(Grille[31][y+1]);
+
+  }
+
+  else if(x==31 && y!=0 && y!=31){
+    for(int i=-1; i<1;i++){
+      for(int j=-1; j<2; j++){
+        voisins.push_back(Grille[x+i][y+j]);
+      
+      }
+    }
+    voisins.push_back(Grille[0][y-1]);
+    voisins.push_back(Grille[0][y]);
+    voisins.push_back(Grille[0][y+1]);
+    
+  }
+
+  else if(y==0 && x!=0 && x!=31){
+    for(int i=-1; i<2;i++){
+      for(int j=0; j<2; j++){
+        voisins.push_back(Grille[x+i][y+j]);
+      
+      }
+    }
+    voisins.push_back(Grille[x-1][31]);
+    voisins.push_back(Grille[x][31]);
+    voisins.push_back(Grille[x+1][31]);
+  }
+
+  else if(y==31 && x!=0 && x!=31){
+    for(int i=-1; i<2;i++){
+      for(int j=-1; j<1; j++){
+        voisins.push_back(Grille[x+i][y+j]);
+      }
+    }
+    voisins.push_back(Grille[x-1][0]);
+    voisins.push_back(Grille[x][0]);
+    voisins.push_back(Grille[x+1][0]);  
+  }
+
+  else if(y==0 && x==0){
+
+    voisins.push_back(Grille[x][y]);
+    voisins.push_back(Grille[x+1][y]);
+    voisins.push_back(Grille[x][y+1]); 
+    voisins.push_back(Grille[x+1][y+1]);
+
+    voisins.push_back(Grille[x][31]);
+    voisins.push_back(Grille[x+1][31]); 
+    voisins.push_back(Grille[31][y]);
+    voisins.push_back(Grille[31][y+1]);
+
+    voisins.push_back(Grille[31][31]); 
+  }
+
+  else if(y==31 && x==31){
+
+    voisins.push_back(Grille[x][y]);
+    voisins.push_back(Grille[x][y-1]);
+    voisins.push_back(Grille[x-1][y-1]); 
+    voisins.push_back(Grille[x-1][y]);
+
+    voisins.push_back(Grille[x][0]);
+    voisins.push_back(Grille[x-1][0]); 
+    voisins.push_back(Grille[0][y-1]);
+    voisins.push_back(Grille[0][y]);
+
+    voisins.push_back(Grille[0][0]);  
+
+  }
+
+  else if(y==31 && x==0){
+
+    voisins.push_back(Grille[x][y]);
+    voisins.push_back(Grille[x][y-1]);
+    voisins.push_back(Grille[x+1][y-1]); 
+    voisins.push_back(Grille[x+1][y]);
+
+    voisins.push_back(Grille[x][0]);
+    voisins.push_back(Grille[x+1][0]); 
+    voisins.push_back(Grille[31][y-1]);
+    voisins.push_back(Grille[31][y]);
+
+    voisins.push_back(Grille[31][0]); 
+
+  }
+
+  else if(y==0 && x==31){
+
+    voisins.push_back(Grille[x][y]);
+    voisins.push_back(Grille[x][y+1]);
+    voisins.push_back(Grille[x-1][y+1]); 
+    voisins.push_back(Grille[x-1][y]);
+
+    voisins.push_back(Grille[x][31]);
+    voisins.push_back(Grille[x-1][31]); 
+    voisins.push_back(Grille[0][y+1]);
+    voisins.push_back(Grille[0][y]);
+
+    voisins.push_back(Grille[0][31]); 
+
+  }
+
+
+  for(int i=0; i<9; i++){
+      newA+=D*(voisins[i]->GetA());
+      newB+=D*(voisins[i]->GetB());
+      newC+=D*(voisins[i]->GetC());
+      
+    }
+
+
+
+  newA+=(-9*D*(Grille[x][y]->GetA()));
+  newB+=(-9*D*(Grille[x][y]->GetB()));
+  newC+=(-9*D*(Grille[x][y]->GetB()));
+  
+  cout<<" Les nouvelles concentrations de la case ( "<<x<<", "<<y<<" ) sont ("<<newA<<", "<<newB<<", "<<newC<<" )"<<endl;
+ }
 
 void Map::DescribeBacteries(){
 

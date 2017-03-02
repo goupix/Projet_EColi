@@ -29,6 +29,30 @@ int main(){
   cout<<""<<endl;
   environnement.DescribeABC();
 
+  cout<<""<<endl;
+  cout<<"########## Methodes bougeMetabo ##########"<<endl;
+  cout<<""<<endl;
+  (environnement.GetGrille()[5][6])->SetA(2);
+  environnement.bougeMetabo(5,6);
+  (environnement.GetGrille()[5][6])->SetA(10);
+
+  (environnement.GetGrille()[5][31])->SetA(2);
+  environnement.bougeMetabo(5,31);
+  (environnement.GetGrille()[5][31])->SetA(10);
+
+  (environnement.GetGrille()[31][7])->SetA(2);
+  environnement.bougeMetabo(31,7);
+  (environnement.GetGrille()[31][7])->SetA(10);
+
+  (environnement.GetGrille()[0][31])->SetA(2);
+  environnement.bougeMetabo(0,31);
+  (environnement.GetGrille()[0][31])->SetA(10);
+
+  (environnement.GetGrille()[31][31])->SetA(2);
+  environnement.bougeMetabo(31,31);
+  (environnement.GetGrille()[31][31])->SetA(10);
+  
+
 
 /*Test de la classe Metabolite*/
   cout<<""<<endl;
@@ -45,14 +69,14 @@ int main(){
   cout<<""<<endl;
   Bacterie t=Bacterie();
   t.Describe();
-/*Test de la méthode Déplacement*/
+/*Test de la méthode Déplacement
   cout<<""<<endl;
   cout<<"########## Méthode déplacement de la classe Bactérie ##########"<<endl;
   cout<<""<<endl;
   t.Deplacement();
   t.Describe();
   t.Deplacement();
-  t.Describe();
+  t.Describe();*/
 
 /*Test de la classe Lignee_B*/
   /*Constructeur 1*/
