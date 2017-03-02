@@ -18,7 +18,7 @@ public:
 //==============================
   Lignee_B(int x, int y);
   Lignee_B(int x, int y, float a, float b, float c);
-
+  Lignee_B(const Lignee_B& a);
 
 //==============================
 //    DESTRUCTOR
@@ -41,11 +41,11 @@ public:
 //    PUBLIC METHODS
 //==============================
 
-virtual void Describe();
-Bacterie* Division();
-virtual int Death();
-virtual void Deplacement();
-virtual char Gettype();
+  virtual void Describe();
+  virtual Bacterie* Division();
+  virtual int Death();
+  virtual void Deplacement();
+  virtual char Gettype();
 
 protected:
 //==============================

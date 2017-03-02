@@ -18,7 +18,7 @@ public:
 //==============================
   Lignee_A(int x, int y);
   Lignee_A(int x, int y, float a, float b, float c);
-
+  Lignee_A(const Lignee_A& a);
 //==============================
 //    DESTRUCTOR
 //==============================
@@ -43,7 +43,7 @@ virtual ~Lignee_A();
 virtual void Describe();
 virtual int Death();
 virtual void Deplacement();
-Bacterie* Division();
+virtual Bacterie* Division();
 virtual char Gettype();
 
 

@@ -50,8 +50,8 @@ void DescribeABC();
 void bougeMetabo(); // bouge les metabolites
 /*void update(); // les bacteries se nourrissent, metabolisent, mutent, se divisent, meurent eventuellement*/
 void renouvelle(); //reinitialise le milieu de culture
-/*int* count();// compte le nombre de bacteries des lignees S et L
-*/
+
+
 
 protected:
 //==============================

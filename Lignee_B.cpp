@@ -44,6 +44,20 @@ Lignee_B::Lignee_B(int x, int y, float a, float b, float c){
 
 }
 
+Lignee_B::Lignee_B(const Lignee_B& a){
+  type=a.type;
+
+  coord[0]=a.coord[0];
+  coord[1]=a.coord[1];
+
+  A_int=a.A_int;
+  B_int=a.B_int;
+  C_int=a.C_int;
+
+  Rbb=a.Rbb;
+  Rbc=a.Rbc;
+}
+
 
 //==============================
 //    DESTRUCTOR

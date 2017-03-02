@@ -111,4 +111,10 @@ int Bacterie::Death(){
     }
     
 }
+
+Bacterie* Bacterie::Division(){
+  
+}
+
+
       
