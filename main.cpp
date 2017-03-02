@@ -30,7 +30,7 @@ int main(){
   environnement.DescribeABC();
 
   cout<<""<<endl;
-  cout<<"########## Methodes bougeMetabo ##########"<<endl;
+  cout<<"########## Methode bougeMetabo ##########"<<endl;
   cout<<""<<endl;
   (environnement.GetGrille()[5][6])->SetA(2);
   environnement.bougeMetabo(5,6);
@@ -51,6 +51,12 @@ int main(){
   (environnement.GetGrille()[31][31])->SetA(2);
   environnement.bougeMetabo(31,31);
   (environnement.GetGrille()[31][31])->SetA(10);
+  
+  cout<<""<<endl;
+  cout<<"########## Methode update ##########"<<endl;
+  cout<<""<<endl;
+  environnement.update();
+  environnement.DescribeBacteries();
   
 
 

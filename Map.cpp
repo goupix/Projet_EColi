@@ -238,7 +238,12 @@ void Map::DescribeBacteries(){
 
   for(int i=0; i<width;i++){
     for(int j=0; j<height; j++){
-      cout<<(Grille[i][j]->Getptr())->Gettype()<<" ";
+      if(Grille[i][j]->Getptr()==nullptr){
+        cout<<'O'<<" ";
+      }
+      else{
+        cout<<(Grille[i][j]->Getptr())->Gettype()<<" ";
+      }
 
     }
     
@@ -268,4 +273,22 @@ void Map::renouvelle(){
   }
 }
 
+void Map::update(){
+  cout<<"Diffusion des métabolites. (à venir)"<<endl;
+  cout<<""<<endl;
+  cout<<"Les bacteries meurent!"<<endl;
+  cout<<""<<endl;
+  for(int i=0; i<width; i++){
+    for(int j=0; j<height; j++){
+      if((Grille[i][j]->Getptr())->Death()==0){
 
+        delete(Grille[i][j]->Getptr());
+        Grille[i][j]->Setptr(nullptr);
+        cout<<"RIP"<<" ";
+      }
+    }
+  }
+
+
+
+}

@@ -82,6 +82,20 @@ void Lignee_B::Describe(){
 
 }
 
-int Lignee_B::Death(){Bacterie::Death();}
+int Lignee_B::Death(){
+  float nombre = (rand()%(1000))/1000.0;
+
+  /*srand(time(NULL));
+  float nombre = (float)rand() / (float)RAND_MAX;*/
+    if(nombre<p_death){
+      return 0;
+      
+        
+    }
+    
+    else{
+      return 1;
+    }
+    }
 /*void Lignee_B::Deplacement(){Bacterie::Deplacement();}*/
 char Lignee_B::Gettype(){Bacterie::Gettype();}

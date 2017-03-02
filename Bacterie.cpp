@@ -18,6 +18,9 @@ using std::endl;
 //    CONSTRUCTORS
 //==============================
 Bacterie::Bacterie(){
+srand(time(0));
+
+
 coord[0]=0; 
 coord[1]=0;
 
@@ -98,18 +101,7 @@ char Bacterie::Gettype(){
 
 
 int Bacterie::Death(){
-  srand(time(NULL));
-  float nombre = (float)rand() / (float)RAND_MAX;
-    if(nombre<p_death){
-      return 0;
-      cout<<"RIP"<<endl;
-        
-    }
-    
-    else{
-      return 1;
-    }
-    
+  
 }
 
 Bacterie* Bacterie::Division(){

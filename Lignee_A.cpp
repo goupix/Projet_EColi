@@ -3,6 +3,8 @@
 //==============================
 #include "Lignee_A.h"
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 using std::cout;
 using std::endl;
 
@@ -86,6 +88,21 @@ Bacterie* Lignee_A::Division(){
 
 
 
-int Lignee_A::Death(){Bacterie::Death();}
+int Lignee_A::Death(){
+  float nombre =  (rand()%(1000))/1000.0;
+  /*srand(time(NULL));
+  float nombre = (float)rand() / (float)RAND_MAX;*/
+  
+    if(nombre<p_death){
+      return 0;
+      
+        
+    }
+    
+    else{
+      return 1;
+    }
+    
+}
 /*void Lignee_A::Deplacement(){Bacterie::Deplacement();}*/
 char Lignee_A::Gettype(){Bacterie::Gettype();}
