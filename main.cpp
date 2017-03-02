@@ -9,12 +9,26 @@ using namespace std;
 
 int main(){
 /* Test de la classe Map*/
-
+  cout<<""<<endl;
+  cout<<"########## Constructeur par défaut de la classe Map ##########"<<endl;
+  cout<<""<<endl;
   Map environnement=Map();
+
+  cout<<""<<endl;
+  cout<<"########## Methode placeBacteries ##########"<<endl;
+  cout<<""<<endl;
   environnement.placeBacteries();
   cout<<"Case 1 contient un concentration en A de: "<< environnement.GetGrille()[0][0]->GetA() <<endl;
   cout<<"Case 1 contient une bactérie"<<endl;
   (environnement.GetGrille()[0][0]->Getptr())->Describe();
+
+  cout<<""<<endl;
+  cout<<"########## Methodes Describe ##########"<<endl;
+  cout<<""<<endl;
+  environnement.DescribeBacteries();
+  cout<<""<<endl;
+  environnement.DescribeABC();
+
 
 
 /*Test de la classe Metabolite*/
@@ -24,6 +38,7 @@ int main(){
   Bacterie* t1=new Bacterie;
   Metabolite m1=Metabolite(2.0, t1);
   m1.Describe();
+  delete(t1);
 
 /*Test de la classe Bacterie*/
   cout<<""<<endl;
@@ -31,6 +46,10 @@ int main(){
   cout<<""<<endl;
   Bacterie t=Bacterie();
   t.Describe();
+/*Test de la méthode Déplacement*/
+  cout<<""<<endl;
+  cout<<"########## Méthode déplacement de la classe Bactérie ##########"<<endl;
+  cout<<""<<endl;
   t.Deplacement();
   t.Describe();
   t.Deplacement();
@@ -58,8 +77,7 @@ int main(){
   Lignee_A a2= Lignee_A(15,20,5.3,0.1,0.6);
   a2.Describe();
   
-  Bacterie f=Bacterie();
-  f.Death();
+  
 
 
 

@@ -43,9 +43,9 @@ public:
 
 virtual void Describe();
 Bacterie* Division();
-virtual void Death();
+virtual int Death();
 virtual void Deplacement();
-
+virtual char Gettype();
 
 protected:
 //==============================
@@ -58,7 +58,7 @@ protected:
 float Rbb;
 float Rbc;
 float& w=C_int;
-char type='B';
+
 
 //==============================
 //    GETTER DEFINITION

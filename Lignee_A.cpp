@@ -19,6 +19,8 @@ using std::endl;
 
 Lignee_A::Lignee_A(int x, int y){
   
+  type='A';
+
   coord[0]=x;
   coord[1]=y;
 
@@ -28,6 +30,8 @@ Lignee_A::Lignee_A(int x, int y){
 }
 Lignee_A::Lignee_A(int x, int y, float a, float b, float c){
   
+  type='A';
+
   coord[0]=x;
   coord[1]=y;
 
@@ -64,5 +68,6 @@ Bacterie* Lignee_A::Division(){
 }
 
 
-void Lignee_A::Death(){}
+int Lignee_A::Death(){Bacterie::Death();}
 void Lignee_A::Deplacement(){Bacterie::Deplacement();}
+char Lignee_A::Gettype(){Bacterie::Gettype();}

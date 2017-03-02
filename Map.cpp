@@ -84,3 +84,37 @@ void Map::placeBacteries(){
 void Map::bougeMetabo(){
 
 }
+
+void Map::DescribeBacteries(){
+
+  for(int i=0; i<width;i++){
+    for(int j=0; j<height; j++){
+      cout<<(Grille[i][j]->Getptr())->Gettype()<<" ";
+
+    }
+    
+  }
+  cout<<""<<endl;
+}
+
+void Map::DescribeABC(){
+
+  for(int i=0; i<width;i++){
+    for(int j=0; j<height; j++){
+      cout<<"("<<Grille[i][j]->GetA()<<", "<<Grille[i][j]->GetB()<<", "<<Grille[i][j]->GetC()<<") ";
+
+    }
+    
+  }
+  cout<<""<<endl;
+}
+  
+void Map::renouvelle(){
+  for(int i=0; i<width; i++){
+    for(int j=0; j<height; j++){
+      Grille[i][j]->SetA(A_init);
+      Grille[i][j]->SetC(0.0);
+      Grille[i][j]->SetA(0.0);
+    }
+  }
+}

@@ -41,9 +41,10 @@ virtual ~Lignee_A();
 //==============================
 
 virtual void Describe();
-virtual void Death();
+virtual int Death();
 virtual void Deplacement();
 Bacterie* Division();
+virtual char Gettype();
 
 
 protected:
@@ -57,7 +58,7 @@ protected:
   float Raa;
   float Rab;
   float& w=B_int;
-  char type='A';
+  
 
 //==============================
 //    GETTER DEFINITION

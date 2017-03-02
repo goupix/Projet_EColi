@@ -27,7 +27,7 @@ public:
 //==============================
 //    GETTERS
 //==============================
-
+virtual char Gettype();
 //==============================
 //    SETTERS
 //==============================
@@ -41,7 +41,7 @@ public:
 //==============================
 virtual void Describe();
 
-virtual void Death();
+virtual int Death();
 
 //virtual void Division(); //methode qui gere la division des bacteries (x2)
 virtual void Deplacement(); //methode qui gere le deplacement des bacteries sur la map
@@ -66,6 +66,8 @@ float W_min; //seuil minimum de fitness (=0.001)
 float A_int;
 float B_int;
 float C_int;
+
+char type;
 //std::vector<int> depl;
 //==============================
 //    GETTER DEFINITION
