@@ -288,6 +288,30 @@ void Map::update(){
       }
     }
   }
+   
+  cout<<"Les bacteries entrent en compétition!"<<endl;
+  cout<<""<<endl;
+  
+  vector<Metabolite*> gaps;
+
+  for(int i=0; i<width; i++){
+    for(int j=0; j<height; j++){
+      if((Grille[i][j]->Getptr())==nullptr){
+        gaps.push_back(Grille[i][j]);
+
+      }
+    }
+  }
+
+  random_shuffle(gaps.begin(), gaps.end());
+  
+  cout<<"On recupère les voisins et ils se battent hey!"<<endl;
+  
+
+  
+
+  cout<<"Les bacteries se nourrissent! (à venir)"<<endl;
+  cout<<""<<endl;
 
 
 
