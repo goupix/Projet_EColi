@@ -89,10 +89,10 @@ int main(){
   cout<<""<<endl;
   cout<<"########## Bactéries de la lignée B, avec trois constructeurs ##########"<<endl;
   cout<<""<<endl;
-  Lignee_B b1=Lignee_B(1,3);
+  Lignee_B b1=Lignee_B();
   b1.Describe();
   /*Constructeur 2*/
-  Lignee_B b2= Lignee_B(1,3,2.5,2.0,1.1);
+  Lignee_B b2= Lignee_B(2.5,2.0,1.1);
   b2.Describe();
   /*Constructeur par copie*/
   Lignee_B b3(b2);
@@ -104,10 +104,10 @@ int main(){
   cout<<""<<endl;
   cout<<"######### Bactéries de la lignée A, avec trois constructeurs ##########"<<endl;
   cout<<""<<endl;
-  Lignee_A a1=Lignee_A(15,20);
+  Lignee_A a1=Lignee_A();
   a1.Describe();
   /*Constructeur 2*/
-  Lignee_A a2=Lignee_A(15,20,5.3,0.1,0.6);
+  Lignee_A a2=Lignee_A(5.3,0.1,0.6);
   a2.Describe();
   /*Constructeur par copie*/
   Lignee_A a3(a2);

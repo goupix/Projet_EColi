@@ -51,6 +51,16 @@ char Bacterie::Gettype(){
   return type;
 }
 
+float Bacterie::GetA_int(){
+  return A_int;
+}
+float Bacterie::GetB_int(){
+  return B_int;
+}
+float Bacterie::GetC_int(){
+  return C_int;
+}
+
 /*void Bacterie::Deplacement(){
     int alea=rand()%4+1;
   //std::random_shuffle(depl.begin(), depl.end());
@@ -102,6 +112,16 @@ char Bacterie::Gettype(){
 
 int Bacterie::Death(){
   
+}
+
+int Bacterie::Mute(){
+  float nombre =  (rand()%(1000))/1000.0;
+  if (nombre<p_mutation){
+    return 0;
+  }
+  else{
+    return 1;
+  }
 }
 
 Bacterie* Bacterie::Division(){

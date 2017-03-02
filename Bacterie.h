@@ -27,7 +27,10 @@ public:
 //==============================
 //    GETTERS
 //==============================
-virtual char Gettype();
+  virtual char Gettype();
+  virtual float GetA_int();
+  virtual float GetB_int();
+  virtual float GetC_int();
 //==============================
 //    SETTERS
 //==============================
@@ -43,11 +46,11 @@ virtual void Describe();
 
 virtual int Death();
 
+virtual int Mute();
+
 virtual Bacterie* Division(); //methode qui gere la division des bacteries (x2)
 /*virtual void Deplacement(); //methode qui gere le deplacement des bacteries sur la map*/
-/*virtual void Switchtype(); //methode qui va changer le type des bacteries si elles sont mutées ou pas (ex: passer de S à L ou L à S)
-virtual void Print(); //afficher etat bacteries / coordonnes eventuellement etc ..
-*/
+
 protected:
 //==============================
 //    PROTECTED METHODS

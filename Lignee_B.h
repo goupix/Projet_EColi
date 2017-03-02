@@ -16,8 +16,8 @@ public:
 //==============================
 //    CONSTRUCTORS
 //==============================
-  Lignee_B(int x, int y);
-  Lignee_B(int x, int y, float a, float b, float c);
+  Lignee_B();
+  Lignee_B(float a, float b, float c);
   Lignee_B(const Lignee_B& a);
 
 //==============================
@@ -28,6 +28,10 @@ public:
 //==============================
 //    GETTERS
 //==============================
+  virtual float GetA_int();
+  virtual float GetB_int();
+  virtual float GetC_int();
+  virtual char Gettype();
 
 //==============================
 //    SETTERS
@@ -45,7 +49,7 @@ public:
   virtual Bacterie* Division();
   virtual int Death();
   /*virtual void Deplacement();*/
-  virtual char Gettype();
+  virtual int Mute();
 
 protected:
 //==============================

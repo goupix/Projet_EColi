@@ -64,14 +64,14 @@ void Map::placeBacteries(){
       for(int j=0; j<height; j++){
         if(tableDeNombres[compteur]==0){
     
-          Lignee_A* a= new Lignee_A(i,j);
+          Lignee_A* a= new Lignee_A();
 	        Grille[i][j]= new Metabolite(A_init, a); 
           compteur++;
         }
 
         else{
           
-          Lignee_B* b= new Lignee_B(i,j);
+          Lignee_B* b= new Lignee_B();
           Grille[i][j]= new Metabolite(A_init, b);
           compteur++;
         }
@@ -304,6 +304,30 @@ void Map::update(){
   }
 
   random_shuffle(gaps.begin(), gaps.end());
+
+  cout<<"Les bactéries mutent!"<<endl;
+  cout<<""<<endl;
+  for(int i=0; i<width; i++){
+    for(int j=0; j<height; j++){
+      if (Grille[i][j]->Getptr()!=nullptr){
+        if((Grille[i][j]->Getptr())->Mute()==0){
+          if((Grille[i][j]->Getptr())->Gettype()=='A'){
+            Lignee_B* newcell=new Lignee_B((Grille[i][j]->Getptr())->GetA_int(),(Grille[i][j]->Getptr())->GetB_int(),(Grille[i][j]->Getptr())->GetC_int());
+            delete(Grille[i][j]->Getptr());
+            Grille[i][j]->Setptr(newcell);
+
+          }
+          else{
+            Lignee_A* newcell=new Lignee_A((Grille[i][j]->Getptr())->GetA_int(),(Grille[i][j]->Getptr())->GetB_int(),(Grille[i][j]->Getptr())->GetC_int());
+            delete(Grille[i][j]->Getptr());
+            Grille[i][j]->Setptr(newcell);
+          }
+
+          cout<<"Mutante"<<" ";
+        }
+      }
+    }
+  }
   
   cout<<"On recupère les voisins et ils se battent hey!"<<endl;
   

@@ -16,18 +16,21 @@ public:
 //==============================
 //    CONSTRUCTORS
 //==============================
-  Lignee_A(int x, int y);
-  Lignee_A(int x, int y, float a, float b, float c);
+  Lignee_A();
+  Lignee_A(float a, float b, float c);
   Lignee_A(const Lignee_A& a);
 //==============================
 //    DESTRUCTOR
 //==============================
-virtual ~Lignee_A();
+  virtual ~Lignee_A();
 
 //==============================
 //    GETTERS
 //==============================
-
+  virtual float GetA_int();
+  virtual float GetB_int();
+  virtual float GetC_int();
+  virtual char Gettype();
 //==============================
 //    SETTERS
 //==============================
@@ -40,11 +43,12 @@ virtual ~Lignee_A();
 //    PUBLIC METHODS
 //==============================
 
-virtual void Describe();
-virtual int Death();
-/*virtual void Deplacement();*/
-virtual Bacterie* Division();
-virtual char Gettype();
+  virtual void Describe();
+  virtual int Death();
+  /*virtual void Deplacement();*/
+  virtual Bacterie* Division();
+  virtual int Mute();
+
 
 
 protected:
