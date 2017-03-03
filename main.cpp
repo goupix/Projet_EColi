@@ -23,11 +23,14 @@ int main(){
   (environnement.GetGrille()[0][0]->Getptr())->Describe();
 
   cout<<""<<endl;
-  cout<<"########## Methodes Describe ##########"<<endl;
+  cout<<"########## Methodes Describe et compteur##########"<<endl;
   cout<<""<<endl;
   environnement.DescribeBacteries();
   cout<<""<<endl;
   environnement.DescribeABC();
+
+  cout<<""<<endl;
+  cout<<"Il y a "<<Lignee_A::nombre_A()<<" bactéries de type A, et "<<Lignee_B::nombre_B()<<" bactéries de type B"<<endl;
 
   cout<<""<<endl;
   cout<<"########## Methode bougeMetabo ##########"<<endl;
@@ -123,6 +126,12 @@ int main(){
   
   
 
+/*Test du destructeur de Map*/
+  cout<<""<<endl;
+  cout<<"######### Desctructeur ##########"<<endl;
+  cout<<""<<endl;
+  Map* e2=new Map();
+  delete(e2);
 
   return 0;
 }

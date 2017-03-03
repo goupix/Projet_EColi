@@ -12,7 +12,7 @@ using std::endl;
 //==============================
 //    DEFINITION STATIC ATTRIBUTES
 //==============================
-
+int Lignee_A::compteur_A = 0; //On initialise notre compteur à 0
 
 
 //==============================
@@ -21,6 +21,8 @@ using std::endl;
 
 Lignee_A::Lignee_A(){
   
+  compteur_A++;
+
   type='A';
 
   Raa=0.1;
@@ -29,6 +31,8 @@ Lignee_A::Lignee_A(){
 }
 
 Lignee_A::Lignee_A( float a, float b, float c){
+
+  compteur_A++;
   
   type='A';
 
@@ -42,6 +46,9 @@ Lignee_A::Lignee_A( float a, float b, float c){
 }
 
 Lignee_A::Lignee_A(const Lignee_A& a){
+
+  compteur_A++;
+
   type=a.type;
 
   A_int=a.A_int;
@@ -59,20 +66,21 @@ Lignee_A::Lignee_A(const Lignee_A& a){
 //    DESTRUCTOR
 //==============================
 
-Lignee_A::~Lignee_A(){}
+Lignee_A::~Lignee_A(){
+  compteur_A--;
+}
 //==============================
 //    PUBLIC METHODS
 //==============================
 
 void Lignee_A::Describe(){
-	cout<< "Cette bactérie de type "<<type<<" est placée en ("<<coord[0]<<", "<<coord[1]<<" )"<<endl;
-	cout<< "Elle présente une concentration interne en A: "<<A_int<<", en B: "<<B_int<<" et en C: "<<C_int<<endl<<" ainsi qu'une fitness de "<<w<<endl;
+	cout<< "Cette bactérie de type "<<type<<" présente une concentration interne en A: "<<A_int<<", en B: "<<B_int<<" et en C: "<<C_int<<endl<<" ainsi qu'une fitness de "<<w<<endl;
 }
 
 Bacterie* Lignee_A::Division(){
-	A_int = A_int/2;
-	B_int = B_int/2;
-	C_int = C_int/2;
+	A_int = A_int/2.0;
+	B_int = B_int/2.0;
+	C_int = C_int/2.0;
 	Lignee_A* newcell = new Lignee_A(A_int,B_int,C_int);
 	return newcell;
 }
@@ -98,6 +106,12 @@ int Lignee_A::Death(){
 /*void Lignee_A::Deplacement(){Bacterie::Deplacement();}*/
 char Lignee_A::Gettype(){Bacterie::Gettype();}
 int Lignee_A::Mute(){Bacterie::Mute();}
-float Lignee_A::GetA_int(){Bacterie::GetA_int();}
-float Lignee_A::GetB_int(){Bacterie::GetB_int();}
-float Lignee_A::GetC_int(){Bacterie::GetC_int();}
+float Lignee_A::GetA_int(){return A_int;}
+float Lignee_A::GetB_int(){return B_int;}
+float Lignee_A::GetC_int(){return C_int;}
+float& Lignee_A::Getw(){return w;}
+
+int Lignee_A::nombre_A()
+{
+    return compteur_A;   //On renvoie simplement la valeur du compteur
+}

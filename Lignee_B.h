@@ -51,6 +51,7 @@ public:
   virtual int Death();
   /*virtual void Deplacement();*/
   virtual int Mute();
+  static int nombre_B();
 
 protected:
 //==============================
@@ -63,6 +64,8 @@ protected:
 float Rbb;
 float Rbc;
 float& w=C_int;
+static int compteur_B;
+
 
 
 //==============================

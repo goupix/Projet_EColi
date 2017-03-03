@@ -10,7 +10,7 @@ using std::endl;
 //==============================
 //    DEFINITION STATIC ATTRIBUTES
 //==============================
-
+int Lignee_B::compteur_B = 0; //On initialise notre compteur à 0
 
 
 //==============================
@@ -18,7 +18,9 @@ using std::endl;
 //==============================
 
 Lignee_B::Lignee_B(){
-  
+
+  compteur_B++;
+
   type='B';
 
   Rbb=0.1;
@@ -26,6 +28,8 @@ Lignee_B::Lignee_B(){
 
 }
 Lignee_B::Lignee_B(float a, float b, float c){
+
+  compteur_B++;
   
   type='B';
 
@@ -39,6 +43,9 @@ Lignee_B::Lignee_B(float a, float b, float c){
 }
 
 Lignee_B::Lignee_B(const Lignee_B& a){
+
+  compteur_B++;
+
   type=a.type;
 
   A_int=a.A_int;
@@ -54,7 +61,9 @@ Lignee_B::Lignee_B(const Lignee_B& a){
 //    DESTRUCTOR
 //==============================
 
-Lignee_B::~Lignee_B(){}
+Lignee_B::~Lignee_B(){
+  compteur_B--;
+}
 //==============================
 //    PUBLIC METHODS
 //==============================
@@ -95,3 +104,8 @@ float Lignee_B::GetA_int(){return A_int;}
 float Lignee_B::GetB_int(){return B_int;}
 float Lignee_B::GetC_int(){return C_int;}
 float& Lignee_B::Getw(){return w;}
+
+int Lignee_B::nombre_B()
+{
+    return compteur_B;   //On renvoie simplement la valeur du compteur
+}

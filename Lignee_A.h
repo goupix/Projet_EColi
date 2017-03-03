@@ -49,6 +49,7 @@ public:
   /*virtual void Deplacement();*/
   virtual Bacterie* Division();
   virtual int Mute();
+  static int nombre_A();   //Renvoie le nombre d'objets créés
 
 
 
@@ -63,6 +64,7 @@ protected:
   float Raa;
   float Rab;
   float& w=B_int;
+  static int compteur_A;
   
 
 //==============================
