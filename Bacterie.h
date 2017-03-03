@@ -32,6 +32,7 @@ public:
   virtual float GetB_int();
   virtual float GetC_int();
   virtual float& Getw();
+  virtual void euler(float& a, float& aint, float& bint, float h, float p1, float p2);
 //==============================
 //    SETTERS
 //==============================

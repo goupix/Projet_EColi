@@ -116,3 +116,6 @@ int Lignee_A::nombre_A()
 {
     return compteur_A;   //On renvoie simplement la valeur du compteur
 }
+
+
+void Lignee_A::euler(float& a, float& aint, float& bint, float h, float p1, float p2){Bacterie::euler(a, aint, bint, h, p1, p2);}

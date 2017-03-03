@@ -42,19 +42,21 @@ Lignee_B::Lignee_B(float a, float b, float c){
 
 }
 
-Lignee_B::Lignee_B(const Lignee_B& a){
+
+Lignee_B::Lignee_B(const Lignee_B& b){
 
   compteur_B++;
 
-  type=a.type;
+  type=b.type;
 
-  A_int=a.A_int;
-  B_int=a.B_int;
-  C_int=a.C_int;
+  A_int=b.A_int;
+  B_int=b.B_int;
+  C_int=b.C_int;
 
-  Rbb=a.Rbb;
-  Rbc=a.Rbc;
+  Rbb=b.Rbb;
+  Rbc=b.Rbc;
 }
+
 
 
 //==============================
@@ -109,3 +111,5 @@ int Lignee_B::nombre_B()
 {
     return compteur_B;   //On renvoie simplement la valeur du compteur
 }
+
+void Lignee_B::euler(float& a, float& aint, float& bint, float h, float p1, float p2){Bacterie::euler(a, aint, bint, h, p1, p2);}

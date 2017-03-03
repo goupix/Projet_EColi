@@ -118,9 +118,25 @@ int Bacterie::Mute(){
   }
 }
 
-Bacterie* Bacterie::Division(){
+Bacterie* Bacterie::Division(){ ///méthode division
 
 }
+
+void Bacterie::euler(float& a, float& aint, float& bint, float h, float p1, float p2){
+  float newa=a;
+  float newbint=bint;
+  float newaint=aint;
+
+  newa+=h*(-p1*a);
+  newaint+=h*(p1*a-p2*aint);
+  newbint+=h*(p2*aint);
+
+  a=newa;
+  bint=newbint;
+  aint=newaint;
+
+}
+
 
 
       
