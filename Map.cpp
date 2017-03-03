@@ -468,6 +468,12 @@ void Map::update(){
     for(int j=0; j<height; j++){
       if((Grille[i][j]->Getptr())->Death()==0){
 
+        Grille[i][j]->SetA(Grille[i][j]->GetA()+(Grille[i][j]->Getptr())->GetA_int());
+        Grille[i][j]->SetB(Grille[i][j]->GetB()+(Grille[i][j]->Getptr())->GetB_int());
+        Grille[i][j]->SetC(Grille[i][j]->GetC()+(Grille[i][j]->Getptr())->GetC_int());
+        
+        DescribeABC();
+
         delete(Grille[i][j]->Getptr());
         Grille[i][j]->Setptr(nullptr);
 
