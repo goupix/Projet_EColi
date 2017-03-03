@@ -443,9 +443,10 @@ Bacterie* Map::competition(int x, int y){
 
     }
   }
-
-  cout<<"Nous avons une gagnante pour le gaps ("<<x<<", "<<y<<" )"<<endl;
+  
   cout<<""<<endl;
+  cout<<"Nous avons une gagnante pour le gaps ("<<x<<", "<<y<<" )"<<endl;
+  
   (voisins[indice]->Getptr())->Describe();
   return voisins[indice]->Getptr();
 }
@@ -500,9 +501,11 @@ void Map::update(){
   for(unsigned int i=0; i<gaps.size(); i++){
 
     Bacterie* gagnant=competition(gaps[i]->Getx(),gaps[i]->Gety());
-    gagnant->Describe();
 
     Bacterie* newborn=gagnant->Division();
+    cout<<""<<endl;
+    cout<<"Elle se divise pour donné un nouveau né bactérie!"<<endl;
+    cout<<""<<endl;
     newborn->Describe();
 
     Grille[gaps[i]->Getx()][gaps[i]->Gety()]->Setptr(newborn);
@@ -554,5 +557,5 @@ void Map::update(){
 
 void run(){
 
-  
+
 }

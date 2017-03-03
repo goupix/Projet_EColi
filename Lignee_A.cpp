@@ -81,6 +81,7 @@ Bacterie* Lignee_A::Division(){
 	A_int = A_int/2.0;
 	B_int = B_int/2.0;
 	C_int = C_int/2.0;
+  
 	Lignee_A* newcell = new Lignee_A(A_int,B_int,C_int);
 	return newcell;
 }

@@ -72,7 +72,7 @@ Bacterie* Lignee_B::Division(){
 	A_int = A_int/2.0;
 	B_int = B_int/2.0;
 	C_int = C_int/2.0;
-  cout<<"concentration A"<<A_int<<endl;
+
 	Lignee_B* newcell = new Lignee_B(A_int,B_int,C_int);
 	return newcell;
 }
