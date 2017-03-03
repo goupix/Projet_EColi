@@ -34,27 +34,27 @@ Metabolite::~Metabolite(){}
 //==============================
 //    PUBLIC METHODS
 //==============================
-float Metabolite::GetA(){
+float Metabolite::GetA()const{
   return A;
 }
 
-float Metabolite::GetB(){
+float Metabolite::GetB()const {
   return B;
 }
 
-float Metabolite::GetC(){
+float Metabolite::GetC()const {
   return C;
 }
 
-Bacterie* Metabolite::Getptr(){
+Bacterie* Metabolite::Getptr() const{
   return ptr;
 }
 
-int Metabolite::Getx(){
+int Metabolite::Getx()const{
   return x;
 }
 
-int Metabolite::Gety(){
+int Metabolite::Gety()const {
   return y;
 }
 

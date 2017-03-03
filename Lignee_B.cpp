@@ -112,4 +112,9 @@ int Lignee_B::nombre_B()
     return compteur_B;   //On renvoie simplement la valeur du compteur
 }
 
-void Lignee_B::euler(float& a, float& aint, float& bint, float h, float p1, float p2){Bacterie::euler(a, aint, bint, h, p1, p2);}
+float Lignee_B::euler(float a, float& aint, float& bint, float h, float p1, float p2){Bacterie::euler(a, aint, bint, h, p1, p2);}
+
+float Lignee_B::Mange(float a, float h){
+  return euler(a, B_int, C_int, h, Rbb, Rbc);
+  
+}

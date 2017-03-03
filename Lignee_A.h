@@ -32,7 +32,7 @@ public:
   virtual float GetC_int();
   virtual char Gettype();
   virtual float& Getw();
-  virtual void euler(float& a, float& aint, float& bint, float h, float p1, float p2);
+  
 //==============================
 //    SETTERS
 //==============================
@@ -51,6 +51,8 @@ public:
   virtual Bacterie* Division();
   virtual int Mute();
   static int nombre_A();   //Renvoie le nombre d'objets créés
+  virtual float Mange(float a, float h);
+  virtual float euler(float a, float& aint, float& bint, float h, float p1, float p2);
 
 
 

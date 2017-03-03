@@ -47,6 +47,7 @@ Metabolite*** GetGrille();
 void placeBacteries(); // cree et positionne les bacteries 
 void DescribeBacteries();
 void DescribeABC();
+void DescribeInt();
 void bougeMetabo(int x, int y); // bouge les metabolites
 void update(); // les bacteries se nourrissent, metabolisent, mutent, se divisent, meurent eventuellement
 void renouvelle(); //reinitialise le milieu de culture

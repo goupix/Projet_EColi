@@ -265,6 +265,20 @@ void Map::DescribeABC(){
   }
   cout<<""<<endl;
 }
+
+void Map::DescribeInt(){
+
+  for(int i=0; i<width;i++){
+    for(int j=0; j<height; j++){
+      cout<<"("<<(Grille[i][j]->Getptr())->GetA_int()<<", "<<(Grille[i][j]->Getptr())->GetB_int()<<", "<<(Grille[i][j]->Getptr())->GetC_int()<<") ";
+
+    }
+    
+  }
+  cout<<""<<endl;
+}
+
+
   
 void Map::renouvelle(){
   for(int i=0; i<width; i++){
@@ -549,6 +563,27 @@ void Map::update(){
   cout<<""<<endl;
   DescribeBacteries();
 
+  cout<<""<<endl;
+  cout<<"Les bactéries se nourrissent!!"<<endl;
+  cout<<""<<endl;
+  
+  for(int i=0; i<width; i++){
+    for(int j=0; j<height; j++){
+      if((Grille[i][j]->Getptr())->Gettype()=='A'){
+        Grille[i][j]->SetA((Grille[i][j]->Getptr())->Mange(Grille[i][j]->GetA(),h));
+      }
+      else{
+        Grille[i][j]->SetB((Grille[i][j]->Getptr())->Mange(Grille[i][j]->GetB(),h));
+
+      }
+
+    }
+  }
+
+  cout<<""<<endl;
+  DescribeABC();
+  cout<<""<<endl;
+  DescribeInt();
 
 
 
@@ -561,12 +596,6 @@ void Map::run(){
   while(temps<T){
     while(temps<t){
       update();
-      for(int i=0; i<width; i++){
-        for(int j=0; j<height; j++){
-        }
-      }
-
-
     }
     renouvelle();
 

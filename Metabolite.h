@@ -27,12 +27,12 @@ public:
 //==============================
 //    GETTERS
 //==============================
-  float GetA();
-  float GetB();
-  float GetC();
-  Bacterie* Getptr();
-  int Getx();
-  int Gety();
+  float GetA()const;
+  float GetB()const;
+  float GetC()const;
+  Bacterie* Getptr()const;
+  int Getx()const;
+  int Gety()const;
 //==============================
 //    SETTERS
 //==============================

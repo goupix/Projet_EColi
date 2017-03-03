@@ -118,4 +118,9 @@ int Lignee_A::nombre_A()
 }
 
 
-void Lignee_A::euler(float& a, float& aint, float& bint, float h, float p1, float p2){Bacterie::euler(a, aint, bint, h, p1, p2);}
+float Lignee_A::euler(float a, float& aint, float& bint, float h, float p1, float p2){Bacterie::euler(a, aint, bint, h, p1, p2);}
+
+float Lignee_A::Mange(float a, float h){
+  return euler(a, A_int, B_int, h, Raa, Rab);
+
+}
