@@ -52,6 +52,7 @@ void update(); // les bacteries se nourrissent, metabolisent, mutent, se divisen
 void renouvelle(); //reinitialise le milieu de culture
 Bacterie* competition(int x, int y); //renvoit le gagnant du gap sous forme de pointeur
 void run();
+void euler();
 
 
 protected:

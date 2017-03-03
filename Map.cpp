@@ -453,6 +453,22 @@ Bacterie* Map::competition(int x, int y){
 
 
 
+void euler(float& a, float& aint, float& bint, float h, float p1, float p2){
+  float newa=a;
+  float newb=b;
+  float newc=c;
+
+  newa+=h*(-p1*a);
+  newaint+=h*(p1*a-p2*aint);
+  newbint+=h*(p2*aint);
+
+  a=newa;
+  b=newb;
+  c=newc;
+
+
+}
+
 
 
 void Map::update(){
@@ -552,9 +568,6 @@ void Map::update(){
   DescribeBacteries();
 
 
-  cout<<""<<endl;
-  cout<<"Les bacteries se nourrissent! (à venir)"<<endl;
-  cout<<""<<endl;
 
 
 
@@ -562,6 +575,21 @@ void Map::update(){
 
 
 void run(){
+
+  while(temps<T){
+    while(temps<t){
+      update();
+      for(int i=0; i<width; i++){
+        for(int j=0; j<height; j++){
+          euler()
+        }
+      }
+
+
+    }
+    renouvelle();
+
+  }
 
 
 }
