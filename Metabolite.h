@@ -17,7 +17,7 @@ public:
 //==============================
 //    CONSTRUCTORS
 //==============================
-  Metabolite(float A_init, Bacterie* cible);
+  Metabolite(int a, int b, float A_init, Bacterie* cible);
 
 //==============================
 //    DESTRUCTOR
@@ -31,6 +31,8 @@ public:
   float GetB();
   float GetC();
   Bacterie* Getptr();
+  int Getx();
+  int Gety();
 //==============================
 //    SETTERS
 //==============================
@@ -59,6 +61,8 @@ protected:
   float B;
   float C;
   Bacterie* ptr;
+  int x;
+  int y;
 
 //==============================
 //    GETTER DEFINITION

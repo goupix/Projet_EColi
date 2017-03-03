@@ -43,23 +43,17 @@ Bacterie::~Bacterie(){}
 //    PUBLIC METHODS
 //==============================
 void Bacterie::Describe(){
-	cout<< "Cette bactérie est placée en ("<<coord[0]<<", "<<coord[1]<<" )"<<endl;
-	cout<< "Elle présente une concentration interne en A: "<<A_int<<", en B: "<<B_int<<" et en C: "<<C_int<<endl;
 }
 
 char Bacterie::Gettype(){
   return type;
 }
 
-float Bacterie::GetA_int(){
-  return A_int;
-}
-float Bacterie::GetB_int(){
-  return B_int;
-}
-float Bacterie::GetC_int(){
-  return C_int;
-}
+float Bacterie::GetA_int(){}
+float Bacterie::GetB_int(){}
+float Bacterie::GetC_int(){}
+
+float& Bacterie::Getw(){}
 
 /*void Bacterie::Deplacement(){
     int alea=rand()%4+1;

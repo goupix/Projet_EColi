@@ -31,6 +31,7 @@ public:
   virtual float GetA_int();
   virtual float GetB_int();
   virtual float GetC_int();
+  virtual float& Getw();
 //==============================
 //    SETTERS
 //==============================

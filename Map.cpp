@@ -65,14 +65,14 @@ void Map::placeBacteries(){
         if(tableDeNombres[compteur]==0){
     
           Lignee_A* a= new Lignee_A();
-	        Grille[i][j]= new Metabolite(A_init, a); 
+	        Grille[i][j]= new Metabolite(i, j, A_init, a); 
           compteur++;
         }
 
         else{
           
           Lignee_B* b= new Lignee_B();
-          Grille[i][j]= new Metabolite(A_init, b);
+          Grille[i][j]= new Metabolite(i, j, A_init, b);
           compteur++;
         }
         
@@ -273,22 +273,208 @@ void Map::renouvelle(){
   }
 }
 
+Bacterie* Map::competition(int x, int y){
+  vector<Metabolite*> voisins;
+
+  if(x!=0 && x!=31 && y!=0 && y!=31){
+
+    for(int i=-1; i<2;i++){
+      for(int j=-1; j<2; j++){
+        voisins.push_back(Grille[x+i][y+j]);
+      
+      }
+    }
+  }
+  
+
+  else if(x==0 && y!=0 && y!=31){
+    for(int i=0; i<2;i++){
+      for(int j=-1; j<2; j++){
+        voisins.push_back(Grille[x+i][y+j]);
+      
+      }
+    }
+    voisins.push_back(Grille[31][y-1]);
+    voisins.push_back(Grille[31][y]);
+    voisins.push_back(Grille[31][y+1]);
+
+  }
+
+  else if(x==31 && y!=0 && y!=31){
+    for(int i=-1; i<1;i++){
+      for(int j=-1; j<2; j++){
+        voisins.push_back(Grille[x+i][y+j]);
+      
+      }
+    }
+    voisins.push_back(Grille[0][y-1]);
+    voisins.push_back(Grille[0][y]);
+    voisins.push_back(Grille[0][y+1]);
+    
+  }
+
+  else if(y==0 && x!=0 && x!=31){
+    for(int i=-1; i<2;i++){
+      for(int j=0; j<2; j++){
+        voisins.push_back(Grille[x+i][y+j]);
+      
+      }
+    }
+    voisins.push_back(Grille[x-1][31]);
+    voisins.push_back(Grille[x][31]);
+    voisins.push_back(Grille[x+1][31]);
+  }
+
+  else if(y==31 && x!=0 && x!=31){
+    for(int i=-1; i<2;i++){
+      for(int j=-1; j<1; j++){
+        voisins.push_back(Grille[x+i][y+j]);
+      }
+    }
+    voisins.push_back(Grille[x-1][0]);
+    voisins.push_back(Grille[x][0]);
+    voisins.push_back(Grille[x+1][0]);  
+  }
+
+  else if(y==0 && x==0){
+
+    voisins.push_back(Grille[x][y]);
+    voisins.push_back(Grille[x+1][y]);
+    voisins.push_back(Grille[x][y+1]); 
+    voisins.push_back(Grille[x+1][y+1]);
+
+    voisins.push_back(Grille[x][31]);
+    voisins.push_back(Grille[x+1][31]); 
+    voisins.push_back(Grille[31][y]);
+    voisins.push_back(Grille[31][y+1]);
+
+    voisins.push_back(Grille[31][31]); 
+  }
+
+  else if(y==31 && x==31){
+
+    voisins.push_back(Grille[x][y]);
+    voisins.push_back(Grille[x][y-1]);
+    voisins.push_back(Grille[x-1][y-1]); 
+    voisins.push_back(Grille[x-1][y]);
+
+    voisins.push_back(Grille[x][0]);
+    voisins.push_back(Grille[x-1][0]); 
+    voisins.push_back(Grille[0][y-1]);
+    voisins.push_back(Grille[0][y]);
+
+    voisins.push_back(Grille[0][0]);  
+
+  }
+
+  else if(y==31 && x==0){
+
+    voisins.push_back(Grille[x][y]);
+    voisins.push_back(Grille[x][y-1]);
+    voisins.push_back(Grille[x+1][y-1]); 
+    voisins.push_back(Grille[x+1][y]);
+
+    voisins.push_back(Grille[x][0]);
+    voisins.push_back(Grille[x+1][0]); 
+    voisins.push_back(Grille[31][y-1]);
+    voisins.push_back(Grille[31][y]);
+
+    voisins.push_back(Grille[31][0]); 
+
+  }
+
+  else if(y==0 && x==31){
+
+    voisins.push_back(Grille[x][y]);
+    voisins.push_back(Grille[x][y+1]);
+    voisins.push_back(Grille[x-1][y+1]); 
+    voisins.push_back(Grille[x-1][y]);
+
+    voisins.push_back(Grille[x][31]);
+    voisins.push_back(Grille[x-1][31]); 
+    voisins.push_back(Grille[0][y+1]);
+    voisins.push_back(Grille[0][y]);
+
+    voisins.push_back(Grille[0][31]); 
+
+  }
+
+  
+
+
+  /*On efface les nullptr des voisins*/
+  
+  int nb=0;
+  for (unsigned int i=0; i<voisins.size(); i++){
+    if(voisins[i]->Getptr()==nullptr){
+      nb++;
+    }
+  }
+
+  for (int i=0; i<nb; i++){
+    int i_null=0;
+    for (unsigned int i=0; i<voisins.size(); i++){
+      if(voisins[i]->Getptr()==nullptr){
+        i_null=i;
+      }
+    }
+    voisins.erase(voisins.begin()+i_null);
+  }
+
+
+  /*for (unsigned int i=0; i<voisins.size(); i++){
+    cout<<voisins[i]->Getptr()<<endl;
+  }*/
+
+
+  int indice=0; //indice correspondant à la case gagnante dans voisins
+  
+
+  for (unsigned int i=0; i<voisins.size(); i++){
+    
+    if((voisins[i]->Getptr())->Getw()<(voisins[i+1]->Getptr())->Getw()){
+      indice=i;
+    }
+    else{
+      indice=i;
+
+    }
+  }
+
+  cout<<"Nous avons une gagnante pour le gaps ("<<x<<", "<<y<<" )"<<endl;
+  cout<<""<<endl;
+  (voisins[indice]->Getptr())->Describe();
+  return voisins[indice]->Getptr();
+}
+
+
+
+
+
 void Map::update(){
+
   cout<<"Diffusion des métabolites. (à venir)"<<endl;
   cout<<""<<endl;
+
+
   cout<<"Les bacteries meurent!"<<endl;
   cout<<""<<endl;
+
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
       if((Grille[i][j]->Getptr())->Death()==0){
 
         delete(Grille[i][j]->Getptr());
         Grille[i][j]->Setptr(nullptr);
+
         cout<<"RIP"<<" ";
       }
     }
   }
-   
+  cout<<""<<endl;
+  DescribeBacteries();
+
+  cout<<""<<endl;
   cout<<"Les bacteries entrent en compétition!"<<endl;
   cout<<""<<endl;
   
@@ -296,17 +482,38 @@ void Map::update(){
 
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
-      if((Grille[i][j]->Getptr())==nullptr){
+      if(Grille[i][j]->Getptr()==nullptr){
         gaps.push_back(Grille[i][j]);
 
       }
     }
   }
 
+  
+
   random_shuffle(gaps.begin(), gaps.end());
+
+
+  for(unsigned int i=0; i<gaps.size(); i++){
+
+    Bacterie* gagnant=competition(gaps[i]->Getx(),gaps[i]->Gety());
+    gagnant->Describe();
+
+    Bacterie* newborn=gagnant->Division();
+    newborn->Describe();
+
+    Grille[gaps[i]->Getx()][gaps[i]->Gety()]->Setptr(newborn);
+  }
+  
+  
+  cout<<""<<endl;
+  DescribeBacteries();
+  DescribeABC();
+
 
   cout<<"Les bactéries mutent!"<<endl;
   cout<<""<<endl;
+
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
       if (Grille[i][j]->Getptr()!=nullptr){
@@ -328,12 +535,12 @@ void Map::update(){
       }
     }
   }
-  
-  cout<<"On recupère les voisins et ils se battent hey!"<<endl;
-  
 
-  
+  cout<<""<<endl;
+  DescribeBacteries();
 
+
+  cout<<""<<endl;
   cout<<"Les bacteries se nourrissent! (à venir)"<<endl;
   cout<<""<<endl;
 

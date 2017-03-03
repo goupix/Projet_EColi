@@ -32,6 +32,7 @@ public:
   virtual float GetB_int();
   virtual float GetC_int();
   virtual char Gettype();
+  virtual float& Getw();
 
 //==============================
 //    SETTERS

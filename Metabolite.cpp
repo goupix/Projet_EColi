@@ -14,7 +14,9 @@ using namespace std;
 //==============================
 //    CONSTRUCTORS
 //==============================
-Metabolite::Metabolite(float A_init, Bacterie* cible){
+Metabolite::Metabolite(int a, int b, float A_init, Bacterie* cible){
+  x=a;
+  y=b;
   A=A_init;
   B=0;
   C=0;
@@ -48,6 +50,14 @@ Bacterie* Metabolite::Getptr(){
   return ptr;
 }
 
+int Metabolite::Getx(){
+  return x;
+}
+
+int Metabolite::Gety(){
+  return y;
+}
+
 void Metabolite::SetA(float a){
   A=a;
 }
@@ -63,6 +73,8 @@ void Metabolite::SetC(float c){
 void Metabolite::Setptr(Bacterie* cible){
   ptr=cible;
 }
+
+
 
 void Metabolite::Describe(){
   cout<<"Cette case contient les concentrations A,B et C suivante: "<<A<<", "<<B<<" et "<<C<<"."<<endl;

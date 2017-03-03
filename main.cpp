@@ -56,7 +56,7 @@ int main(){
   cout<<"########## Methode update ##########"<<endl;
   cout<<""<<endl;
   environnement.update();
-  environnement.DescribeBacteries();
+  
   
 
 
@@ -65,7 +65,7 @@ int main(){
   cout<<"########## Constructeur par défaut de la classe Metabolite ##########"<<endl;
   cout<<""<<endl;
   Bacterie* t1=new Bacterie;
-  Metabolite m1=Metabolite(2.0, t1);
+  Metabolite m1=Metabolite(0, 0, 2.0, t1);
   m1.Describe();
   delete(t1);
 
