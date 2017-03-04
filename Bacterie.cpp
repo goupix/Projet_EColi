@@ -55,54 +55,6 @@ float Bacterie::GetC_int(){}
 
 float& Bacterie::Getw(){}
 
-/*void Bacterie::Deplacement(){
-    int alea=rand()%4+1;
-  //std::random_shuffle(depl.begin(), depl.end());
-  switch (alea)
-  {
-      case 1:
-        if (coord[0] == 31) {
-          coord[0] = 0;
-        }
-        else {
-          coord[0] ++;
-        }
-          break;
-
-      case 2:
-        if (coord[0] == 0) {
-          coord[0] = 31;
-        }
-        else {
-          coord[0] --;
-        }
-
-        break;
-
-      case 3:
-        if (coord[1] == 31) {
-          coord[1] = 0;
-        }
-        else {
-          coord[1] ++;
-        }
-      break;
-
-      case 4:
-        if (coord[1] == 0) {
-          coord[1] = 31;
-        }
-        else {
-          coord[1] --;
-        }
-      break;
-      
-      default :
-        break;
-  }
-}*/
-
-
 
 int Bacterie::Death(){
   

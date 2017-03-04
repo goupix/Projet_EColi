@@ -82,6 +82,63 @@ void Metabolite::Describe(){
   ptr->Describe();
 }
 
+void Metabolite::MakeDie(){
 
+  if(ptr->Death()==0){
+    
+    A+=ptr->GetA_int();
+    B+=ptr->GetB_int();
+    C+=ptr->GetC_int();
+
+    delete(ptr);
+    ptr=nullptr;
+
+    cout<<"RIP"<<" ";
+  }
+  
+
+}
+
+void Metabolite::MakeMute(){
+  
+
+  if(ptr->Mute()==0){
+    if(ptr->Gettype()=='A'){
+
+      Lignee_B* newcell=new Lignee_B(ptr->GetA_int(), ptr->GetB_int(), ptr->GetC_int());
+
+      delete(ptr);
+      ptr=newcell;
+
+    }
+
+    else{
+
+      Lignee_A* newcell=new Lignee_A(ptr->GetA_int(), ptr->GetB_int(), ptr->GetC_int());
+      delete(ptr);
+      ptr=newcell;
+    }
+
+    cout<<"Mutante"<<" ";
+  }
+
+
+}
+
+
+void Metabolite::MakeEat(float h){
+
+  if(ptr->Gettype()=='A'){
+
+    A=ptr->Mange(A,h);
+  }
+
+  else{
+
+    B=ptr->Mange(B,h);
+
+  }
+
+}
 
 

@@ -51,7 +51,6 @@ virtual int Death();
 virtual int Mute();
 
 virtual Bacterie* Division(); //methode qui gere la division des bacteries (x2)
-/*virtual void Deplacement(); //methode qui gere le deplacement des bacteries sur la map*/
 virtual float Mange(float a, float h);
 virtual float euler(float a, float& aint, float& bint, float h, float p1, float p2);
 

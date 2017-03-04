@@ -20,8 +20,8 @@ Map::Map(){
 
   A_init=10;
   D=0.1;
-  T=2;
-  t=10;
+  T=1;
+  t=5;
   temps=0;
   h=1;
 
@@ -463,23 +463,21 @@ Bacterie* Map::competition(int x, int y){
   }
 
 
-  /*for (unsigned int i=0; i<voisins.size(); i++){
-    cout<<voisins[i]->Getptr()<<endl;
-  }*/
+  for (unsigned int i=0; i<voisins.size(); i++){
+    cout<<(voisins[i]->Getptr())->Getw()<<" ";
+  }
 
 
   int indice=0; //indice correspondant à la case gagnante parmis les metabolites voisines, dans le vecteur voisins
-  
+  float wmax=(voisins[0]->Getptr())->Getw();
 
   for (unsigned int i=0; i<voisins.size(); i++){
     
-    if((voisins[i]->Getptr())->Getw()<(voisins[i+1]->Getptr())->Getw()){// on compare les fitness
+    if((voisins[i]->Getptr())->Getw()>wmax){// on compare les fitness
       indice=i;
+      wmax=(voisins[i]->Getptr())->Getw();
     }
-    else{
-      indice=i;
-
-    }
+    
   }
   
   /*cout<<""<<endl;
@@ -487,15 +485,20 @@ Bacterie* Map::competition(int x, int y){
   
   /*(voisins[indice]->Getptr())->Describe();*/
 
+  cout<<""<<endl;
+  cout<<indice<<endl;
+
   return voisins[indice]->Getptr();
 }
 
 
 
 void Map::update(){
-
+  
+  cout<<""<<endl;
   cout<<"Diffusion des métabolites."<<endl;
   cout<<""<<endl;
+
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
       bougeMetabo(Grille[i][j]);
@@ -503,38 +506,25 @@ void Map::update(){
 
   }
 
-  /*DescribeABC();*/
-
   
 
-
+  cout<<""<<endl;
   cout<<"Les bacteries meurent!"<<endl;
   cout<<""<<endl;
 
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
-      if((Grille[i][j]->Getptr())->Death()==0){
 
-        Grille[i][j]->SetA(Grille[i][j]->GetA()+(Grille[i][j]->Getptr())->GetA_int());
-        Grille[i][j]->SetB(Grille[i][j]->GetB()+(Grille[i][j]->Getptr())->GetB_int());
-        Grille[i][j]->SetC(Grille[i][j]->GetC()+(Grille[i][j]->Getptr())->GetC_int());
-        
-
-        delete(Grille[i][j]->Getptr());
-        Grille[i][j]->Setptr(nullptr);
-
-        cout<<"RIP"<<" ";
-      }
+      Grille[i][j]->MakeDie();
     }
   }
-  /*cout<<""<<endl;
-  DescribeBacteries();*/
+  
 
   cout<<""<<endl;
   cout<<"Les bacteries entrent en compétition!"<<endl;
   cout<<""<<endl;
   
-  vector<Metabolite*> gaps;
+  vector<Metabolite*> gaps;  //on cree un vecteur de pointeurs sur les gaps
 
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
@@ -547,12 +537,14 @@ void Map::update(){
 
   
 
-  random_shuffle(gaps.begin(), gaps.end());
+  random_shuffle(gaps.begin(), gaps.end()); //on melange la liste des gaps aléatoirement
 
 
   for(unsigned int i=0; i<gaps.size(); i++){
 
     Bacterie* gagnant=competition(gaps[i]->Getx(),gaps[i]->Gety());
+
+    cout<<gagnant->Gettype()<<" "<<endl;
 
     Bacterie* newborn=gagnant->Division();
 
@@ -566,37 +558,16 @@ void Map::update(){
   
   
   cout<<""<<endl;
-  /*DescribeBacteries();
-  DescribeABC();*/
-
-
   cout<<"Les bactéries mutent!"<<endl;
   cout<<""<<endl;
 
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
-      if (Grille[i][j]->Getptr()!=nullptr){
-        if((Grille[i][j]->Getptr())->Mute()==0){
-          if((Grille[i][j]->Getptr())->Gettype()=='A'){
-            Lignee_B* newcell=new Lignee_B((Grille[i][j]->Getptr())->GetA_int(),(Grille[i][j]->Getptr())->GetB_int(),(Grille[i][j]->Getptr())->GetC_int());
-            delete(Grille[i][j]->Getptr());
-            Grille[i][j]->Setptr(newcell);
 
-          }
-          else{
-            Lignee_A* newcell=new Lignee_A((Grille[i][j]->Getptr())->GetA_int(),(Grille[i][j]->Getptr())->GetB_int(),(Grille[i][j]->Getptr())->GetC_int());
-            delete(Grille[i][j]->Getptr());
-            Grille[i][j]->Setptr(newcell);
-          }
-
-          cout<<"Mutante"<<" ";
-        }
-      }
+      Grille[i][j]->MakeMute();
     }
   }
 
-  cout<<""<<endl;
-  /*DescribeBacteries();*/
 
   cout<<""<<endl;
   cout<<"Les bactéries se nourrissent!!"<<endl;
@@ -604,13 +575,8 @@ void Map::update(){
   
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
-      if((Grille[i][j]->Getptr())->Gettype()=='A'){
-        Grille[i][j]->SetA((Grille[i][j]->Getptr())->Mange(Grille[i][j]->GetA(),h));
-      }
-      else{
-        Grille[i][j]->SetB((Grille[i][j]->Getptr())->Mange(Grille[i][j]->GetB(),h));
 
-      }
+      Grille[i][j]->MakeEat(h);
 
     }
   }
