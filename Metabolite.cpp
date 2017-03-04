@@ -82,7 +82,7 @@ void Metabolite::Describe(){
   ptr->Describe();
 }
 
-void Metabolite::MakeDie(){
+void Metabolite::makeDie(){
 
   if(ptr->Death()==0){
     
@@ -99,7 +99,7 @@ void Metabolite::MakeDie(){
 
 }
 
-void Metabolite::MakeMute(){
+void Metabolite::makeMute(){
   
 
   if(ptr->Mute()==0){
@@ -126,7 +126,7 @@ void Metabolite::MakeMute(){
 }
 
 
-void Metabolite::MakeEat(float h){
+void Metabolite::makeEat(float h){
 
   if(ptr->Gettype()=='A'){
 

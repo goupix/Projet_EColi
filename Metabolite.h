@@ -50,12 +50,12 @@ public:
 //    PUBLIC METHODS
 //==============================
   void Describe();
-  void MakeDie(); /*teste si la bacterie meurt, si oui recupere les metabolites, détruit la bacterie et rend 
+  void makeDie(); /*teste si la bacterie meurt, si oui récupère les metabolites, détruit la bacterie et rend 
   le pointeur null.*/
-  void MakeMute(); /*teste si la bacterie mute, si oui crée une bacterie de type opposé, détruit la bactérie 
+  void makeMute(); /*teste si la bacterie mute, si oui créé une bacterie de type opposé, détruit la bactérie 
   et fait pointer ptr vers la nouvelle bactérie.*/
 
-  void MakeEat(float h);
+  void makeEat(float h);
   
 protected:
 //==============================

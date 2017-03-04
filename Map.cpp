@@ -20,7 +20,7 @@ Map::Map(){
 
   A_init=10;
   D=0.1;
-  T=1;
+  T=10;
   t=5;
   temps=0;
   h=1;
@@ -43,14 +43,11 @@ Map::~Map(){
 //==============================
 //    PUBLIC METHODS
 //==============================
-Metabolite*** Map::GetGrille(){
-
-  return Grille;
-}
 
 
 
-void Map::placeBacteries(){
+
+void Map::set(){
 
   /*Creation d'un vecteur contenant moitié de 0 moitié de 1*/
   
@@ -93,6 +90,10 @@ void Map::placeBacteries(){
   }
 }
 
+
+
+
+
 void Map::bougeMetabo(Metabolite*& m){
 
 
@@ -113,128 +114,36 @@ void Map::bougeMetabo(Metabolite*& m){
 
   /* Pour la case dont les coordonnées sont données en argument, on cherche les metabolites du voisinage de Moore et on 
   les stocke dans un vecteur*/
-  if(x!=0 && x!=31 && y!=0 && y!=31){
+  int valx=0;
+  int valy=0;
+  for(int i=-1; i<2;i++){
+    for(int j=-1; j<2; j++){
 
-    for(int i=-1; i<2;i++){
-      for(int j=-1; j<2; j++){
-        voisins.push_back(Grille[x+i][y+j]);
-      
+      valx=(x+i)%width;
+      valy=(y+j)%height;
+        
+      if((x+i)%width==-1){
+        valx=31;
       }
+
+      if((y+j)%height==-1){
+        valy=31;
+
+      }
+      
+
+          
+      voisins.push_back(Grille[valx][valy]);
+      
     }
   }
+
+    /*cout<<""<<endl;
+    for(unsigned int i=0; i<voisins.size(); i++){
+
+      cout<<"( "<<voisins[i]->Getx()<<", "<<voisins[i]->Gety()<<" )";
+    }*/
   
-
-  else if(x==0 && y!=0 && y!=31){
-    for(int i=0; i<2;i++){
-      for(int j=-1; j<2; j++){
-        voisins.push_back(Grille[x+i][y+j]);
-      
-      }
-    }
-    voisins.push_back(Grille[31][y-1]);
-    voisins.push_back(Grille[31][y]);
-    voisins.push_back(Grille[31][y+1]);
-
-  }
-
-  else if(x==31 && y!=0 && y!=31){
-    for(int i=-1; i<1;i++){
-      for(int j=-1; j<2; j++){
-        voisins.push_back(Grille[x+i][y+j]);
-      
-      }
-    }
-    voisins.push_back(Grille[0][y-1]);
-    voisins.push_back(Grille[0][y]);
-    voisins.push_back(Grille[0][y+1]);
-    
-  }
-
-  else if(y==0 && x!=0 && x!=31){
-    for(int i=-1; i<2;i++){
-      for(int j=0; j<2; j++){
-        voisins.push_back(Grille[x+i][y+j]);
-      
-      }
-    }
-    voisins.push_back(Grille[x-1][31]);
-    voisins.push_back(Grille[x][31]);
-    voisins.push_back(Grille[x+1][31]);
-  }
-
-  else if(y==31 && x!=0 && x!=31){
-    for(int i=-1; i<2;i++){
-      for(int j=-1; j<1; j++){
-        voisins.push_back(Grille[x+i][y+j]);
-      }
-    }
-    voisins.push_back(Grille[x-1][0]);
-    voisins.push_back(Grille[x][0]);
-    voisins.push_back(Grille[x+1][0]);  
-  }
-
-  else if(y==0 && x==0){
-
-    voisins.push_back(Grille[x][y]);
-    voisins.push_back(Grille[x+1][y]);
-    voisins.push_back(Grille[x][y+1]); 
-    voisins.push_back(Grille[x+1][y+1]);
-
-    voisins.push_back(Grille[x][31]);
-    voisins.push_back(Grille[x+1][31]); 
-    voisins.push_back(Grille[31][y]);
-    voisins.push_back(Grille[31][y+1]);
-
-    voisins.push_back(Grille[31][31]); 
-  }
-
-  else if(y==31 && x==31){
-
-    voisins.push_back(Grille[x][y]);
-    voisins.push_back(Grille[x][y-1]);
-    voisins.push_back(Grille[x-1][y-1]); 
-    voisins.push_back(Grille[x-1][y]);
-
-    voisins.push_back(Grille[x][0]);
-    voisins.push_back(Grille[x-1][0]); 
-    voisins.push_back(Grille[0][y-1]);
-    voisins.push_back(Grille[0][y]);
-
-    voisins.push_back(Grille[0][0]);  
-
-  }
-
-  else if(y==31 && x==0){
-
-    voisins.push_back(Grille[x][y]);
-    voisins.push_back(Grille[x][y-1]);
-    voisins.push_back(Grille[x+1][y-1]); 
-    voisins.push_back(Grille[x+1][y]);
-
-    voisins.push_back(Grille[x][0]);
-    voisins.push_back(Grille[x+1][0]); 
-    voisins.push_back(Grille[31][y-1]);
-    voisins.push_back(Grille[31][y]);
-
-    voisins.push_back(Grille[31][0]); 
-
-  }
-
-  else if(y==0 && x==31){
-
-    voisins.push_back(Grille[x][y]);
-    voisins.push_back(Grille[x][y+1]);
-    voisins.push_back(Grille[x-1][y+1]); 
-    voisins.push_back(Grille[x-1][y]);
-
-    voisins.push_back(Grille[x][31]);
-    voisins.push_back(Grille[x-1][31]); 
-    voisins.push_back(Grille[0][y+1]);
-    voisins.push_back(Grille[0][y]);
-
-    voisins.push_back(Grille[0][31]); 
-
-  }
 
   /*execution de l'algorithme de diffusion*/
   for(int i=0; i<9; i++){
@@ -313,134 +222,34 @@ void Map::renouvelle(){
 
 Bacterie* Map::competition(int x, int y){
 
-  /* Pour la case dont les coordonnées sont données en argument, on cherche les metabolites du voisinage de Moore et on 
-  les stocke dans un vecteur*/
   vector<Metabolite*> voisins;
 
-  if(x!=0 && x!=31 && y!=0 && y!=31){
 
-    for(int i=-1; i<2;i++){
-      for(int j=-1; j<2; j++){
-        voisins.push_back(Grille[x+i][y+j]);
+  /* Pour la case dont les coordonnées sont données en argument, on cherche les metabolites du voisinage de Moore et on 
+  les stocke dans un vecteur*/
+  int valx=0;
+  int valy=0;
+  for(int i=-1; i<2;i++){
+    for(int j=-1; j<2; j++){
+
+      valx=(x+i)%width;
+      valy=(y+j)%height;
+        
+      if((x+i)%width==-1){
+        valx=31;
+      }
+
+      if((y+j)%height==-1){
+        valy=31;
+
+      }
       
-      }
-    }
-  }
-  
 
-  else if(x==0 && y!=0 && y!=31){
-    for(int i=0; i<2;i++){
-      for(int j=-1; j<2; j++){
-        voisins.push_back(Grille[x+i][y+j]);
+          
+      voisins.push_back(Grille[valx][valy]);
       
-      }
     }
-    voisins.push_back(Grille[31][y-1]);
-    voisins.push_back(Grille[31][y]);
-    voisins.push_back(Grille[31][y+1]);
-
   }
-
-  else if(x==31 && y!=0 && y!=31){
-    for(int i=-1; i<1;i++){
-      for(int j=-1; j<2; j++){
-        voisins.push_back(Grille[x+i][y+j]);
-      
-      }
-    }
-    voisins.push_back(Grille[0][y-1]);
-    voisins.push_back(Grille[0][y]);
-    voisins.push_back(Grille[0][y+1]);
-    
-  }
-
-  else if(y==0 && x!=0 && x!=31){
-    for(int i=-1; i<2;i++){
-      for(int j=0; j<2; j++){
-        voisins.push_back(Grille[x+i][y+j]);
-      
-      }
-    }
-    voisins.push_back(Grille[x-1][31]);
-    voisins.push_back(Grille[x][31]);
-    voisins.push_back(Grille[x+1][31]);
-  }
-
-  else if(y==31 && x!=0 && x!=31){
-    for(int i=-1; i<2;i++){
-      for(int j=-1; j<1; j++){
-        voisins.push_back(Grille[x+i][y+j]);
-      }
-    }
-    voisins.push_back(Grille[x-1][0]);
-    voisins.push_back(Grille[x][0]);
-    voisins.push_back(Grille[x+1][0]);  
-  }
-
-  else if(y==0 && x==0){
-
-    voisins.push_back(Grille[x][y]);
-    voisins.push_back(Grille[x+1][y]);
-    voisins.push_back(Grille[x][y+1]); 
-    voisins.push_back(Grille[x+1][y+1]);
-
-    voisins.push_back(Grille[x][31]);
-    voisins.push_back(Grille[x+1][31]); 
-    voisins.push_back(Grille[31][y]);
-    voisins.push_back(Grille[31][y+1]);
-
-    voisins.push_back(Grille[31][31]); 
-  }
-
-  else if(y==31 && x==31){
-
-    voisins.push_back(Grille[x][y]);
-    voisins.push_back(Grille[x][y-1]);
-    voisins.push_back(Grille[x-1][y-1]); 
-    voisins.push_back(Grille[x-1][y]);
-
-    voisins.push_back(Grille[x][0]);
-    voisins.push_back(Grille[x-1][0]); 
-    voisins.push_back(Grille[0][y-1]);
-    voisins.push_back(Grille[0][y]);
-
-    voisins.push_back(Grille[0][0]);  
-
-  }
-
-  else if(y==31 && x==0){
-
-    voisins.push_back(Grille[x][y]);
-    voisins.push_back(Grille[x][y-1]);
-    voisins.push_back(Grille[x+1][y-1]); 
-    voisins.push_back(Grille[x+1][y]);
-
-    voisins.push_back(Grille[x][0]);
-    voisins.push_back(Grille[x+1][0]); 
-    voisins.push_back(Grille[31][y-1]);
-    voisins.push_back(Grille[31][y]);
-
-    voisins.push_back(Grille[31][0]); 
-
-  }
-
-  else if(y==0 && x==31){
-
-    voisins.push_back(Grille[x][y]);
-    voisins.push_back(Grille[x][y+1]);
-    voisins.push_back(Grille[x-1][y+1]); 
-    voisins.push_back(Grille[x-1][y]);
-
-    voisins.push_back(Grille[x][31]);
-    voisins.push_back(Grille[x-1][31]); 
-    voisins.push_back(Grille[0][y+1]);
-    voisins.push_back(Grille[0][y]);
-
-    voisins.push_back(Grille[0][31]); 
-
-  }
-
-  
 
 
   /*On efface les nullptr des voisins*/
@@ -463,10 +272,6 @@ Bacterie* Map::competition(int x, int y){
   }
 
 
-  for (unsigned int i=0; i<voisins.size(); i++){
-    cout<<(voisins[i]->Getptr())->Getw()<<" ";
-  }
-
 
   int indice=0; //indice correspondant à la case gagnante parmis les metabolites voisines, dans le vecteur voisins
   float wmax=(voisins[0]->Getptr())->Getw();
@@ -484,9 +289,6 @@ Bacterie* Map::competition(int x, int y){
   cout<<"Nous avons une gagnante pour le gaps ("<<x<<", "<<y<<" )"<<endl;*/
   
   /*(voisins[indice]->Getptr())->Describe();*/
-
-  cout<<""<<endl;
-  cout<<indice<<endl;
 
   return voisins[indice]->Getptr();
 }
@@ -515,7 +317,7 @@ void Map::update(){
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
 
-      Grille[i][j]->MakeDie();
+      Grille[i][j]->makeDie();
     }
   }
   
@@ -544,14 +346,7 @@ void Map::update(){
 
     Bacterie* gagnant=competition(gaps[i]->Getx(),gaps[i]->Gety());
 
-    cout<<gagnant->Gettype()<<" "<<endl;
-
     Bacterie* newborn=gagnant->Division();
-
-    /*cout<<""<<endl;
-    cout<<"Elle se divise pour donner un nouveau né bactérie!"<<endl;
-    cout<<""<<endl;
-    newborn->Describe();*/
 
     Grille[gaps[i]->Getx()][gaps[i]->Gety()]->Setptr(newborn);
   }
@@ -564,7 +359,7 @@ void Map::update(){
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
 
-      Grille[i][j]->MakeMute();
+      Grille[i][j]->makeMute();
     }
   }
 
@@ -576,15 +371,12 @@ void Map::update(){
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
 
-      Grille[i][j]->MakeEat(h);
+      Grille[i][j]->makeEat(h);
 
     }
   }
 
-  /*cout<<""<<endl;
-  DescribeABC();
-  cout<<""<<endl;
-  DescribeInt();*/
+
 
 
 
@@ -594,11 +386,14 @@ void Map::update(){
 
 void Map::run(){
   int tours=0;
+  set();
+
   while(temps<T){
     while(tours<t){
+
       update();
 
-      cout<<""<<endl;
+      /*cout<<""<<endl;
       cout<<"Tableau des concentrations"<<endl;
       cout<<""<<endl;
       DescribeABC();
@@ -614,14 +409,14 @@ void Map::run(){
       cout<<""<<endl;
       cout<<"Tableau concentrations internes"<<endl;
       cout<<""<<endl;
-      DescribeInt();
+      DescribeInt();*/
 
 
-
+      cout<<"Il y a "<<Lignee_A::nombre_A()<<" bactéries de type A, et "<<Lignee_B::nombre_B()<<" bactéries de type B"<<endl;
       temps+=0.1;
       tours++;
     }
-    /*renouvelle();*/
+    renouvelle();
     tours=0;
   }
 

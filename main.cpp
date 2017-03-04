@@ -8,59 +8,33 @@
 using namespace std;
 
 int main(){
-/* Test de la classe Map*/
+
+
+/* Test de la classe Map
+
   cout<<""<<endl;
   cout<<"########## Constructeur par défaut de la classe Map ##########"<<endl;
   cout<<""<<endl;
   Map environnement=Map();
 
-  cout<<""<<endl;
-  cout<<"########## Methode placeBacteries ##########"<<endl;
-  cout<<""<<endl;
-  environnement.placeBacteries();
-  cout<<"Case 1 contient un concentration en A de: "<< environnement.GetGrille()[0][0]->GetA() <<endl;
-  cout<<"Case 1 contient une bactérie"<<endl;
-  (environnement.GetGrille()[0][0]->Getptr())->Describe();
 
   cout<<""<<endl;
-  cout<<"########## Methodes Describe et compteur##########"<<endl;
+  cout<<"########## Methode set ##########"<<endl;
   cout<<""<<endl;
+
+  environnement.set();
   environnement.DescribeBacteries();
-  cout<<""<<endl;
-  environnement.DescribeABC();
 
   cout<<""<<endl;
+  cout<<"########## compteur##########"<<endl;
+  cout<<""<<endl;
+
   cout<<"Il y a "<<Lignee_A::nombre_A()<<" bactéries de type A, et "<<Lignee_B::nombre_B()<<" bactéries de type B"<<endl;
 
-  /*cout<<""<<endl;
-  cout<<"########## Methode bougeMetabo ##########"<<endl;
-  cout<<""<<endl;
-  (environnement.GetGrille()[5][6])->SetA(2);
-  environnement.bougeMetabo(5,6);
-  (environnement.GetGrille()[5][6])->SetA(10);
-
-  (environnement.GetGrille()[5][31])->SetA(2);
-  environnement.bougeMetabo(5,31);
-  (environnement.GetGrille()[5][31])->SetA(10);
-
-  (environnement.GetGrille()[31][7])->SetA(2);
-  environnement.bougeMetabo(31,7);
-  (environnement.GetGrille()[31][7])->SetA(10);
-
-  (environnement.GetGrille()[0][31])->SetA(2);
-  environnement.bougeMetabo(0,31);
-  (environnement.GetGrille()[0][31])->SetA(10);
-
-  (environnement.GetGrille()[31][31])->SetA(2);
-  environnement.bougeMetabo(31,31);
-  (environnement.GetGrille()[31][31])->SetA(10);*/
-  
-  
-  
-  
 
 
-/*Test de la classe Metabolite*/
+Test de la classe Metabolite
+
   cout<<""<<endl;
   cout<<"########## Constructeur par défaut de la classe Metabolite ##########"<<endl;
   cout<<""<<endl;
@@ -69,51 +43,58 @@ int main(){
   m1.Describe();
   delete(t1);
 
-/*Test de la classe Bacterie*/
+Test de la classe Bacterie
+
   cout<<""<<endl;
   cout<<"########## Constructeur par défaut de la classe Bactérie ##########"<<endl;
   cout<<""<<endl;
   Bacterie t=Bacterie();
   t.Describe();
-/*Test de la méthode Déplacement
-  cout<<""<<endl;
-  cout<<"########## Méthode déplacement de la classe Bactérie ##########"<<endl;
-  cout<<""<<endl;
-  t.Deplacement();
-  t.Describe();
-  t.Deplacement();
-  t.Describe();*/
 
-/*Test de la classe Lignee_B*/
-  /*Constructeur 1*/
+
+Test de la classe Lignee_B
+
+  Constructeur 1
+
   cout<<""<<endl;
   cout<<"########## Bactéries de la lignée B, avec trois constructeurs ##########"<<endl;
   cout<<""<<endl;
   Lignee_B b1=Lignee_B();
   b1.Describe();
-  /*Constructeur 2*/
+
+  Constructeur 2
+
   Lignee_B b2= Lignee_B(2.5,2.0,1.1);
   b2.Describe();
-  /*Constructeur par copie*/
+
+  Constructeur par copie
+
   Lignee_B b3(b2);
   b3.Describe();
 
 
-/*Test de la classe Lignee_A*/
-  /*Constructeur 1*/
+Test de la classe Lignee_A
+
+  Constructeur 1
+
   cout<<""<<endl;
   cout<<"######### Bactéries de la lignée A, avec trois constructeurs ##########"<<endl;
   cout<<""<<endl;
   Lignee_A a1=Lignee_A();
   a1.Describe();
-  /*Constructeur 2*/
+
+  Constructeur 2
+
   Lignee_A a2=Lignee_A(5.3,0.1,0.6);
   a2.Describe();
-  /*Constructeur par copie*/
+
+  Constructeur par copie
+
   Lignee_A a3(a2);
   a3.Describe();
 
-/*Test de la methode Division*/
+Test de la methode Division
+
   cout<<""<<endl;
   cout<<"######### Methode division ##########"<<endl;
   cout<<""<<endl;
@@ -123,12 +104,12 @@ int main(){
   
   
 
-/*Test du destructeur de Map*/
+Test du destructeur de Map
   cout<<""<<endl;
   cout<<"######### Desctructeur ##########"<<endl;
   cout<<""<<endl;
-  Map* e2=new Map();
-  delete(e2);
+  Map* e1=new Map();
+  delete(e1);*/
 
 
 /*Test du programme en entier*/
@@ -136,7 +117,10 @@ int main(){
   cout<<""<<endl;
   cout<<"########## Methode update et run ##########"<<endl;
   cout<<""<<endl;
-  environnement.run();
+  Map e=Map();
+  e.run();
+
+
 
   
   return 0;
