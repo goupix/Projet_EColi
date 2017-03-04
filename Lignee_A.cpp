@@ -78,6 +78,7 @@ void Lignee_A::Describe(){
 }
 
 Bacterie* Lignee_A::Division(){
+
 	A_int = A_int/2.0;
 	B_int = B_int/2.0;
 	C_int = C_int/2.0;
@@ -89,9 +90,8 @@ Bacterie* Lignee_A::Division(){
 
 
 int Lignee_A::Death(){
-  float nombre =  (rand()%(1000))/1000.0;
-  /*srand(time(NULL));
-  float nombre = (float)rand() / (float)RAND_MAX;*/
+
+  float nombre =  (rand()%(1000))/1000.0;//tire un nombre "aléatoire" entre 0 et 1
   
     if(nombre<p_death){
       return 0;

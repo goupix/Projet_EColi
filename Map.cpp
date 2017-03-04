@@ -17,13 +17,16 @@ using namespace std;
 //    CONSTRUCTORS
 //==============================
 Map::Map(){
+
   A_init=10;
   D=0.1;
-  T=10000;
-  t=200;
+  T=2;
+  t=10;
   temps=0;
   h=1;
+
   Grille=new Metabolite**[height];
+
   for(int i=0; i<height; i++){
     Grille[i]=new Metabolite*[width];
   }
@@ -45,7 +48,11 @@ Metabolite*** Map::GetGrille(){
   return Grille;
 }
 
+
+
 void Map::placeBacteries(){
+
+  /*Creation d'un vecteur contenant moitié de 0 moitié de 1*/
   
   vector<int> tableDeNombres;
   for(int i=0; i<(height*width)/2; i++){
@@ -54,13 +61,15 @@ void Map::placeBacteries(){
   for(int i=(height*width)/2; i<=height*width; i++){
     tableDeNombres.push_back(1);
   }
-  random_shuffle(tableDeNombres.begin(), tableDeNombres.end());
-  vector<Bacterie*> tableDeBacteries;
+  random_shuffle(tableDeNombres.begin(), tableDeNombres.end()); /*Les nombres sont mélangés aléatoirement*/
+
 
   /*for (vector<int>::iterator it=tableDeNombres.begin(); it!=tableDeNombres.end(); ++it){
     cout << ' ' << *it;
   }*/
 
+  /* Pour chaque case de l'attribut Grille, on crée une métabolite avec une concentration A_init. Chaque métabolite pointe 
+  vers une bactérie. Le type des bactéries est choisi suivant le vecteur créé precédement (0=type A, 1=type B)*/
   int compteur=0;
   while(compteur<width*height){
     for(int i=0; i<width; i++){
@@ -84,19 +93,26 @@ void Map::placeBacteries(){
   }
 }
 
-void Map::bougeMetabo(int x, int y){
-  float newA;
+void Map::bougeMetabo(Metabolite*& m){
+
+
+  float newA;// variables de stockage des nouvelles valeurs des concentrations en métabolites
   float newB;
   float newC;
 
-  newA=Grille[x][y]->GetA();
-  newB=Grille[x][y]->GetB();
-  newC=Grille[x][y]->GetC();
+
+  newA=m->GetA();//initialisation des variables
+  newB=m->GetB();
+  newC=m->GetC();
+
+  int x=m->Getx();
+  int y=m->Gety();
 
   vector<Metabolite*> voisins;
 
 
-  
+  /* Pour la case dont les coordonnées sont données en argument, on cherche les metabolites du voisinage de Moore et on 
+  les stocke dans un vecteur*/
   if(x!=0 && x!=31 && y!=0 && y!=31){
 
     for(int i=-1; i<2;i++){
@@ -220,7 +236,7 @@ void Map::bougeMetabo(int x, int y){
 
   }
 
-
+  /*execution de l'algorithme de diffusion*/
   for(int i=0; i<9; i++){
       newA+=D*(voisins[i]->GetA());
       newB+=D*(voisins[i]->GetB());
@@ -232,9 +248,13 @@ void Map::bougeMetabo(int x, int y){
 
   newA+=(-9*D*(Grille[x][y]->GetA()));
   newB+=(-9*D*(Grille[x][y]->GetB()));
-  newC+=(-9*D*(Grille[x][y]->GetB()));
+  newC+=(-9*D*(Grille[x][y]->GetC()));
+
+  m->SetA(newA);
+  m->SetB(newB);
+  m->SetC(newC);
   
-  cout<<" Les nouvelles concentrations de la case ( "<<x<<", "<<y<<" ) sont ("<<newA<<", "<<newB<<", "<<newC<<" )"<<endl;
+  /*cout<<" Les nouvelles concentrations de la case ( "<<x<<", "<<y<<" ) sont ("<<newA<<", "<<newB<<", "<<newC<<" )"<<endl;*/
  }
 
 void Map::DescribeBacteries(){
@@ -281,6 +301,7 @@ void Map::DescribeInt(){
 
   
 void Map::renouvelle(){
+
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
       Grille[i][j]->SetA(A_init);
@@ -291,6 +312,9 @@ void Map::renouvelle(){
 }
 
 Bacterie* Map::competition(int x, int y){
+
+  /* Pour la case dont les coordonnées sont données en argument, on cherche les metabolites du voisinage de Moore et on 
+  les stocke dans un vecteur*/
   vector<Metabolite*> voisins;
 
   if(x!=0 && x!=31 && y!=0 && y!=31){
@@ -444,12 +468,12 @@ Bacterie* Map::competition(int x, int y){
   }*/
 
 
-  int indice=0; //indice correspondant à la case gagnante dans voisins
+  int indice=0; //indice correspondant à la case gagnante parmis les metabolites voisines, dans le vecteur voisins
   
 
   for (unsigned int i=0; i<voisins.size(); i++){
     
-    if((voisins[i]->Getptr())->Getw()<(voisins[i+1]->Getptr())->Getw()){
+    if((voisins[i]->Getptr())->Getw()<(voisins[i+1]->Getptr())->Getw()){// on compare les fitness
       indice=i;
     }
     else{
@@ -458,10 +482,11 @@ Bacterie* Map::competition(int x, int y){
     }
   }
   
-  cout<<""<<endl;
-  cout<<"Nous avons une gagnante pour le gaps ("<<x<<", "<<y<<" )"<<endl;
+  /*cout<<""<<endl;
+  cout<<"Nous avons une gagnante pour le gaps ("<<x<<", "<<y<<" )"<<endl;*/
   
-  (voisins[indice]->Getptr())->Describe();
+  /*(voisins[indice]->Getptr())->Describe();*/
+
   return voisins[indice]->Getptr();
 }
 
@@ -469,8 +494,18 @@ Bacterie* Map::competition(int x, int y){
 
 void Map::update(){
 
-  cout<<"Diffusion des métabolites. (à venir)"<<endl;
+  cout<<"Diffusion des métabolites."<<endl;
   cout<<""<<endl;
+  for(int i=0; i<width; i++){
+    for(int j=0; j<height; j++){
+      bougeMetabo(Grille[i][j]);
+    }
+
+  }
+
+  /*DescribeABC();*/
+
+  
 
 
   cout<<"Les bacteries meurent!"<<endl;
@@ -484,7 +519,6 @@ void Map::update(){
         Grille[i][j]->SetB(Grille[i][j]->GetB()+(Grille[i][j]->Getptr())->GetB_int());
         Grille[i][j]->SetC(Grille[i][j]->GetC()+(Grille[i][j]->Getptr())->GetC_int());
         
-        DescribeABC();
 
         delete(Grille[i][j]->Getptr());
         Grille[i][j]->Setptr(nullptr);
@@ -493,8 +527,8 @@ void Map::update(){
       }
     }
   }
-  cout<<""<<endl;
-  DescribeBacteries();
+  /*cout<<""<<endl;
+  DescribeBacteries();*/
 
   cout<<""<<endl;
   cout<<"Les bacteries entrent en compétition!"<<endl;
@@ -521,18 +555,19 @@ void Map::update(){
     Bacterie* gagnant=competition(gaps[i]->Getx(),gaps[i]->Gety());
 
     Bacterie* newborn=gagnant->Division();
+
+    /*cout<<""<<endl;
+    cout<<"Elle se divise pour donner un nouveau né bactérie!"<<endl;
     cout<<""<<endl;
-    cout<<"Elle se divise pour donné un nouveau né bactérie!"<<endl;
-    cout<<""<<endl;
-    newborn->Describe();
+    newborn->Describe();*/
 
     Grille[gaps[i]->Getx()][gaps[i]->Gety()]->Setptr(newborn);
   }
   
   
   cout<<""<<endl;
-  DescribeBacteries();
-  DescribeABC();
+  /*DescribeBacteries();
+  DescribeABC();*/
 
 
   cout<<"Les bactéries mutent!"<<endl;
@@ -561,7 +596,7 @@ void Map::update(){
   }
 
   cout<<""<<endl;
-  DescribeBacteries();
+  /*DescribeBacteries();*/
 
   cout<<""<<endl;
   cout<<"Les bactéries se nourrissent!!"<<endl;
@@ -580,10 +615,10 @@ void Map::update(){
     }
   }
 
-  cout<<""<<endl;
+  /*cout<<""<<endl;
   DescribeABC();
   cout<<""<<endl;
-  DescribeInt();
+  DescribeInt();*/
 
 
 
@@ -592,13 +627,36 @@ void Map::update(){
 
 
 void Map::run(){
-
+  int tours=0;
   while(temps<T){
-    while(temps<t){
+    while(tours<t){
       update();
-    }
-    renouvelle();
 
+      cout<<""<<endl;
+      cout<<"Tableau des concentrations"<<endl;
+      cout<<""<<endl;
+      DescribeABC();
+
+      cout<<""<<endl;
+      cout<<"Tableau des bactéries"<<endl;
+      cout<<""<<endl;
+      DescribeBacteries();
+      cout<<""<<endl;
+      cout<<"Il y a "<<Lignee_A::nombre_A()<<" bactéries de type A, et "<<Lignee_B::nombre_B()<<" bactéries de type B"<<endl;
+
+
+      cout<<""<<endl;
+      cout<<"Tableau concentrations internes"<<endl;
+      cout<<""<<endl;
+      DescribeInt();
+
+
+
+      temps+=0.1;
+      tours++;
+    }
+    /*renouvelle();*/
+    tours=0;
   }
 
 

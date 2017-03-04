@@ -45,15 +45,15 @@ Metabolite*** GetGrille();
 //    PUBLIC METHODS
 //==============================
 void placeBacteries(); // cree et positionne les bacteries 
-void DescribeBacteries();
-void DescribeABC();
-void DescribeInt();
-void bougeMetabo(int x, int y); // bouge les metabolites
-void update(); // les bacteries se nourrissent, metabolisent, mutent, se divisent, meurent eventuellement
+void DescribeBacteries();//renvoit un tableau avec le type (A ou B), de bactéries pour chaque case
+void DescribeABC();//renvoit un tableau avec les concentrations (A,B,C) pour chaque case
+void DescribeInt();////renvoit un tableau avec les concentrations (A_int,B_int,C_int) internes des bacteries pour chaque case
+void bougeMetabo(Metabolite*& m); // bouge les metabolites
+void update(); // les bacteries se nourrissent, metabolisent, mutent, se divisent, meurent eventuellement, les metabolites diffusent
 void renouvelle(); //reinitialise le milieu de culture
-Bacterie* competition(int x, int y); //renvoit le gagnant du gap sous forme de pointeur
-void run();
-void euler();
+Bacterie* competition(int x, int y); //renvoit le gagnant d'un gap sous forme de pointeur
+void run();// exectute l'algorithme jusqu'a un temps T donné
+
 
 
 protected:
@@ -68,10 +68,10 @@ static constexpr int width=32; //longueur grille
 static constexpr int height=32;//hauteur grille
 float A_init; //concentration initiale en glucose
 float D; //coef de diffusion
-int T; //temps de simulation
-int t; //temps de renouvellement
-int temps; //temps reel de la simulation
-int h; //pas de temps
+float T; //temps total de simulation
+int t; //pas de renouvellement
+float temps; //temps reel de la simulation
+float h; //pas de temps
 Metabolite*** Grille; //grille des concentrations en metabolites
 
 

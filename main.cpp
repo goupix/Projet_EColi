@@ -32,7 +32,7 @@ int main(){
   cout<<""<<endl;
   cout<<"Il y a "<<Lignee_A::nombre_A()<<" bactéries de type A, et "<<Lignee_B::nombre_B()<<" bactéries de type B"<<endl;
 
-  cout<<""<<endl;
+  /*cout<<""<<endl;
   cout<<"########## Methode bougeMetabo ##########"<<endl;
   cout<<""<<endl;
   (environnement.GetGrille()[5][6])->SetA(2);
@@ -53,12 +53,9 @@ int main(){
 
   (environnement.GetGrille()[31][31])->SetA(2);
   environnement.bougeMetabo(31,31);
-  (environnement.GetGrille()[31][31])->SetA(10);
+  (environnement.GetGrille()[31][31])->SetA(10);*/
   
-  cout<<""<<endl;
-  cout<<"########## Methode update ##########"<<endl;
-  cout<<""<<endl;
-  environnement.update();
+  
   
   
 
@@ -132,6 +129,15 @@ int main(){
   cout<<""<<endl;
   Map* e2=new Map();
   delete(e2);
+
+
+/*Test du programme en entier*/
+
+  cout<<""<<endl;
+  cout<<"########## Methode update et run ##########"<<endl;
+  cout<<""<<endl;
+  environnement.run();
+
   
   return 0;
 }

@@ -73,7 +73,8 @@ float A_int;
 float B_int;
 float C_int;
 
-char type;
+char type; //type de bacterie (A ou B)
+
 //std::vector<int> depl;
 //==============================
 //    GETTER DEFINITION
