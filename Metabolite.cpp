@@ -93,7 +93,7 @@ void Metabolite::makeDie(){
     delete(ptr);
     ptr=nullptr;
 
-    cout<<"RIP"<<" ";
+    cout<<"RIP"<<"";
   }
   
 
@@ -121,7 +121,6 @@ void Metabolite::makeMute(){
 
     cout<<"Mutante"<<" ";
   }
-
 
 }
 
