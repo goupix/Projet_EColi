@@ -214,8 +214,8 @@ void Map::renouvelle(){
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
       Grille[i][j]->SetA(A_init);
+      Grille[i][j]->SetB(0.0);
       Grille[i][j]->SetC(0.0);
-      Grille[i][j]->SetA(0.0);
     }
   }
 }
@@ -416,6 +416,7 @@ void Map::run(){
       temps+=0.1;
       tours++;
     }
+
     renouvelle();
     tours=0;
   }
