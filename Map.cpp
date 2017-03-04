@@ -214,8 +214,8 @@ void Map::renouvelle(){
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
       Grille[i][j]->SetA(A_init);
-      Grille[i][j]->SetB(0.0);
       Grille[i][j]->SetC(0.0);
+      Grille[i][j]->SetA(0.0);
     }
   }
 }
@@ -294,6 +294,7 @@ Bacterie* Map::competition(int x, int y){
 }
 
 
+//Méthode qui va actualiser l'expérience 
 
 void Map::update(){
   
@@ -303,7 +304,7 @@ void Map::update(){
 
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
-      bougeMetabo(Grille[i][j]);
+      bougeMetabo(Grille[i][j]);   //les métabolites diffusent dans la grille
     }
 
   }
@@ -317,7 +318,7 @@ void Map::update(){
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
 
-      Grille[i][j]->makeDie();
+      Grille[i][j]->makeDie(); //le contenu d'une bactérie qui meurt est déversé dans sa case correspondante
     }
   }
   
@@ -344,9 +345,9 @@ void Map::update(){
 
   for(unsigned int i=0; i<gaps.size(); i++){
 
-    Bacterie* gagnant=competition(gaps[i]->Getx(),gaps[i]->Gety());
+    Bacterie* gagnant=competition(gaps[i]->Getx(),gaps[i]->Gety()); //retourne la bactérie de la case avoisinante qui a gagné
 
-    Bacterie* newborn=gagnant->Division();
+    Bacterie* newborn=gagnant->Division(); //cette bactérie gagnante va à son tour se diviser 
 
     Grille[gaps[i]->Getx()][gaps[i]->Gety()]->Setptr(newborn);
   }
@@ -359,7 +360,7 @@ void Map::update(){
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
 
-      Grille[i][j]->makeMute();
+      Grille[i][j]->makeMute();  
     }
   }
 
@@ -371,7 +372,7 @@ void Map::update(){
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
 
-      Grille[i][j]->makeEat(h);
+      Grille[i][j]->makeEat(h); 
 
     }
   }
@@ -416,7 +417,6 @@ void Map::run(){
       temps+=0.1;
       tours++;
     }
-
     renouvelle();
     tours=0;
   }
