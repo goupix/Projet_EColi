@@ -25,10 +25,10 @@ Map::Map(){
   temps=0;
   h=1;
 
-  Grille=new Metabolite**[height];
+  Grille=new Case**[height];
 
   for(int i=0; i<height; i++){
-    Grille[i]=new Metabolite*[width];
+    Grille[i]=new Case*[width];
   }
 }
 
@@ -74,14 +74,14 @@ void Map::set(){
         if(tableDeNombres[compteur]==0){
     
           Lignee_A* a= new Lignee_A();
-	        Grille[i][j]= new Metabolite(i, j, A_init, a); 
+	        Grille[i][j]= new Case(i, j, A_init, a); 
           compteur++;
         }
 
         else{
           
           Lignee_B* b= new Lignee_B();
-          Grille[i][j]= new Metabolite(i, j, A_init, b);
+          Grille[i][j]= new Case(i, j, A_init, b);
           compteur++;
         }
         
@@ -94,7 +94,7 @@ void Map::set(){
 
 
 
-void Map::bougeMetabo(Metabolite*& m){
+void Map::bougeMetabo(Case*& m){
 
 
   float newA;// variables de stockage des nouvelles valeurs des concentrations en métabolites
@@ -109,10 +109,10 @@ void Map::bougeMetabo(Metabolite*& m){
   int x=m->Getx();
   int y=m->Gety();
 
-  vector<Metabolite*> voisins;
+  vector<Case*> voisins;
 
 
-  /* Pour la case dont les coordonnées sont données en argument, on cherche les metabolites du voisinage de Moore et on 
+  /* Pour la case dont les coordonnées sont données en argument, on cherche les Cases du voisinage de Moore et on 
   les stocke dans un vecteur*/
   int valx=0;
   int valy=0;
@@ -222,10 +222,10 @@ void Map::renouvelle(){
 
 Bacterie* Map::competition(int x, int y){
 
-  vector<Metabolite*> voisins;
+  vector<Case*> voisins;
 
 
-  /* Pour la case dont les coordonnées sont données en argument, on cherche les metabolites du voisinage de Moore et on 
+  /* Pour la case dont les coordonnées sont données en argument, on cherche les Cases du voisinage de Moore et on 
   les stocke dans un vecteur*/
   int valx=0;
   int valy=0;
@@ -273,7 +273,7 @@ Bacterie* Map::competition(int x, int y){
 
 
 
-  int indice=0; //indice correspondant à la case gagnante parmis les metabolites voisines, dans le vecteur voisins
+  int indice=0; //indice correspondant à la case gagnante parmis les Cases voisines, dans le vecteur voisins
   float wmax=(voisins[0]->Getptr())->Getw();
 
   for (unsigned int i=0; i<voisins.size(); i++){
@@ -327,7 +327,7 @@ void Map::update(){
   cout<<"Les bacteries entrent en compétition!"<<endl;
   cout<<""<<endl;
   
-  vector<Metabolite*> gaps;  //on cree un vecteur de pointeurs sur les gaps
+  vector<Case*> gaps;  //on cree un vecteur de pointeurs sur les gaps
 
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){

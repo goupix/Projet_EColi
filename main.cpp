@@ -3,7 +3,7 @@
 #include "Bacterie.h"
 #include "Lignee_A.h"
 #include "Lignee_B.h"
-#include "Metabolite.h"
+#include "Case.h"
 
 using namespace std;
 
@@ -33,13 +33,13 @@ int main(){
 
 
 
-Test de la classe Metabolite
+Test de la classe Case
 
   cout<<""<<endl;
-  cout<<"########## Constructeur par défaut de la classe Metabolite ##########"<<endl;
+  cout<<"########## Constructeur par défaut de la classe Case ##########"<<endl;
   cout<<""<<endl;
   Bacterie* t1=new Bacterie;
-  Metabolite m1=Metabolite(0, 0, 2.0, t1);
+  Case m1=Case(0, 0, 2.0, t1);
   m1.Describe();
   delete(t1);
 

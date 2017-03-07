@@ -2,7 +2,7 @@
 //    INCLUDES
 //==============================
 #include "Bacterie.h"
-#include "Metabolite.h"
+#include "Case.h"
 #include <iostream>
 using std::cout;
 using std::endl;
