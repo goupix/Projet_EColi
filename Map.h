@@ -48,9 +48,9 @@ void set(); // cree et positionne les bacteries
 void DescribeBacteries();//renvoit un tableau avec le type (A ou B), de bactéries pour chaque case
 void DescribeABC();//renvoit un tableau avec les concentrations (A,B,C) pour chaque case
 void DescribeInt();////renvoit un tableau avec les concentrations (A_int,B_int,C_int) internes des bacteries pour chaque case
-void bougeMetabo(Case*& m); // bouge les Cases
+void diffusion(Case*& m); // bouge les Cases
 void update(); // les bacteries se nourrissent, metabolisent, mutent, se divisent, meurent eventuellement, les Cases diffusent
-void renouvelle(); //reinitialise le milieu de culture
+void renew(); //reinitialise le milieu de culture
 Bacterie* competition(int x, int y); //renvoit le gagnant d'un gap sous forme de pointeur
 void run();// exectute l'algorithme jusqu'a un temps T donné
 
@@ -69,7 +69,7 @@ static constexpr int height=32;//hauteur grille
 float A_init; //concentration initiale en glucose
 float D; //coef de diffusion
 float T; //temps total de simulation
-int t; //pas de renouvellement
+int t; //pas de renewment
 float temps; //temps reel de la simulation
 float h; //pas de temps
 Case*** Grille; //grille des concentrations en Cases

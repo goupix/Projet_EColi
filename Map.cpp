@@ -94,7 +94,7 @@ void Map::set(){
 
 
 
-void Map::bougeMetabo(Case*& m){
+void Map::diffusion(Case*& m){
 
 
   float newA;// variables de stockage des nouvelles valeurs des concentrations en métabolites
@@ -209,13 +209,13 @@ void Map::DescribeInt(){
 
 
   
-void Map::renouvelle(){
+void Map::renew(){
 
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
       Grille[i][j]->SetA(A_init);
+      Grille[i][j]->SetB(0.0);
       Grille[i][j]->SetC(0.0);
-      Grille[i][j]->SetA(0.0);
     }
   }
 }
@@ -304,7 +304,7 @@ void Map::update(){
 
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
-      bougeMetabo(Grille[i][j]);   //les métabolites diffusent dans la grille
+      diffusion(Grille[i][j]);   //les métabolites diffusent dans la grille
     }
 
   }
@@ -417,7 +417,7 @@ void Map::run(){
       temps+=0.1;
       tours++;
     }
-    renouvelle();
+    renew();
     tours=0;
   }
 
