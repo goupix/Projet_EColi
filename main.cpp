@@ -117,10 +117,10 @@ Test du destructeur de Map
   cout<<""<<endl;
   cout<<"########## Methode update et run ##########"<<endl;
   cout<<""<<endl;
-  Map e=Map();
-  e.run();
-
-
+  Map* e= new Map();
+  e->run();
+  delete(e);
+  cout<<"Il y a "<<Lignee_A::nombre_A()<<" bactéries de type A, et "<<Lignee_B::nombre_B()<<" bactéries de type B"<<endl;
 
   
   return 0;

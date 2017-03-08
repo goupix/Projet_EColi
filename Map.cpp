@@ -21,7 +21,7 @@ Map::Map(){
   A_init=10;
   D=0.1;
   T=10;
-  t=5;
+  t=10;
   temps=0;
   h=1;
 
@@ -32,12 +32,45 @@ Map::Map(){
   }
 }
 
+
+Map::Map(float a, int nb){
+
+  A_init=a;
+  D=0.1;
+  T=10;
+  t=nb;
+  temps=0;
+  h=1;
+
+  Grille=new Case**[height];
+
+  for(int i=0; i<height; i++){
+    Grille[i]=new Case*[width];
+  }
+}
+
+
+
+
 //==============================
 //    DESTRUCTOR
 //==============================
 Map::~Map(){
 
+
+  for(int i=0; i<width; i++){
+    for(int j=0; j<height; j++){
+
+      delete(Grille[i][j]);
+
+    }
+  }
+
+
   delete [] Grille;
+
+  
+
 }
 
 //==============================
@@ -367,12 +400,43 @@ void Map::update(){
     }
   }
 
+}
 
 
+char Map::state(int nbA, int nbB){
+
+  if(nbA!=0 && nbB==0){
+    
+    cout<<"Exclusion"<<endl;
+    return 'A';
+    
+  }
+
+  else if(nbA==0 && nbB==0){
+
+    cout<<"Extinction"<<endl;
+    return 'E';
+    
+  }
+
+  else if(nbA!=0 && nbB!=0){
+
+    cout<<"Cohabitation"<<endl;
+    return 'C';
 
 
+  }
+
+  else{ 
+
+    
+    cout<<"Exclusion de la lignée A"<<endl;
+    return 'X';
+
+  }
 
 }
+
 
 
 void Map::run(){
@@ -384,7 +448,7 @@ void Map::run(){
 
       update();
 
-      cout<<""<<endl;
+      /*cout<<""<<endl;
       cout<<"Tableau des concentrations"<<endl;
       cout<<""<<endl;
       DescribeABC();
@@ -400,7 +464,7 @@ void Map::run(){
       cout<<""<<endl;
       cout<<"Tableau concentrations internes"<<endl;
       cout<<""<<endl;
-      DescribeInt();
+      DescribeInt();*/
 
 
       cout<<"Il y a "<<Lignee_A::nombre_A()<<" bactéries de type A, et "<<Lignee_B::nombre_B()<<" bactéries de type B"<<endl;
@@ -411,5 +475,8 @@ void Map::run(){
     tours=0;
   }
 
+  cout<<"Il y a "<<Lignee_A::nombre_A()<<" bactéries de type A, et "<<Lignee_B::nombre_B()<<" bactéries de type B"<<endl;
+  char s=state(Lignee_A::nombre_A(), Lignee_B::nombre_B());
+  cout<<s<<endl;
 
 }

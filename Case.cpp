@@ -29,7 +29,10 @@ Case::Case(int a, int b, float A_init, Bacterie* cible){
 //==============================
 //    DESTRUCTOR
 //==============================
-Case::~Case(){}
+Case::~Case(){
+
+  delete(ptr);
+}
 
 //==============================
 //    PUBLIC METHODS
@@ -93,7 +96,6 @@ void Case::makeDie(){
     delete(ptr);
     ptr=nullptr;
 
-    cout<<"RIP"<<"";
   }
   
 
@@ -119,7 +121,7 @@ void Case::makeMute(){
       ptr=newcell;
     }
 
-    cout<<"Mutante"<<" ";
+
   }
 
 }

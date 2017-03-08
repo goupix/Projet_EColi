@@ -22,6 +22,7 @@ public:
 //    CONSTRUCTORS
 //==============================
 Map();
+Map(float A_int, int t);
 
 //==============================
 //    DESTRUCTOR
@@ -52,6 +53,7 @@ void diffusion(Case*& m); // bouge les Cases
 void update(); // les bacteries se nourrissent, metabolisent, mutent, se divisent, meurent eventuellement, les Cases diffusent
 void renew(); //reinitialise le milieu de culture
 Bacterie* competition(int x, int y); //renvoit le gagnant d'un gap sous forme de pointeur
+char state(int nbA, int nbB);
 void run();// exectute l'algorithme jusqu'a un temps T donné
 
 
