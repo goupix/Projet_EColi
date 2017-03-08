@@ -58,9 +58,25 @@ float& Bacterie::Getw(){}
 
 int Bacterie::Death(){
   
+  float nombre =  (rand()%(1000))/1000.0;  //tire un nombre "aléatoire" entre 0 et 1
+  
+    if(nombre<p_death){
+      return 0;
+      
+        
+    }
+    
+    else{
+      return 1;
+    }
+  
 }
 
+
+
 int Bacterie::Mute(){
+
+
   float nombre =  (rand()%(1000))/1000.0;
   if (nombre<p_mutation){
     return 0;
@@ -69,6 +85,9 @@ int Bacterie::Mute(){
     return 1;
   }
 }
+
+
+
 
 Bacterie* Bacterie::Division(){ ///méthode division
 

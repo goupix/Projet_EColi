@@ -285,10 +285,6 @@ Bacterie* Map::competition(int x, int y){
     
   }
   
-  /*cout<<""<<endl;
-  cout<<"Nous avons une gagnante pour le gaps ("<<x<<", "<<y<<" )"<<endl;*/
-  
-  /*(voisins[indice]->Getptr())->Describe();*/
 
   return voisins[indice]->Getptr();
 }
@@ -298,9 +294,7 @@ Bacterie* Map::competition(int x, int y){
 
 void Map::update(){
   
-  cout<<""<<endl;
-  cout<<"Diffusion des métabolites."<<endl;
-  cout<<""<<endl;
+  //Diffusion des métabolites.
 
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
@@ -311,9 +305,7 @@ void Map::update(){
 
   
 
-  cout<<""<<endl;
-  cout<<"Les bacteries meurent!"<<endl;
-  cout<<""<<endl;
+  //Les bacteries meurent!
 
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
@@ -323,11 +315,9 @@ void Map::update(){
   }
   
 
-  cout<<""<<endl;
-  cout<<"Les bacteries entrent en compétition!"<<endl;
-  cout<<""<<endl;
+  //Les bacteries entrent en compétition!
   
-  vector<Case*> gaps;  //on cree un vecteur de pointeurs sur les gaps
+  vector<Case*> gaps;  //on créé un vecteur de pointeurs sur les gaps
 
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
@@ -340,7 +330,7 @@ void Map::update(){
 
   
 
-  random_shuffle(gaps.begin(), gaps.end()); //on melange la liste des gaps aléatoirement
+  random_shuffle(gaps.begin(), gaps.end()); //on mélange la liste des gaps aléatoirement
 
 
   for(unsigned int i=0; i<gaps.size(); i++){
@@ -353,9 +343,9 @@ void Map::update(){
   }
   
   
-  cout<<""<<endl;
-  cout<<"Les bactéries mutent!"<<endl;
-  cout<<""<<endl;
+  
+
+  //Les bactéries mutent!
 
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
@@ -365,9 +355,9 @@ void Map::update(){
   }
 
 
-  cout<<""<<endl;
-  cout<<"Les bactéries se nourrissent!!"<<endl;
-  cout<<""<<endl;
+  
+
+  //Les bactéries se nourrissent!!
   
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
@@ -394,7 +384,7 @@ void Map::run(){
 
       update();
 
-      /*cout<<""<<endl;
+      cout<<""<<endl;
       cout<<"Tableau des concentrations"<<endl;
       cout<<""<<endl;
       DescribeABC();
@@ -410,7 +400,7 @@ void Map::run(){
       cout<<""<<endl;
       cout<<"Tableau concentrations internes"<<endl;
       cout<<""<<endl;
-      DescribeInt();*/
+      DescribeInt();
 
 
       cout<<"Il y a "<<Lignee_A::nombre_A()<<" bactéries de type A, et "<<Lignee_B::nombre_B()<<" bactéries de type B"<<endl;

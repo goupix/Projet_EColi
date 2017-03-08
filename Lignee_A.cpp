@@ -89,27 +89,18 @@ Bacterie* Lignee_A::Division(){
 
 
 
-int Lignee_A::Death(){
+int Lignee_A::Death(){return Bacterie::Death();}
 
-  float nombre =  (rand()%(1000))/1000.0;//tire un nombre "aléatoire" entre 0 et 1
-  
-    if(nombre<p_death){
-      return 0;
-      
-        
-    }
-    
-    else{
-      return 1;
-    }
-    
-}
-/*void Lignee_A::Deplacement(){Bacterie::Deplacement();}*/
-char Lignee_A::Gettype(){Bacterie::Gettype();}
-int Lignee_A::Mute(){Bacterie::Mute();}
+char Lignee_A::Gettype(){return Bacterie::Gettype();}
+
+int Lignee_A::Mute(){return Bacterie::Mute();}
+
 float Lignee_A::GetA_int(){return A_int;}
+
 float Lignee_A::GetB_int(){return B_int;}
+
 float Lignee_A::GetC_int(){return C_int;}
+
 float& Lignee_A::Getw(){return w;}
 
 int Lignee_A::nombre_A()

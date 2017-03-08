@@ -71,12 +71,14 @@ Lignee_B::~Lignee_B(){
 //==============================
 
 Bacterie* Lignee_B::Division(){
+
 	A_int = A_int/2.0;
 	B_int = B_int/2.0;
 	C_int = C_int/2.0;
 
-	Lignee_B* newcell = new Lignee_B(A_int,B_int,C_int);
+	Lignee_B* newcell = new Lignee_B(A_int, B_int, C_int);
 	return newcell;
+
 }
 
 void Lignee_B::Describe(){
@@ -84,27 +86,18 @@ void Lignee_B::Describe(){
 
 }
 
-int Lignee_B::Death(){
-  float nombre = (rand()%(1000))/1000.0;
+int Lignee_B::Death(){ return Bacterie::Death();}
 
-  /*srand(time(NULL));
-  float nombre = (float)rand() / (float)RAND_MAX;*/
-    if(nombre<p_death){
-      return 0;
-      
-        
-    }
-    
-    else{
-      return 1;
-    }
-    }
-/*void Lignee_B::Deplacement(){Bacterie::Deplacement();}*/
-char Lignee_B::Gettype(){Bacterie::Gettype();}
-int Lignee_B::Mute(){Bacterie::Mute();}
+char Lignee_B::Gettype(){return Bacterie::Gettype();}
+
+int Lignee_B::Mute(){return Bacterie::Mute();}
+
 float Lignee_B::GetA_int(){return A_int;}
+
 float Lignee_B::GetB_int(){return B_int;}
+
 float Lignee_B::GetC_int(){return C_int;}
+
 float& Lignee_B::Getw(){return w;}
 
 int Lignee_B::nombre_B()
