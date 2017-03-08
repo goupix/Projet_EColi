@@ -45,16 +45,13 @@ public:
 //    PUBLIC METHODS
 //==============================
 
-  virtual void Describe();// Decrit la bacterie
-  virtual int Death(); //revoit 1 (la bacterie vit) ou 0 (la bacterie meurt) avec une proba p_death
-  /*virtual void Deplacement();*/
-  virtual Bacterie* Division();// divise les concentrations de la bacterie par deux et renvoit une bacterie identique
-  virtual int Mute(); //renvoit 1 (la bacterie ne mute pas) ou 0 (la bacterie mute) avec une proba p_mutation 
-  static int nombre_A();   //Renvoie le nombre d'objets créés
-  virtual float Mange(float a, float h); //execute euler sur la bacterie, prend en argument le pas de temps h 
-  //et la concentration en A de la case
-  virtual float euler(float a, float& aint, float& bint, float h, float p1, float p2); // prend en argument la concentration de la case ,
-  //modifie sur place les concentrations internes des bacteries et renvoit la nouvelle concentration de la case
+  virtual void Describe();
+  virtual int Death(); 
+  virtual Bacterie* Division();
+  virtual int Mute(); 
+  static int nombre_A();  
+  virtual float absorb(float a, float h); 
+  virtual float euler(float a, float& aint, float& bint, float h, float p1, float p2); 
 
 
 

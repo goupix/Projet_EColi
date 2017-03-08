@@ -129,12 +129,12 @@ void Case::makeEat(float h){
 
   if(ptr->Gettype()=='A'){
 
-    A=ptr->Mange(A,h);
+    A=ptr->absorb(A,h);
   }
 
   else{
 
-    B=ptr->Mange(B,h);
+    B=ptr->absorb(B,h);
 
   }
 

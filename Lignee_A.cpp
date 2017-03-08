@@ -109,9 +109,9 @@ int Lignee_A::nombre_A()
 }
 
 
-float Lignee_A::euler(float a, float& aint, float& bint, float h, float p1, float p2){Bacterie::euler(a, aint, bint, h, p1, p2);}
+float Lignee_A::euler(float a, float& aint, float& bint, float h, float p1, float p2){ return Bacterie::euler(a, aint, bint, h, p1, p2);}
 
-float Lignee_A::Mange(float a, float h){
+float Lignee_A::absorb(float a, float h){
   return euler(a, A_int, B_int, h, Raa, Rab);
 
 }

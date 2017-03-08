@@ -50,7 +50,9 @@ char Bacterie::Gettype(){
 }
 
 float Bacterie::GetA_int(){}
+
 float Bacterie::GetB_int(){}
+
 float Bacterie::GetC_int(){}
 
 float& Bacterie::Getw(){}
@@ -61,13 +63,15 @@ int Bacterie::Death(){
   float nombre =  (rand()%(1000))/1000.0;  //tire un nombre "aléatoire" entre 0 et 1
   
     if(nombre<p_death){
+
       return 0;
       
-        
     }
     
     else{
+
       return 1;
+
     }
   
 }
@@ -78,22 +82,28 @@ int Bacterie::Mute(){
 
 
   float nombre =  (rand()%(1000))/1000.0;
+
   if (nombre<p_mutation){
+
     return 0;
   }
+
   else{
+
     return 1;
   }
-}
-
-
-
-
-Bacterie* Bacterie::Division(){ ///méthode division
 
 }
+
+
+
+
+Bacterie* Bacterie::Division(){}
+
+
 
 float Bacterie::euler(float a, float& aint, float& bint, float h, float p1, float p2){
+
   float newa=a;
   float newbint=bint;
   float newaint=aint;
@@ -108,7 +118,8 @@ float Bacterie::euler(float a, float& aint, float& bint, float h, float p1, floa
   return newa;
 
 }
-float Bacterie::Mange(float a, float h){
+
+float Bacterie::absorb(float a, float h){
   
 }
 
