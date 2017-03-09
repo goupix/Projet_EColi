@@ -37,7 +37,7 @@ Map::Map(float a, int nb){
 
   A_init=a;
   D=0.1;
-  T=10000;
+  T=10;
   t=nb;
   temps=0;
   h=1;
@@ -257,7 +257,6 @@ void Map::renew(){
 }
 
 Bacterie* Map::competition(int x, int y){
-
   vector<Case*> voisins;
 
 
@@ -309,21 +308,52 @@ Bacterie* Map::competition(int x, int y){
 
 
 
-  int indice=0; //indice correspondant à la case gagnante parmis les Cases voisines, dans le vecteur voisins
-  float wmax=(voisins[0]->Getptr())->Getw();
-
-  for (unsigned int i=0; i<voisins.size(); i++){
-    
-    if((voisins[i]->Getptr())->Getw()>wmax){// on compare les fitness
-      indice=i;
-      wmax=(voisins[i]->Getptr())->Getw();
-    }
-    
-  }
+  /*On efface les elements avec une fitness inférieure à W_min*/
   
+  int n=0;
+  for (unsigned int i=0; i<voisins.size(); i++){
+    if((voisins[i]->Getptr())->Getw()<0.001){
+      n++;
+    }
+  }
 
-  return voisins[indice]->Getptr();
+  for (int i=0; i<n; i++){
+    int i_fit=0;
+    for (unsigned int i=0; i<voisins.size(); i++){
+      if((voisins[i]->Getptr())->Getw()<0.001){
+        i_fit=i;
+      }
+    }
+    voisins.erase(voisins.begin()+i_fit);
+  }
+
+
+  if(voisins.size()>0){
+
+    int indice=0; //indice correspondant à la case gagnante parmis les Cases voisines, dans le vecteur voisins
+    float wmax=(voisins[0]->Getptr())->Getw();
+
+    for (unsigned int i=0; i<voisins.size(); i++){
+    
+      if((voisins[i]->Getptr())->Getw()>wmax){// on compare les fitness
+        indice=i;
+        wmax=(voisins[i]->Getptr())->Getw();
+      }
+    
+    }
+     return voisins[indice]->Getptr();
+    }
+
+    else{
+  
+      Bacterie* vide=nullptr;
+      return vide;
+  }
 }
+
+
+
+
 
 
 //Méthode qui va actualiser l'expérience 
@@ -334,7 +364,10 @@ void Map::update(){
 
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
-      diffusion(Grille[i][j]);   //les métabolites diffusent dans la grille
+
+        diffusion(Grille[i][j]);   //les métabolites diffusent dans la grille
+
+      
     }
 
   }
@@ -346,7 +379,11 @@ void Map::update(){
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
 
-      Grille[i][j]->makeDie(); //le contenu d'une bactérie qui meurt est déversé dans sa case correspondante
+      if (Grille[i][j]->Getptr()!=nullptr){
+
+        Grille[i][j]->makeDie(); //le contenu d'une bactérie qui meurt est déversé dans sa case correspondante
+
+      }
     }
   }
   
@@ -363,30 +400,36 @@ void Map::update(){
       }
     }
   }
-
   
-
+  
   random_shuffle(gaps.begin(), gaps.end()); //on mélange la liste des gaps aléatoirement
 
 
   for(unsigned int i=0; i<gaps.size(); i++){
-
+  
     Bacterie* gagnant=competition(gaps[i]->Getx(),gaps[i]->Gety()); //retourne la bactérie de la case avoisinante qui a gagné
+    
+    if(gagnant!=nullptr){
 
-    Bacterie* newborn=gagnant->Division(); //cette bactérie gagnante va à son tour se diviser 
+      Bacterie* newborn=gagnant->Division(); //cette bactérie gagnante va à son tour se diviser 
 
-    Grille[gaps[i]->Getx()][gaps[i]->Gety()]->Setptr(newborn);
+      Grille[gaps[i]->Getx()][gaps[i]->Gety()]->Setptr(newborn);
+
+    }
   }
-  
-  
+
+  cout<<" "<<endl;
+  DescribeBacteries();
   
 
   //Les bactéries mutent!
 
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
+      if(Grille[i][j]->Getptr()!=nullptr){
 
-      Grille[i][j]->makeMute();  
+        Grille[i][j]->makeMute(); 
+      } 
     }
   }
 
@@ -397,9 +440,10 @@ void Map::update(){
   
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
+      if(Grille[i][j]->Getptr()!=nullptr){
 
       Grille[i][j]->makeEat(h); 
-
+      }
     }
   }
 
