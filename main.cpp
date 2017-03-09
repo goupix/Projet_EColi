@@ -7,6 +7,65 @@
 
 using namespace std;
 
+float searchExtinction(float T, float a, float b){
+
+  float borne1=a;
+  float borne2=b;
+  float mid;
+
+  for(int i=0; i<5; i++){
+
+    Map* a=new Map(borne1, T);
+    Map* b=new Map(borne2, T);
+
+    char state_A=a->run();
+    char state_B=b->run();
+
+
+    if(state_A='E', state_B='C'){
+
+      mid=(borne1+borne2)/2;
+      Map* m=new Map(mid,T);
+      char state_M=m->run();
+
+      if(state_M==state_A){
+
+        borne2=mid;
+
+      }
+
+      else if(state_M==state_B){
+
+        borne1=mid;
+
+      }
+
+      else{
+        cout<<"erreur"<<endl;
+      }
+    delete(a);
+    delete(b);
+    delete(m);
+
+    }
+
+    else{
+
+      cout<<"erreur, changez les bornes svp"<<endl;
+      delete(a);
+      delete(b);
+      
+
+    }
+
+    
+
+  }
+
+  return mid;
+  
+}
+
 int main(){
 
 
@@ -117,7 +176,7 @@ Test du destructeur de Map
   cout<<""<<endl;
   cout<<"########## Methode update et run ##########"<<endl;
   cout<<""<<endl;
-  Map* e= new Map();
+  Map* e= new Map(1,20);
   e->run();
   delete(e);
   cout<<"Il y a "<<Lignee_A::nombre_A()<<" bactéries de type A, et "<<Lignee_B::nombre_B()<<" bactéries de type B"<<endl;

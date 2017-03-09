@@ -20,7 +20,7 @@ Map::Map(){
 
   A_init=10;
   D=0.1;
-  T=10;
+  T=10000;
   t=10;
   temps=0;
   h=1;
@@ -37,7 +37,7 @@ Map::Map(float a, int nb){
 
   A_init=a;
   D=0.1;
-  T=10;
+  T=10000;
   t=nb;
   temps=0;
   h=1;
@@ -171,11 +171,7 @@ void Map::diffusion(Case*& m){
     }
   }
 
-    /*cout<<""<<endl;
-    for(unsigned int i=0; i<voisins.size(); i++){
 
-      cout<<"( "<<voisins[i]->Getx()<<", "<<voisins[i]->Gety()<<" )";
-    }*/
   
 
   /*execution de l'algorithme de diffusion*/
@@ -196,8 +192,10 @@ void Map::diffusion(Case*& m){
   m->SetB(newB);
   m->SetC(newC);
   
-  /*cout<<" Les nouvelles concentrations de la case ( "<<x<<", "<<y<<" ) sont ("<<newA<<", "<<newB<<", "<<newC<<" )"<<endl;*/
- }
+}
+
+
+
 
 void Map::DescribeBacteries(){
 
@@ -216,6 +214,9 @@ void Map::DescribeBacteries(){
   cout<<""<<endl;
 }
 
+
+
+
 void Map::DescribeABC(){
 
   for(int i=0; i<width;i++){
@@ -227,6 +228,8 @@ void Map::DescribeABC(){
   }
   cout<<""<<endl;
 }
+
+
 
 void Map::DescribeInt(){
 
@@ -269,11 +272,11 @@ Bacterie* Map::competition(int x, int y){
       valy=(y+j)%height;
         
       if((x+i)%width==-1){
-        valx=31;
+        valx=width-1;
       }
 
       if((y+j)%height==-1){
-        valy=31;
+        valy=height-1;
 
       }
       
@@ -439,7 +442,7 @@ char Map::state(int nbA, int nbB){
 
 
 
-void Map::run(){
+char Map::run(){
   int tours=0;
   set();
 
@@ -467,7 +470,7 @@ void Map::run(){
       DescribeInt();*/
 
 
-      cout<<"Il y a "<<Lignee_A::nombre_A()<<" bactéries de type A, et "<<Lignee_B::nombre_B()<<" bactéries de type B"<<endl;
+      /*cout<<"Il y a "<<Lignee_A::nombre_A()<<" bactéries de type A, et "<<Lignee_B::nombre_B()<<" bactéries de type B"<<endl;*/
       temps+=0.1;
       tours++;
     }
@@ -478,5 +481,6 @@ void Map::run(){
   cout<<"Il y a "<<Lignee_A::nombre_A()<<" bactéries de type A, et "<<Lignee_B::nombre_B()<<" bactéries de type B"<<endl;
   char s=state(Lignee_A::nombre_A(), Lignee_B::nombre_B());
   cout<<s<<endl;
+  return s;
 
 }
