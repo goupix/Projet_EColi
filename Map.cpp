@@ -37,7 +37,7 @@ Map::Map(float a, int nb){
 
   A_init=a;
   D=0.1;
-  T=10;
+  T=1000;
   t=nb;
   temps=0;
   h=1;
@@ -500,27 +500,6 @@ char Map::run(){
 
       update();
 
-      /*cout<<""<<endl;
-      cout<<"Tableau des concentrations"<<endl;
-      cout<<""<<endl;
-      DescribeABC();
-
-      cout<<""<<endl;
-      cout<<"Tableau des bactéries"<<endl;
-      cout<<""<<endl;
-      DescribeBacteries();
-      cout<<""<<endl;
-      cout<<"Il y a "<<Lignee_A::nombre_A()<<" bactéries de type A, et "<<Lignee_B::nombre_B()<<" bactéries de type B"<<endl;
-
-
-      cout<<""<<endl;
-      cout<<"Tableau concentrations internes"<<endl;
-      cout<<""<<endl;
-      DescribeInt();*/
-
-
-      /*cout<<"Il y a "<<Lignee_A::nombre_A()<<" bactéries de type A, et "<<Lignee_B::nombre_B()<<" bactéries de type B"<<endl;*/
-      
       temps+=0.1;
       tours++;
     }
