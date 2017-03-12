@@ -32,6 +32,7 @@ Case::Case(int a, int b, float A_init, Bacterie* cible){
 Case::~Case(){
 
   delete(ptr);
+  
 }
 
 //==============================

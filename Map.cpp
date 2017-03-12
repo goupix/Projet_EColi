@@ -66,8 +66,11 @@ Map::~Map(){
     }
   }
 
+  for(int i=0; i<width; i++){
+    delete [] Grille[i];
+  }
 
-  delete [] Grille;
+  delete[] Grille;
 
   
 
@@ -394,7 +397,9 @@ void Map::update(){
 
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
+
       if(Grille[i][j]->Getptr()==nullptr){
+
         gaps.push_back(Grille[i][j]);
 
       }
@@ -418,8 +423,7 @@ void Map::update(){
     }
   }
 
-  cout<<" "<<endl;
-  DescribeBacteries();
+  
   
 
   //Les bactéries mutent!
@@ -443,6 +447,7 @@ void Map::update(){
       if(Grille[i][j]->Getptr()!=nullptr){
 
       Grille[i][j]->makeEat(h); 
+
       }
     }
   }
@@ -515,16 +520,19 @@ char Map::run(){
 
 
       /*cout<<"Il y a "<<Lignee_A::nombre_A()<<" bactéries de type A, et "<<Lignee_B::nombre_B()<<" bactéries de type B"<<endl;*/
+      
       temps+=0.1;
       tours++;
     }
     renew();
     tours=0;
   }
+  cout<<" "<<endl;
+  DescribeBacteries();
 
   cout<<"Il y a "<<Lignee_A::nombre_A()<<" bactéries de type A, et "<<Lignee_B::nombre_B()<<" bactéries de type B"<<endl;
   char s=state(Lignee_A::nombre_A(), Lignee_B::nombre_B());
-  cout<<s<<endl;
+
   return s;
 
 }

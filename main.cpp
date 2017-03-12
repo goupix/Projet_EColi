@@ -41,6 +41,7 @@ float searchExtinction(float T, float a, float b){
       }
 
       else{
+
         cout<<"erreur"<<endl;
       }
     delete(a);
@@ -174,13 +175,13 @@ Test du destructeur de Map
 /*Test du programme en entier*/
 
   cout<<""<<endl;
-  cout<<"########## Methode update et run ##########"<<endl;
+  cout<<"####################### Running... #######################"<<endl;
   cout<<""<<endl;
   Map* e= new Map(0,2);
   e->run();
   delete(e);
   cout<<"Il y a "<<Lignee_A::nombre_A()<<" bactéries de type A, et "<<Lignee_B::nombre_B()<<" bactéries de type B"<<endl;
-
+  /*cout<<searchExtinction(0, 1, 1)<<endl;*/
   
   return 0;
 }
