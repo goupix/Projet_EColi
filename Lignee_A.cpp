@@ -12,7 +12,7 @@ using std::endl;
 //==============================
 //    DEFINITION STATIC ATTRIBUTES
 //==============================
-int Lignee_A::compteur_A = 0; //On initialise notre compteur à 0
+int Lignee_A::compteur_A = 0;  //On initialise notre compteur à 0
 
 
 //==============================
@@ -83,7 +83,7 @@ Bacterie* Lignee_A::Division(){
 	B_int = B_int/2.0;
 	C_int = C_int/2.0;
   
-	Lignee_A* newcell = new Lignee_A(A_int,B_int,C_int);
+	Lignee_A* newcell = new Lignee_A(A_int,B_int,C_int); //nouvelle bactérie de type A qui récupère les nouvelles concentrations intra suite à la division 
 	return newcell;
 }
 

@@ -76,7 +76,7 @@ Bacterie* Lignee_B::Division(){
 	B_int = B_int/2.0;
 	C_int = C_int/2.0;
 
-	Lignee_B* newcell = new Lignee_B(A_int, B_int, C_int);
+	Lignee_B* newcell = new Lignee_B(A_int, B_int, C_int); //nouvelle bactérie de type B qui récupère les nouveaux attributs 
 	return newcell;
 
 }

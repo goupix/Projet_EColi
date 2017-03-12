@@ -18,8 +18,7 @@ using std::endl;
 //    CONSTRUCTORS
 //==============================
 Bacterie::Bacterie(){
-srand(time(0));
-
+srand(time(NULL)); //initiale un générateur de nombre pseudo-aléatoire 
 
 coord[0]=0; 
 coord[1]=0;
@@ -60,7 +59,7 @@ float& Bacterie::Getw(){}
 
 int Bacterie::Death(){
   
-  float nombre =  (rand()%(1000))/1000.0;  //tire un nombre "aléatoire" entre 0 et 1
+  float nombre =  (rand()%(1000))/1000.0;  //tire un nombre pseudo-aléatoire entier positif entre 0 et 1
   
     if(nombre<p_death){
 

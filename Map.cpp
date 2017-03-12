@@ -85,7 +85,7 @@ Map::~Map(){
 
 void Map::set(){
 
-  /*Creation d'un vecteur contenant moitié de 0 moitié de 1*/
+  /*Creation d'un vecteur contenant moitié de 0 (correspondant à la lignée A) et moitié de 1 (lignée B) */
   
   vector<int> tableDeNombres;
   for(int i=0; i<(height*width)/2; i++){
@@ -101,7 +101,7 @@ void Map::set(){
     cout << ' ' << *it;
   }*/
 
-  /* Pour chaque case de l'attribut Grille, on crée une métabolite avec une concentration A_init. Chaque métabolite pointe 
+  /* Pour chaque case de l'attribut Grille, on crée un métabolite avec une concentration A_init. Chaque métabolite pointe 
   vers une bactérie. Le type des bactéries est choisi suivant le vecteur créé precédement (0=type A, 1=type B)*/
   int compteur=0;
   while(compteur<width*height){
@@ -149,7 +149,7 @@ void Map::diffusion(Case*& m){
 
 
   /* Pour la case dont les coordonnées sont données en argument, on cherche les Cases du voisinage de Moore et on 
-  les stocke dans un vecteur*/
+  les stockent dans un vecteur*/
   int valx=0;
   int valy=0;
   for(int i=-1; i<2;i++){
@@ -333,7 +333,7 @@ Bacterie* Map::competition(int x, int y){
 
   if(voisins.size()>0){
 
-    int indice=0; //indice correspondant à la case gagnante parmis les Cases voisines, dans le vecteur voisins
+    int indice=0; //indice correspondant à la case gagnante parmi les Cases voisines, dans le vecteur voisins
     float wmax=(voisins[0]->Getptr())->Getw();
 
     for (unsigned int i=0; i<voisins.size(); i++){
