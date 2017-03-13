@@ -238,8 +238,14 @@ void Map::DescribeInt(){
 
   for(int i=0; i<width;i++){
     for(int j=0; j<height; j++){
-      cout<<"("<<(Grille[i][j]->Getptr())->GetA_int()<<", "<<(Grille[i][j]->Getptr())->GetB_int()<<", "<<(Grille[i][j]->Getptr())->GetC_int()<<") ";
 
+      if(Grille[i][j]->Getptr()!=nullptr){
+        cout<<"("<<(Grille[i][j]->Getptr())->GetA_int()<<", "<<(Grille[i][j]->Getptr())->GetB_int()<<", "<<(Grille[i][j]->Getptr())->GetC_int()<<") ";
+      }
+
+      else{
+        cout<<'0';
+      }
     }
     cout<<""<<endl;
     
@@ -509,7 +515,7 @@ char Map::run(){
   }
   cout<<" "<<endl;
   DescribeBacteries();
-
+  
   cout<<"Il y a "<<Lignee_A::nombre_A()<<" bactéries de type A, et "<<Lignee_B::nombre_B()<<" bactéries de type B"<<endl;
   char s=state(Lignee_A::nombre_A(), Lignee_B::nombre_B());
 
