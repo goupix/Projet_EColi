@@ -60,12 +60,23 @@ float searchExtinction(float T, float a, float b){
     delete(m);
     }
 
-    else{
+    else if (state_A=='E' && state_B=='E'){
 
       cout<<"Erreur, changez les bornes svp."<<endl;
-      mid=(borne1+borne2)/2;
+      mid=borne2;
       break;
     
+    }
+
+    else if (state_A=='C' && state_B=='C'){
+
+      cout<<"Erreur, changez les bornes svp."<<endl;
+      mid=borne1;
+      break;
+    }
+
+    else {
+      cout<<"jonction"<<endl;
     }
 
   }
@@ -125,14 +136,26 @@ float searchExclusion(float T, float a, float b){
       }
 
     delete(m);
+
     }
 
-    else{
+    else if (state_A=='A' && state_B=='A'){
 
       cout<<"Erreur, changez les bornes svp."<<endl;
-      mid=(borne1+borne2)/2;
+      mid=borne1;
       break;
     
+    }
+
+    else if (state_A=='C' && state_B=='C'){
+
+      cout<<"Erreur, changez les bornes svp."<<endl;
+      mid=borne2;
+      break;
+    }
+
+    else {
+      cout<<"jonction"<<endl;
     }
 
   }
@@ -155,16 +178,18 @@ void getCurve(){
 
       float a1(0);
       float b1(1);
-      float a2(5);
+      float a2(20);
       float b2(50);
 
-      for(int i=1; i<1500; i++){
+      fichier << "A_init"<<" "<<"Textinction"<<" "<<"Texclusion"<<endl;
+
+      for(int i=1; i<1500; i+=10){
       
-        fichier << "A_init"<<" "<<"Textinction"<<" "<<"Texclusion";
-        fichier <<i<<" "<<searchExtinction(i, a1, b1)<<" "<<searchExclusion(i, a2, b2);
+        fichier <<i<<" "<<searchExtinction(i, a1, b1)<<" "<<searchExclusion(i, a2, b2)<<endl;
  
-        fichier.close();
       }
+
+      fichier.close();
     }
     
     else
@@ -294,11 +319,13 @@ Test du destructeur de Map
 
  /*Map* e= new Map(0,2);
   e->run();
-  delete(e);*/
+  delete(e);
 
   
   cout<<searchExtinction(1, 0, 2)<<endl;
-  /*cout<<searchExclusion(1, 5, 50);*/
+  cout<<searchExclusion(1, 5, 50);*/
+
+  getCurve();
   return 0;
 }
 

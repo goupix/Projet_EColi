@@ -37,7 +37,7 @@ Map::Map(float a, int nb){
 
   A_init=a;
   D=0.1;
-  T=1000;
+  T=10000;
   t=nb;
   temps=0;
   h=1;
