@@ -37,7 +37,7 @@ Map::Map(float a, int nb){
 
   A_init=a;
   D=0.1;
-  T=1000;
+  T=10000;
   t=nb;
   temps=0;
   h=1;
@@ -212,7 +212,7 @@ void Map::DescribeBacteries(){
       }
 
     }
-    
+    cout<<""<<endl;
   }
   cout<<""<<endl;
 }
@@ -227,7 +227,7 @@ void Map::DescribeABC(){
       cout<<"("<<Grille[i][j]->GetA()<<", "<<Grille[i][j]->GetB()<<", "<<Grille[i][j]->GetC()<<") ";
 
     }
-    
+  cout<<""<<endl;  
   }
   cout<<""<<endl;
 }
@@ -241,6 +241,7 @@ void Map::DescribeInt(){
       cout<<"("<<(Grille[i][j]->Getptr())->GetA_int()<<", "<<(Grille[i][j]->Getptr())->GetB_int()<<", "<<(Grille[i][j]->Getptr())->GetC_int()<<") ";
 
     }
+    cout<<""<<endl;
     
   }
   cout<<""<<endl;

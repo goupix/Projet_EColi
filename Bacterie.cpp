@@ -21,9 +21,6 @@ Bacterie::Bacterie(){
 srand(time(0));
 
 
-coord[0]=0; 
-coord[1]=0;
-
 p_death=0.02; 
 p_mutation=0; 
 W_min=0.001; 
@@ -42,20 +39,11 @@ Bacterie::~Bacterie(){}
 //==============================
 //    PUBLIC METHODS
 //==============================
-void Bacterie::Describe(){
-}
 
 char Bacterie::Gettype(){
   return type;
 }
 
-float Bacterie::GetA_int(){}
-
-float Bacterie::GetB_int(){}
-
-float Bacterie::GetC_int(){}
-
-float& Bacterie::Getw(){}
 
 
 int Bacterie::Death(){
@@ -97,11 +85,6 @@ int Bacterie::Mute(){
 
 
 
-
-Bacterie* Bacterie::Division(){}
-
-
-
 float Bacterie::euler(float a, float& aint, float& bint, float h, float p1, float p2){
 
   float newa=a;
@@ -119,9 +102,7 @@ float Bacterie::euler(float a, float& aint, float& bint, float h, float p1, floa
 
 }
 
-float Bacterie::absorb(float a, float h){
-  
-}
+
 
 
 
