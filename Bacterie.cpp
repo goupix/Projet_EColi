@@ -18,7 +18,7 @@ using std::endl;
 //    CONSTRUCTORS
 //==============================
 Bacterie::Bacterie(){
-srand(time(NULL)); //initiale un générateur de nombre pseudo-aléatoire 
+
 
 p_death=0.02; 
 p_mutation=0; 
