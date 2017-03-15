@@ -105,9 +105,20 @@ int Lignee_B::nombre_B()
     return compteur_B;   //On renvoie simplement la valeur du compteur
 }
 
-float Lignee_B::euler(float a, float& aint, float& bint, float h, float p1, float p2){Bacterie::euler(a, aint, bint, h, p1, p2);}
+float Lignee_B::euler(float c, float h){
 
-float Lignee_B::absorb(float a, float h){
-  return euler(a, B_int, C_int, h, Rbb, Rbc);
+  float newb=c;
+  float newbint=B_int;
+  float newcint=C_int;
+
+  newb+=h*(-Rbb*c);
+  newbint+=h*(Rbb*c-Rbc*B_int);
+  newcint+=h*(Rbc*B_int);
+
+  B_int=newbint;
+  C_int=newcint;
   
+  return newb;
+
 }
+

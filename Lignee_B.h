@@ -53,8 +53,8 @@ public:
   /*virtual void Deplacement();*/
   virtual int Mute();
   static int nombre_B();
-  virtual float euler(float a, float& aint, float& bint, float h, float p1, float p2);
-  virtual float absorb(float a, float h);
+  virtual float euler(float c, float h);
+ 
 
 protected:
 //==============================

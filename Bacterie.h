@@ -48,9 +48,8 @@ virtual void Describe()=0; //Décris la bactérie
 virtual int Death(); //revoit 1 (la bacterie vit) ou 0 (la bacterie meurt) avec une proba p_death
 virtual int Mute(); //renvoit 1 (la bacterie ne mute pas) ou 0 (la bacterie mute) avec une proba p_mutation 
 virtual Bacterie* Division()=0; //methode qui gere la division des bacteries (x2) (divise les concentrations de la bacterie par deux et renvoit une bacterie identique)
-virtual float absorb(float a, float h)=0; //execute euler avec les paramètres adéquats
-virtual float euler(float a, float& aint, float& bint, float h, float p1, float p2); //execute euler sur la bacterie, prend en argument le pas de temps h 
-  //et la concentration en A de la case 
+virtual float euler(float c, float h)=0; //execute euler sur la bacterie, prend en argument le pas de temps h 
+  //et la concentration de la case 
 
 protected:
 //==============================

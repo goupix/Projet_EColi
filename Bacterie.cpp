@@ -84,22 +84,6 @@ int Bacterie::Mute(){
 
 
 
-float Bacterie::euler(float a, float& aint, float& bint, float h, float p1, float p2){
-
-  float newa=a;
-  float newbint=bint;
-  float newaint=aint;
-
-  newa+=h*(-p1*a);
-  newaint+=h*(p1*a-p2*aint);
-  newbint+=h*(p2*aint);
-
-  bint=newbint;
-  aint=newaint;
-  
-  return newa;
-
-}
 
 
 

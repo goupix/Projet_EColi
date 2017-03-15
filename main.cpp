@@ -184,7 +184,7 @@ void getCurve(){
 
       fichier << "A_init"<<" "<<"Textinction"<<" "<<"Texclusion"<<endl;
 
-      for(int i=1; i<1500; i+=10){
+      for(int i=1; i<1500; i+=100){
       
 
         fichier <<i<<" "<<searchExtinction(i, a1, b1)<<" "<<searchExclusion(i, a2, b2)<<endl;

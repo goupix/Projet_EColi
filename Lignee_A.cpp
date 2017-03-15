@@ -109,9 +109,19 @@ int Lignee_A::nombre_A()
 }
 
 
-float Lignee_A::euler(float a, float& aint, float& bint, float h, float p1, float p2){ return Bacterie::euler(a, aint, bint, h, p1, p2);}
+float Lignee_A::euler(float c, float h){ 
 
-float Lignee_A::absorb(float a, float h){
-  return euler(a, A_int, B_int, h, Raa, Rab);
+  float newa=c;
+  float newbint=B_int;
+  float newaint=A_int;
 
+  newa+=h*(-Raa*c);
+  newaint+=h*(Raa*c-Rab*A_int);
+  newbint+=h*(Rab*A_int);
+
+  B_int=newbint;
+  A_int=newaint;
+  
+  return newa;
 }
+
