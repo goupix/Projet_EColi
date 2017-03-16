@@ -5,6 +5,8 @@
 #include "Lignee_B.h"
 #include "Case.h"
 #include <fstream>
+#include <stdio.h>
+#include <unistd.h>
 
 using namespace std;
 
@@ -68,7 +70,7 @@ float searchExtinction(float T, float a, float b){
     
     }
 
-    else if (state_A=='C' || state_A='A'){
+    else if (state_A=='C' || state_A=='A'){
 
      
       mid=borne1;
@@ -172,7 +174,7 @@ float searchExclusion(float T, float a, float b){
 //écrit dans un fichier les valeurs de transitions de phases obtenues
 void getCurve(){
   
-  ofstream fichier("data.txt", ios::out | ios::trunc);  // ouverture en écriture avec effacement du fichier ouvert
+  ofstream fichier("data.dat", ios::out | ios::trunc);  // ouverture en écriture avec effacement du fichier ouvert
  
     if(fichier){
 
@@ -182,7 +184,7 @@ void getCurve(){
       float a2(0); //bornes initiales pour la recherche de la limite d'exclusion
       float b2(50);
 
-      fichier << "A_init"<<" "<<"Textinction"<<" "<<"Texclusion"<<endl;
+      fichier << "#A_init"<<" "<<"Textinction"<<" "<<"Texclusion"<<endl;
 
       for(int i=1; i<1500; i+=100){//on fait varier la valeur de T
       
@@ -199,7 +201,26 @@ void getCurve(){
  
 }
 
-//Pour tracer les courbes obtenus, on utilisera gnuplot avec les options suivante:         
+//Trace le diagramme
+void plotCurve(){
+
+    FILE * f;
+    // Ouverture du shell et lancement de gnuplot
+    f = popen("gnuplot", "w");
+    // exécution de la commande gnuplot
+    fprintf(f, " set title \"Diagramme de phase\"\n ");
+    fprintf(f, "set xlabel \"Concentration initiale en glucose\" \n ");
+    fprintf(f, "set ylabel \"Intervalle de renouvellement du milieu\" \n ");
+    fprintf(f, "set key outside \n");
+
+    fprintf(f, " plot \"data.dat\" using 1:2 with filledcurve x1 lt rgb \"cyan\" title 'exclusion', \"data.dat\" using 1:3 with filledcurve x1 lt rgb \"magenta\" title 'extinction' \n ");
+    
+    fflush(f);
+    // terminer l'envoi de commandes et fermer gnuplot
+    sleep(50);
+    pclose(f);
+
+}        
 
 
 
@@ -220,6 +241,7 @@ srand(time(NULL)); //initiale un générateur de nombre pseudo-aléatoire
 
 
   getCurve();
+  plotCurve();
 
 
   return 0;
