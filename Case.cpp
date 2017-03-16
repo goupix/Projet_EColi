@@ -132,12 +132,12 @@ void Case::makeEat(float h){
 
   if(ptr->Gettype()=='A'){
 
-    A=ptr->euler(A,h);
+    A=ptr->absorb(A,h);
   }
 
   else{
 
-    B=ptr->euler(B,h);
+    B=ptr->absorb(B,h);
 
   }
 

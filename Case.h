@@ -29,19 +29,23 @@ public:
 //==============================
 //    GETTERS
 //==============================
+
   float GetA()const;
   float GetB()const;
   float GetC()const;
   Bacterie* Getptr()const;
   int Getx()const;
   int Gety()const;
+
 //==============================
 //    SETTERS
 //==============================
+
   void SetA(float a);
   void SetB(float b);
   void SetC(float c);
   void Setptr(Bacterie* cible);
+  
 //==============================
 //    OPERATORS
 //==============================
@@ -55,7 +59,8 @@ public:
   void makeMute(); /*teste si la bacterie mute, si oui créé une bacterie de type opposé, détruit la bactérie 
   et fait pointer ptr vers la nouvelle bactérie.*/
 
-  void makeEat(float h);
+  void makeEat(float h);/* Applique la méthode absorb sur la bactérie pointée par l'attribut ptr, modifie
+  la concentration de la case en fonction du type de bactérie */
   
 protected:
 //==============================
@@ -65,11 +70,11 @@ protected:
 //==============================
 //    ATTRIBUTES
 //==============================
-  float A;
-  float B;
-  float C;
-  Bacterie* ptr;
-  int x;
+  float A; //concentration en A de la case
+  float B; //concentration en B de la case
+  float C; //concentration en C de la case
+  Bacterie* ptr; //pointeur sur la bactérie qui est sur la case
+  int x; //coordonnée de la case 
   int y;
 
 //==============================

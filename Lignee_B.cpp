@@ -105,7 +105,7 @@ int Lignee_B::nombre_B()
     return compteur_B;   //On renvoie simplement la valeur du compteur
 }
 
-float Lignee_B::euler(float c, float h){
+float Lignee_B::absorb(float c, float h){
 
   float newb=c;
   float newbint=B_int;

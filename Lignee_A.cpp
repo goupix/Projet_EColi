@@ -109,7 +109,7 @@ int Lignee_A::nombre_A()
 }
 
 
-float Lignee_A::euler(float c, float h){ 
+float Lignee_A::absorb(float c, float h){ 
 
   float newa=c;
   float newbint=B_int;

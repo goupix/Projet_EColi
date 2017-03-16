@@ -50,7 +50,7 @@ public:
   virtual Bacterie* Division();
   virtual int Mute(); 
   static int nombre_A();  
-  virtual float euler(float c, float h); 
+  virtual float absorb(float c, float h); 
 
 
 
