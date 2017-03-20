@@ -240,8 +240,9 @@ srand(time(NULL)); //initiale un générateur de nombre pseudo-aléatoire
   cout<<""<<endl;
 
 
-  getCurve();
-  plotCurve();
+   Map e=Map(20,20);
+  
+   e.run();
 
 
   return 0;

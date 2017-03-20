@@ -143,4 +143,10 @@ void Case::makeEat(float h){
 
 }
 
+void Case::add(float a, float b, float c){
+
+  A+=a;
+  B+=b;
+  C+=c;
+}
 

@@ -155,70 +155,52 @@ void Map::set(){
 
 
 
-void Map::diffusion(Case*& m){
+void Map::diffusion(){
 
+  Case* Grille_init[height][width];
 
-  float newA;// variables de stockage des nouvelles valeurs des concentrations en métabolites
-  float newB;
-  float newC;
+  for(int i=0; i<width; i++){
+    for(int j=0; j<height; j++){
 
+      Grille_init[i][j]=Grille[i][j];
 
-  newA=m->GetA();//initialisation des variables
-  newB=m->GetB();
-  newC=m->GetC();
-
-  int x=m->Getx();
-  int y=m->Gety();
-
-  vector<Case*> voisins;
-
-
-  /* Pour la case dont les coordonnées sont données en argument, on cherche les Cases du voisinage de Moore et on 
-  les stockent dans un vecteur*/
-  int valx=0;
-  int valy=0;
-  for(int i=-1; i<2;i++){
-    for(int j=-1; j<2; j++){
-
-      valx=(x+i)%width;
-      valy=(y+j)%height;
-        
-      if((x+i)%width==-1){
-        valx=31;
-      }
-
-      if((y+j)%height==-1){
-        valy=31;
-
-      }
-      
-
-          
-      voisins.push_back(Grille[valx][valy]);
-      
     }
   }
+ 
+
+  for(int x=0; x<width; x++){
+    for(int y=0; y<height; y++){
 
 
-  
+      /* Pour la case dont les coordonnées sont données en argument, on cherche les Cases du voisinage de Moore et on 
+      les stockent dans un vecteur*/
+      int valx=0;
+      int valy=0;
+      for(int i=-1; i<2;i++){
+        for(int j=-1; j<2; j++){
 
-  /*execution de l'algorithme de diffusion*/
-  for(int i=0; i<9; i++){
-      newA+=D*(voisins[i]->GetA());
-      newB+=D*(voisins[i]->GetB());
-      newC+=D*(voisins[i]->GetC());
+        valx=(x+i)%width;
+        valy=(y+j)%height;
+        
+        if((x+i)%width==-1){
+          valx=31;
+        }
+
+        if((y+j)%height==-1){
+          valy=31;
+
+        }
       
+        Grille[x][y]->add(D*Grille_init[valx][valy]->GetA(), D*Grille_init[valx][valy]->GetB(), D*Grille_init[valx][valy]->GetC());
+      
+        }
+      }
+
+      Grille[x][y]->add(-9*D*(Grille_init[x][y]->GetA()), -9*D*(Grille_init[x][y]->GetB()),-9*D*(Grille_init[x][y]->GetB()));
+
     }
 
-
-
-  newA+=(-9*D*(Grille[x][y]->GetA()));
-  newB+=(-9*D*(Grille[x][y]->GetB()));
-  newC+=(-9*D*(Grille[x][y]->GetC()));
-
-  m->SetA(newA);
-  m->SetB(newB);
-  m->SetC(newC);
+  }
   
 }
 
@@ -402,15 +384,10 @@ void Map::update(){
   
   //Diffusion des métabolites.
 
-  for(int i=0; i<width; i++){
-    for(int j=0; j<height; j++){
 
-        diffusion(Grille[i][j]);   //les métabolites diffusent dans la grille
+  diffusion();   //les métabolites diffusent dans la grille
 
-      
-    }
-
-  }
+  
 
   
 

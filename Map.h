@@ -49,7 +49,7 @@ void set(); // cree et positionne les bacteries
 void DescribeBacteries();//renvoit un tableau avec le type (A ou B) de bactéries pour chaque case
 void DescribeABC();//renvoit un tableau avec les concentrations (A,B,C) pour chaque case
 void DescribeInt();////renvoit un tableau avec les concentrations (A_int,B_int,C_int) internes des bacteries pour chaque case
-void diffusion(Case*& m); // bouge les Cases
+void diffusion(); // bouge les Cases
 void update(); // les bacteries se nourrissent, metabolisent, mutent, se divisent, meurent eventuellement, les Cases diffusent
 void renew(); //reinitialise le milieu de culture
 Bacterie* competition(int x, int y); //renvoit le gagnant d'un gap sous forme de pointeur
