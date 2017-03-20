@@ -248,7 +248,7 @@ cout<<""<<endl;
 
 
 
-Map* e= new Map(1,20);
+Map* e= new Map(0,1);
 e->run();
 
 delete(e);

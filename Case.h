@@ -19,7 +19,7 @@ public:
 //==============================
 //    CONSTRUCTORS
 //==============================
-  Case(int a=0, int b=0, float A_init=0, Bacterie* cible=nullptr);
+  Case(int a, int b, float A_init, Bacterie* cible=nullptr);
   Case(const Case& c);
 
 //==============================

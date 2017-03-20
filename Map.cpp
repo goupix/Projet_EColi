@@ -50,10 +50,10 @@ Map::Map(){
   temps=0;
   h=1;
 
-  Grille=new Case**[height];
+  grille=new Case**[height];
 
   for(int i=0; i<height; i++){
-    Grille[i]=new Case*[width];
+    grille[i]=new Case*[width];
   }
 }
 
@@ -67,10 +67,10 @@ Map::Map(float a, int nb){
   temps=0;
   h=1;
 
-  Grille=new Case**[height];
+  grille=new Case**[height];
 
   for(int i=0; i<height; i++){
-    Grille[i]=new Case*[width];
+    grille[i]=new Case*[width];
   }
 
 }
@@ -87,16 +87,16 @@ Map::~Map(){
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
 
-      delete(Grille[i][j]);
+      delete(grille[i][j]);
 
     }
   }
 
   for(int i=0; i<width; i++){
-    delete [] Grille[i];
+    delete [] grille[i];
   }
 
-  delete[] Grille;
+  delete[] grille;
 
   
 
@@ -127,7 +127,7 @@ void Map::set(){
     cout << ' ' << *it;
   }*/
 
-  /* Pour chaque case de l'attribut Grille, on crée un métabolite avec une concentration A_init. Chaque métabolite pointe 
+  /* Pour chaque case de l'attribut grille, on crée un métabolite avec une concentration A_init. Chaque métabolite pointe 
   vers une bactérie. Le type des bactéries est choisi suivant le vecteur créé precédement (0=type A, 1=type B)*/
   int compteur=0;
   while(compteur<width*height){
@@ -136,14 +136,14 @@ void Map::set(){
         if(tableDeNombres[compteur]==0){
     
           Lignee_A* a= new Lignee_A();
-	        Grille[i][j]= new Case(i, j, A_init, a); 
+	        grille[i][j]= new Case(i, j, A_init, a); 
           compteur++;
         }
 
         else{
           
           Lignee_B* b= new Lignee_B();
-          Grille[i][j]= new Case(i, j, A_init, b);
+          grille[i][j]= new Case(i, j, A_init, b);
           compteur++;
         }
         
@@ -163,12 +163,12 @@ void Map::diffusion(){
 
 
   
-  Case Grille_init[height][width];
+  Case grille_init[height][width];
 
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
 
-      Grille_init[i][j]=Case (*Grille[i][j]);
+      grille_init[i][j]=Case (*grille[i][j]);
 
     }
   }
@@ -199,14 +199,14 @@ void Map::diffusion(){
 
           }
           
-          Grille[x][y]->add(D*Grille_init[valx][valy].GetA(), D*Grille_init[valx][valy].GetB(), D*Grille_init[valx][valy].GetC());
+          grille[x][y]->add(D*grille_init[valx][valy].GetA(), D*grille_init[valx][valy].GetB(), D*grille_init[valx][valy].GetC());
          
 
           
         }
       }
      
-      Grille[x][y]->add(-9*D*(Grille_init[x][y].GetA()), -9*D*(Grille_init[x][y].GetB()),-9*D*(Grille_init[x][y].GetC()));
+      grille[x][y]->add(-9*D*(grille_init[x][y].GetA()), -9*D*(grille_init[x][y].GetB()),-9*D*(grille_init[x][y].GetC()));
     
       
     }
@@ -224,11 +224,11 @@ void Map::DescribeBacteries(){
 
   for(int i=0; i<width;i++){
     for(int j=0; j<height; j++){
-      if(Grille[i][j]->Getptr()==nullptr){
+      if(grille[i][j]->Getptr()==nullptr){
 
         cout<<BOLDBLACK<<'O'<<" "<<RESET;
       }
-      else if ((Grille[i][j]->Getptr())->Gettype()=='A'){
+      else if ((grille[i][j]->Getptr())->Gettype()=='A'){
         cout<<BOLDCYAN<<'O'<<" "<<RESET;
       }
 
@@ -249,7 +249,7 @@ void Map::DescribeABC(){
 
   for(int i=0; i<width;i++){
     for(int j=0; j<height; j++){
-      cout<<"("<<Grille[i][j]->GetA()<<", "<<Grille[i][j]->GetB()<<", "<<Grille[i][j]->GetC()<<") ";
+      cout<<"("<<grille[i][j]->GetA()<<", "<<grille[i][j]->GetB()<<", "<<grille[i][j]->GetC()<<") ";
 
     }
   cout<<""<<endl;  
@@ -264,8 +264,8 @@ void Map::DescribeInt(){
   for(int i=0; i<width;i++){
     for(int j=0; j<height; j++){
 
-      if(Grille[i][j]->Getptr()!=nullptr){
-        cout<<"("<<(Grille[i][j]->Getptr())->GetA_int()<<", "<<(Grille[i][j]->Getptr())->GetB_int()<<", "<<(Grille[i][j]->Getptr())->GetC_int()<<") ";
+      if(grille[i][j]->Getptr()!=nullptr){
+        cout<<"("<<(grille[i][j]->Getptr())->GetA_int()<<", "<<(grille[i][j]->Getptr())->GetB_int()<<", "<<(grille[i][j]->Getptr())->GetC_int()<<") ";
       }
 
       else{
@@ -284,9 +284,9 @@ void Map::renew(){
 
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
-      Grille[i][j]->SetA(A_init);
-      Grille[i][j]->SetB(0.0);
-      Grille[i][j]->SetC(0.0);
+      grille[i][j]->SetA(A_init);
+      grille[i][j]->SetB(0.0);
+      grille[i][j]->SetC(0.0);
     }
   }
 }
@@ -318,7 +318,7 @@ Bacterie* Map::competition(int x, int y){
       
 
           
-      voisins.push_back(Grille[valx][valy]);
+      voisins.push_back(grille[valx][valy]);
       
     }
   }
@@ -407,9 +407,9 @@ void Map::update(){
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
 
-      if (Grille[i][j]->Getptr()!=nullptr){
+      if (grille[i][j]->Getptr()!=nullptr){
 
-        Grille[i][j]->makeDie(); //le contenu d'une bactérie qui meurt est déversé dans sa case correspondante
+        grille[i][j]->makeDie(); //le contenu d'une bactérie qui meurt est déversé dans sa case correspondante
 
       }
     }
@@ -423,9 +423,9 @@ void Map::update(){
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
 
-      if(Grille[i][j]->Getptr()==nullptr){
+      if(grille[i][j]->Getptr()==nullptr){
 
-        gaps.push_back(Grille[i][j]);
+        gaps.push_back(grille[i][j]);
 
       }
     }
@@ -443,7 +443,7 @@ void Map::update(){
 
       Bacterie* newborn=gagnant->Division(); //cette bactérie gagnante va à son tour se diviser 
 
-      Grille[gaps[i]->Getx()][gaps[i]->Gety()]->Setptr(newborn);
+      grille[gaps[i]->Getx()][gaps[i]->Gety()]->Setptr(newborn);
 
     }
   }
@@ -455,9 +455,9 @@ void Map::update(){
 
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
-      if(Grille[i][j]->Getptr()!=nullptr){
+      if(grille[i][j]->Getptr()!=nullptr){
 
-        Grille[i][j]->makeMute(); 
+        grille[i][j]->makeMute(); 
       } 
     }
   }
@@ -469,9 +469,9 @@ void Map::update(){
   
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
-      if(Grille[i][j]->Getptr()!=nullptr){
+      if(grille[i][j]->Getptr()!=nullptr){
 
-      Grille[i][j]->makeEat(h); 
+      grille[i][j]->makeEat(h); 
 
       }
     }

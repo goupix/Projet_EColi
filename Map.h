@@ -74,7 +74,7 @@ float T; //temps total de simulation
 int t; //pas de renewment
 float temps; //temps reel de la simulation
 float h; //pas de temps
-Case*** Grille; //grille des concentrations en Cases
+Case*** grille; //grille des concentrations en Cases
 
 
 
