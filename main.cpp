@@ -186,11 +186,17 @@ void getCurve(){
 
       fichier << "#A_init"<<" "<<"Textinction"<<" "<<"Texclusion"<<endl;
 
-      for(int i=1; i<1500; i+=100){//on fait varier la valeur de T
+      for(int i=1; i<60; i+=5){//on fait varier la valeur de T
       
 
         fichier <<i<<" "<<searchExtinction(i, a1, b1)<<" "<<searchExclusion(i, a2, b2)<<endl;
  
+      }
+
+      for(int i=60; i<1500; i+=100){
+
+        fichier <<i<<" "<<searchExtinction(i, a1, b1)<<" "<<searchExclusion(i, a2, b2)<<endl;
+
       }
 
       fichier.close();
@@ -200,6 +206,8 @@ void getCurve(){
       cerr << "Impossible d'ouvrir le fichier !" << endl;
  
 }
+
+
 
 //Trace le diagramme
 void plotCurve(){
@@ -234,15 +242,21 @@ int main(){
 srand(time(NULL)); //initiale un générateur de nombre pseudo-aléatoire 
 
 
+cout<<""<<endl;
+cout<<" Running... "<<endl;
+cout<<""<<endl;
 
-  cout<<""<<endl;
-  cout<<" Running... "<<endl;
-  cout<<""<<endl;
 
 
-   Map e=Map(20,20);
-  
-   e.run();
+Map* e= new Map(1,20);
+e->run();
+
+delete(e);
+
+
+
+
+
 
 
   return 0;

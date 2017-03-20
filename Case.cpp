@@ -24,6 +24,15 @@ Case::Case(int a, int b, float A_init, Bacterie* cible){
 
 }
 
+Case::Case(const Case& c){
+  x=c.x;
+  y=c.y;
+  A=c.A;
+  B=c.B;
+  C=c.C;
+  ptr=nullptr;
+
+}
 
 
 //==============================
@@ -148,5 +157,6 @@ void Case::add(float a, float b, float c){
   A+=a;
   B+=b;
   C+=c;
+ 
 }
 

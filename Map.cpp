@@ -72,6 +72,7 @@ Map::Map(float a, int nb){
   for(int i=0; i<height; i++){
     Grille[i]=new Case*[width];
   }
+
 }
 
 
@@ -149,6 +150,8 @@ void Map::set(){
 	    }
     }
   }
+
+
 }
 
 
@@ -157,16 +160,21 @@ void Map::set(){
 
 void Map::diffusion(){
 
-  Case* Grille_init[height][width];
+
+
+  
+  Case Grille_init[height][width];
 
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
 
-      Grille_init[i][j]=Grille[i][j];
+      Grille_init[i][j]=Case (*Grille[i][j]);
 
     }
   }
- 
+
+
+
 
   for(int x=0; x<width; x++){
     for(int y=0; y<height; y++){
@@ -179,28 +187,33 @@ void Map::diffusion(){
       for(int i=-1; i<2;i++){
         for(int j=-1; j<2; j++){
 
-        valx=(x+i)%width;
-        valy=(y+j)%height;
+          valx=(x+i)%width;
+          valy=(y+j)%height;
         
-        if((x+i)%width==-1){
-          valx=31;
-        }
+          if((x+i)%width==-1){
+            valx=31;
+          }
 
-        if((y+j)%height==-1){
-          valy=31;
+          if((y+j)%height==-1){
+            valy=31;
 
-        }
-      
-        Grille[x][y]->add(D*Grille_init[valx][valy]->GetA(), D*Grille_init[valx][valy]->GetB(), D*Grille_init[valx][valy]->GetC());
-      
+          }
+          
+          Grille[x][y]->add(D*Grille_init[valx][valy].GetA(), D*Grille_init[valx][valy].GetB(), D*Grille_init[valx][valy].GetC());
+         
+
+          
         }
       }
-
-      Grille[x][y]->add(-9*D*(Grille_init[x][y]->GetA()), -9*D*(Grille_init[x][y]->GetB()),-9*D*(Grille_init[x][y]->GetB()));
-
+     
+      Grille[x][y]->add(-9*D*(Grille_init[x][y].GetA()), -9*D*(Grille_init[x][y].GetB()),-9*D*(Grille_init[x][y].GetC()));
+    
+      
     }
 
   }
+
+
   
 }
 
@@ -277,6 +290,8 @@ void Map::renew(){
     }
   }
 }
+
+
 
 Bacterie* Map::competition(int x, int y){
   vector<Case*> voisins;
@@ -381,16 +396,12 @@ Bacterie* Map::competition(int x, int y){
 //Méthode qui va actualiser l'expérience 
 
 void Map::update(){
+
   
   //Diffusion des métabolites.
-
-
   diffusion();   //les métabolites diffusent dans la grille
-
   
-
   
-
   //Les bacteries meurent!
 
   for(int i=0; i<width; i++){
@@ -465,6 +476,9 @@ void Map::update(){
       }
     }
   }
+
+
+
 
 }
 
