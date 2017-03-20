@@ -41,21 +41,7 @@ using namespace std;
 //    CONSTRUCTORS
 //==============================
 
-Map::Map(){
 
-  A_init=10;
-  D=0.1;
-  T=10000;
-  t=10;
-  temps=0;
-  h=1;
-
-  grille=new Case**[height];
-
-  for(int i=0; i<height; i++){
-    grille[i]=new Case*[width];
-  }
-}
 
 
 Map::Map(float a, int nb){
@@ -81,6 +67,7 @@ Map::Map(float a, int nb){
 //==============================
 //    DESTRUCTOR
 //==============================
+
 Map::~Map(){
 
 
@@ -162,7 +149,7 @@ void Map::diffusion(){
 
 
 
-  
+// Le contenu de la grille est "copié" dans une autre grille
   Case grille_init[height][width];
 
   for(int i=0; i<width; i++){
@@ -179,9 +166,7 @@ void Map::diffusion(){
   for(int x=0; x<width; x++){
     for(int y=0; y<height; y++){
 
-
-      /* Pour la case dont les coordonnées sont données en argument, on cherche les Cases du voisinage de Moore et on 
-      les stockent dans un vecteur*/
+      //Recherche des cases voisines
       int valx=0;
       int valy=0;
       for(int i=-1; i<2;i++){
@@ -198,11 +183,10 @@ void Map::diffusion(){
             valy=31;
 
           }
-          
+
+          //réalise la diffusion à partir des données de la grille initiale copiée
           grille[x][y]->add(D*grille_init[valx][valy].GetA(), D*grille_init[valx][valy].GetB(), D*grille_init[valx][valy].GetC());
          
-
-          
         }
       }
      
@@ -220,7 +204,7 @@ void Map::diffusion(){
 
 
 
-void Map::DescribeBacteries(){
+void Map::DescribeBacteries(){ // Imprime la grille des bactéries et leur type
 
   for(int i=0; i<width;i++){
     for(int j=0; j<height; j++){
@@ -245,7 +229,7 @@ void Map::DescribeBacteries(){
 
 
 
-void Map::DescribeABC(){
+void Map::DescribeABC(){ // Imprime la grille des concentrations en A, B, C dans les cases
 
   for(int i=0; i<width;i++){
     for(int j=0; j<height; j++){
@@ -259,7 +243,7 @@ void Map::DescribeABC(){
 
 
 
-void Map::DescribeInt(){
+void Map::DescribeInt(){ //Imprime la grille des concentrations internes en A, B et C des bactéries
 
   for(int i=0; i<width;i++){
     for(int j=0; j<height; j++){
@@ -280,7 +264,7 @@ void Map::DescribeInt(){
 
 
   
-void Map::renew(){
+void Map::renew(){ //renouvelle le milieu 
 
   for(int i=0; i<width; i++){
     for(int j=0; j<height; j++){
@@ -315,59 +299,23 @@ Bacterie* Map::competition(int x, int y){
         valy=height-1;
 
       }
-      
 
-          
-      voisins.push_back(grille[valx][valy]);
-      
-    }
-  }
+      if(grille[valx][valy]->Getptr()!=nullptr){
 
-
-  /*On efface les nullptr des voisins*/
-  
-  int nb=0;
-  for (unsigned int i=0; i<voisins.size(); i++){
-    if(voisins[i]->Getptr()==nullptr){
-      nb++;
-    }
-  }
-
-  for (int i=0; i<nb; i++){
-    int i_null=0;
-    for (unsigned int i=0; i<voisins.size(); i++){
-      if(voisins[i]->Getptr()==nullptr){
-        i_null=i;
+        if((grille[valx][valy]->Getptr())->Getw()>=0.001){
+        
+          voisins.push_back(grille[valx][valy]);
+        }
       }
-    }
-    voisins.erase(voisins.begin()+i_null);
-  }
-
-
-
-  /*On efface les elements avec une fitness inférieure à W_min*/
-  
-  int n=0;
-  for (unsigned int i=0; i<voisins.size(); i++){
-    if((voisins[i]->Getptr())->Getw()<0.001){
-      n++;
+      
     }
   }
 
-  for (int i=0; i<n; i++){
-    int i_fit=0;
-    for (unsigned int i=0; i<voisins.size(); i++){
-      if((voisins[i]->Getptr())->Getw()<0.001){
-        i_fit=i;
-      }
-    }
-    voisins.erase(voisins.begin()+i_fit);
-  }
 
 
   if(voisins.size()>0){
 
-    int indice=0; //indice correspondant à la case gagnante parmi les Cases voisines, dans le vecteur voisins
+    int indice=0; //indice correspondant à la case gagnante parmi les Cases voisines
     float wmax=(voisins[0]->Getptr())->Getw();
 
     for (unsigned int i=0; i<voisins.size(); i++){
@@ -378,13 +326,16 @@ Bacterie* Map::competition(int x, int y){
       }
     
     }
-     return voisins[indice]->Getptr();
+     return voisins[indice]->Getptr(); // retourne un pointeur vers la bactérie gagnante
     }
 
-    else{
+
+  // Si aucune bactérie ne satisfait les conditions pour gagner le gap, il reste vide
+
+  else{
   
-      Bacterie* vide=nullptr;
-      return vide;
+    Bacterie* vide=nullptr; 
+    return vide;
   }
 }
 
@@ -437,11 +388,11 @@ void Map::update(){
 
   for(unsigned int i=0; i<gaps.size(); i++){
   
-    Bacterie* gagnant=competition(gaps[i]->Getx(),gaps[i]->Gety()); //retourne la bactérie de la case avoisinante qui a gagné
+    Bacterie* gagnant=competition(gaps[i]->Getx(),gaps[i]->Gety()); // retourne la bactérie qui a gagné le gap
     
     if(gagnant!=nullptr){
 
-      Bacterie* newborn=gagnant->Division(); //cette bactérie gagnante va à son tour se diviser 
+      Bacterie* newborn=gagnant->Division(); // la bactérie gagnante se divise 
 
       grille[gaps[i]->Getx()][gaps[i]->Gety()]->Setptr(newborn);
 
@@ -483,7 +434,7 @@ void Map::update(){
 }
 
 
-char Map::state(int nbA, int nbB){
+char Map::state(int nbA, int nbB){ // renvoit l'état final du système sous forme de char
 
   if(nbA!=0 && nbB==0){
     
@@ -519,8 +470,10 @@ char Map::state(int nbA, int nbB){
 
 
 
-char Map::run(){
+char Map::run(){ // update l'environnement pendant le temps de simulation indiqué, renouvelle le milieu
+  
   int tours=0;
+
   set();
 
   while(temps<T){
@@ -531,9 +484,12 @@ char Map::run(){
       temps+=0.1;
       tours++;
     }
+
     renew();
     tours=0;
   }
+
+  
   cout<<" "<<endl;
   DescribeBacteries();
   

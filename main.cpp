@@ -246,17 +246,8 @@ cout<<""<<endl;
 cout<<" Running... "<<endl;
 cout<<""<<endl;
 
-
-
-Map* e= new Map(0,1);
-e->run();
-
-delete(e);
-
-
-
-
-
+getCurve();
+plotCurve();
 
 
   return 0;

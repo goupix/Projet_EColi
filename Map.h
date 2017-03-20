@@ -21,8 +21,8 @@ public:
 //==============================
 //    CONSTRUCTORS
 //==============================
-Map();
-Map(float A_int, int t);
+
+Map(float A_int=50, int t=10000);
 
 //==============================
 //    DESTRUCTOR
@@ -45,15 +45,10 @@ virtual ~Map();
 //==============================
 //    PUBLIC METHODS
 //==============================
-void set(); // cree et positionne les bacteries 
+
 void DescribeBacteries();//renvoit un tableau avec le type (A ou B) de bactéries pour chaque case
 void DescribeABC();//renvoit un tableau avec les concentrations (A,B,C) pour chaque case
 void DescribeInt();////renvoit un tableau avec les concentrations (A_int,B_int,C_int) internes des bacteries pour chaque case
-void diffusion(); // bouge les Cases
-void update(); // les bacteries se nourrissent, metabolisent, mutent, se divisent, meurent eventuellement, les Cases diffusent
-void renew(); //reinitialise le milieu de culture
-Bacterie* competition(int x, int y); //renvoit le gagnant d'un gap sous forme de pointeur
-char state(int nbA, int nbB);
 char run();// exectute l'algorithme jusqu'a un temps T donné
 
 
@@ -62,6 +57,13 @@ protected:
 //==============================
 //    PROTECTED METHODS
 //==============================
+
+void set(); // cree et positionne les bacteries 
+void update(); // les bacteries se nourrissent, metabolisent, mutent, se divisent, meurent eventuellement, les Cases diffusent
+void diffusion(); // bouge les Cases
+void renew(); //reinitialise le milieu de culture
+Bacterie* competition(int x, int y); //renvoit le gagnant d'un gap sous forme de pointeur
+char state(int nbA, int nbB);
 
 //==============================
 //    ATTRIBUTES

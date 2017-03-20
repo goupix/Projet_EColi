@@ -63,6 +63,8 @@ public:
   void makeEat(float h);/* Applique la méthode absorb sur la bactérie pointée par l'attribut ptr, modifie
   la concentration de la case en fonction du type de bactérie */
   void add(float a, float b, float c);
+
+  
 protected:
 //==============================
 //    PROTECTED METHODS
