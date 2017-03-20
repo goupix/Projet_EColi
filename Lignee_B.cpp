@@ -43,19 +43,6 @@ Lignee_B::Lignee_B(float a, float b, float c){
 }
 
 
-Lignee_B::Lignee_B(const Lignee_B& b){
-
-  compteur_B++;
-
-  type=b.type;
-
-  A_int=b.A_int;
-  B_int=b.B_int;
-  C_int=b.C_int;
-
-  Rbb=b.Rbb;
-  Rbc=b.Rbc;
-}
 
 
 

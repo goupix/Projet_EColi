@@ -18,7 +18,7 @@ public:
 //==============================
   Lignee_B();
   Lignee_B(float a, float b, float c);
-  Lignee_B(const Lignee_B& a);
+
 
 //==============================
 //    DESTRUCTOR
