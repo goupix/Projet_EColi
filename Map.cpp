@@ -474,6 +474,7 @@ char Map::run(){ // update l'environnement pendant le temps de simulation indiqu
   
   int tours=0;
 
+
   set();
 
   while(temps<T){
@@ -481,14 +482,34 @@ char Map::run(){ // update l'environnement pendant le temps de simulation indiqu
 
       update();
 
+      if(Lignee_B::nombre_B()+Lignee_A::nombre_A()==0){
+        
+        tours=t;
+        temps=T;
+        DescribeBacteries();
+  
+
+      }
+
+      if(Lignee_A::nombre_A()==width*height){
+        
+        tours=t;
+        temps=T;
+      }
+
+     
       temps+=0.1;
       tours++;
+      
+  
     }
-
+   
+  
     renew();
     tours=0;
   }
 
+ 
   
   cout<<" "<<endl;
   DescribeBacteries();

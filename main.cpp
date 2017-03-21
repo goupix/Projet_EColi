@@ -21,7 +21,7 @@ float searchExtinction(float T, float a, float b, float D=0.1){
   float borne2=b;
   float mid; // milieu ds bornes
 
-  while(abs(borne1-borne2)>0.001){ // condition définissant la précision de la recherche
+  while(abs(borne1-borne2)>0.01){ // condition définissant la précision de la recherche
 
     
 
@@ -34,7 +34,7 @@ float searchExtinction(float T, float a, float b, float D=0.1){
     char state_B=b->run();
     delete(b);
 
-    cout<<"D= "<<D<<" => "<<"Bornes "<<borne1<<" :"<<state_A<<" "<<borne2<<" :"<<state_B<<endl;
+    cout<<"D= "<<D<<" et T= "<<T<<" => "<<"Bornes "<<borne1<<" :"<<state_A<<" "<<borne2<<" :"<<state_B<<endl;
 
 
     if((state_A=='E' && state_B=='C') || (state_A=='E' && state_B=='A')){ //teste si la limite se trouve toujours entre les bornes
@@ -98,7 +98,7 @@ float searchExclusion(float T, float a, float b, float D=0.1){
   float borne2=b;
   float mid;
 
-  while(abs(borne1-borne2)>0.1){
+  while(abs(borne1-borne2)>0.01){
 
     
 
@@ -111,7 +111,7 @@ float searchExclusion(float T, float a, float b, float D=0.1){
     char state_B=b->run();
     delete(b);
 
-    cout<<"D= "<<D<<" => "<<"Bornes "<<borne1<<" :"<<state_A<<" "<<borne2<<" :"<<state_B<<endl;
+    cout<<"D= "<<D<<" et T= "<<T<<" => "<<"Bornes "<<borne1<<" :"<<state_A<<" "<<borne2<<" :"<<state_B<<endl;
 
 
     if((state_A=='C' && state_B=='A') || (state_A=='E' && state_B=='A')){
@@ -181,10 +181,10 @@ void getCurve(){
       //bornes optimisées pour la recherche des limites avec P-mutation=0
 
       float a1(0); //bornes initiales pour la recherche de la limite d'extinction
-      float b1(0.002);
+      float b1(1);
 
       float a2(0); //bornes initiales pour la recherche de la limite d'exclusion
-      float b2(0.002);
+      float b2(1);
 
       fichier << "#A_init"<<" "<<"Textinction"<<" "<<"Texclusion"<<endl;
 
@@ -256,7 +256,7 @@ void getCurve3D(){
 
 
       for(int d=0; d<0.1; d+=0.01){
-        for(int i=1; i<60; i+=5){//on fait varier la valeur de T
+        for(int i=1; i<32; i+=5){//on fait varier la valeur de T
       
 
           fichier <<d<<" "<<i<<" "<<searchExtinction(i, a1, b1, d)<<" "<<searchExclusion(i, a2, b2, d)<<endl;
@@ -265,7 +265,7 @@ void getCurve3D(){
 
         b2=50;
 
-        for(int i=60; i<1500; i+=100){
+        for(int i=32; i<1500; i+=100){
 
           fichier <<d<<" "<<i<<" "<<searchExtinction(i, a1, b1)<<" "<<searchExclusion(i, a2, b2)<<endl;
 
