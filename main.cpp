@@ -15,7 +15,7 @@ using namespace std;
 
 //on utilise la méthode de dichotomie pour trouver, à une valeur de T donnée, le point de transition de phase
 
-float searchExtinction(float T, float a, float b){
+float searchExtinction(float T, float a, float b, float D=0.1){
 
   float borne1=a; //bornes entre lesquelles on recherche la limite d'exctinction (à bien choisir!!)
   float borne2=b;
@@ -25,8 +25,8 @@ float searchExtinction(float T, float a, float b){
 
     
 
-    Map* a=new Map(borne1, T); //on créé des Maps aux bornes (A_init correspond aux bornes)
-    Map* b=new Map(borne2, T);
+    Map* a=new Map(borne1, T, D); //on créé des Maps aux bornes (A_init correspond aux bornes)
+    Map* b=new Map(borne2, T, D);
 
     char state_A=a->run(); 
     delete(a);
@@ -34,14 +34,14 @@ float searchExtinction(float T, float a, float b){
     char state_B=b->run();
     delete(b);
 
-    cout<<"Bornes "<<borne1<<" :"<<state_A<<" "<<borne2<<" :"<<state_B<<endl;
+    cout<<"D= "<<D<<" => "<<"Bornes "<<borne1<<" :"<<state_A<<" "<<borne2<<" :"<<state_B<<endl;
 
 
     if((state_A=='E' && state_B=='C') || (state_A=='E' && state_B=='A')){ //teste si la limite se trouve toujours entre les bornes
 
       mid=(borne1+borne2)/2;
 
-      Map* m=new Map(mid,T); //création d'un environnement au "milieu"
+      Map* m=new Map(mid, T, D); //création d'un environnement au "milieu"
       char state_M=m->run();
 
       //on modifie les bornes en fonction de l'état final de la Map "milieu"
@@ -92,7 +92,7 @@ float searchExtinction(float T, float a, float b){
 
 
 // même méthode que ci-dessus, adaptée pour la recherche de la limite d'exclusion
-float searchExclusion(float T, float a, float b){
+float searchExclusion(float T, float a, float b, float D=0.1){
 
   float borne1=a;
   float borne2=b;
@@ -102,8 +102,8 @@ float searchExclusion(float T, float a, float b){
 
     
 
-    Map* a=new Map(borne1, T);
-    Map* b=new Map(borne2, T);
+    Map* a=new Map(borne1, T, D);
+    Map* b=new Map(borne2, T, D);
 
     char state_A=a->run();
     delete(a);
@@ -111,13 +111,13 @@ float searchExclusion(float T, float a, float b){
     char state_B=b->run();
     delete(b);
 
-    cout<<"Bornes "<<borne1<<" :"<<state_A<<" "<<borne2<<" :"<<state_B<<endl;
+    cout<<"D= "<<D<<" => "<<"Bornes "<<borne1<<" :"<<state_A<<" "<<borne2<<" :"<<state_B<<endl;
 
 
     if((state_A=='C' && state_B=='A') || (state_A=='E' && state_B=='A')){
 
       mid=(borne1+borne2)/2;
-      Map* m=new Map(mid,T);
+      Map* m=new Map(mid, T, D);
       char state_M=m->run();
 
 
@@ -178,11 +178,13 @@ void getCurve(){
  
     if(fichier){
 
+      //bornes optimisées pour la recherche des limites avec P-mutation=0
+
       float a1(0); //bornes initiales pour la recherche de la limite d'extinction
-      float b1(0.01);
+      float b1(0.002);
 
       float a2(0); //bornes initiales pour la recherche de la limite d'exclusion
-      float b2(50);
+      float b2(0.002);
 
       fichier << "#A_init"<<" "<<"Textinction"<<" "<<"Texclusion"<<endl;
 
@@ -192,6 +194,8 @@ void getCurve(){
         fichier <<i<<" "<<searchExtinction(i, a1, b1)<<" "<<searchExclusion(i, a2, b2)<<endl;
  
       }
+
+      b2=50;
 
       for(int i=60; i<1500; i+=100){
 
@@ -233,7 +237,48 @@ void plotCurve(){
 
 
 
+//écrit dans un fichier les valeurs de transitions de phases obtenues
+void getCurve3D(){
+  
+  ofstream fichier("data.dat", ios::out | ios::trunc);  // ouverture en écriture avec effacement du fichier ouvert
+ 
+    if(fichier){
 
+      //bornes optimisées pour la recherche des limites avec P-mutation=0
+
+      float a1(0); //bornes initiales pour la recherche de la limite d'extinction
+      float b1(0.002);
+
+      float a2(0); //bornes initiales pour la recherche de la limite d'exclusion
+      float b2(0.002);
+
+      fichier <<"D "<< "#A_init"<<" "<<"Textinction"<<" "<<"Texclusion"<<endl;
+
+
+      for(int d=0; d<0.1; d+=0.01){
+        for(int i=1; i<60; i+=5){//on fait varier la valeur de T
+      
+
+          fichier <<d<<" "<<i<<" "<<searchExtinction(i, a1, b1, d)<<" "<<searchExclusion(i, a2, b2, d)<<endl;
+ 
+        }
+
+        b2=50;
+
+        for(int i=60; i<1500; i+=100){
+
+          fichier <<d<<" "<<i<<" "<<searchExtinction(i, a1, b1)<<" "<<searchExclusion(i, a2, b2)<<endl;
+
+        }
+
+        fichier.close();
+      }
+    }
+
+    else
+      cerr << "Impossible d'ouvrir le fichier !" << endl;
+ 
+}
 
 
 

@@ -44,10 +44,10 @@ using namespace std;
 
 
 
-Map::Map(float a, int nb){
+Map::Map(float a, int nb, float d){
 
   A_init=a;
-  D=0.1;
+  D=d;
   T=10000;
   t=nb;
   temps=0;

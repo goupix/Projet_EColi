@@ -22,7 +22,7 @@ public:
 //    CONSTRUCTORS
 //==============================
 
-Map(float A_int=50, int t=10000);
+Map(float A_int=50, int t=10000, float d=0.1);
 
 //==============================
 //    DESTRUCTOR
