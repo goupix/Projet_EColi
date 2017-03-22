@@ -481,12 +481,12 @@ char Map::run(){ // update l'environnement pendant le temps de simulation indiqu
     while(tours<t){
 
       update();
-
+      // arrête l'execution si toutes les bactéries sont éteintes ou si il ne reste que des A
+      // par soucis de gain de temps
       if(Lignee_B::nombre_B()+Lignee_A::nombre_A()==0){
         
         tours=t;
         temps=T;
-        DescribeBacteries();
   
 
       }
