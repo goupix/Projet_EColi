@@ -244,6 +244,8 @@ void plotCurve(){
     fprintf(f, " set title \"Diagramme de phase\"\n ");
     fprintf(f, "set xlabel \"Concentration initiale en glucose\" \n ");
     fprintf(f, "set ylabel \"Intervalle de renouvellement du milieu\" \n ");
+    fprintf(f, "set xrange [0:50] \n")
+    fprintf(f, "set yrange [0:1500] \n")
     fprintf(f, "set key outside \n");
 
     fprintf(f, " plot \"data.dat\" using 2:1 with filledcurve x2 lt rgb \"cyan\" title 'exclusion', \"data.dat\" using 3:1 with filledcurve x1 lt rgb \"magenta\" title 'extinction' \n ");
