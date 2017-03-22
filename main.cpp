@@ -15,13 +15,13 @@ using namespace std;
 
 //on utilise la méthode de dichotomie pour trouver, à une valeur de T donnée, le point de transition de phase
 
-float searchExtinction(float T, float a, float b, float D=0.1){
+float searchExtinction(float T, float a, float b, float e, float D=0.1){
 
   float borne1=a; //bornes entre lesquelles on recherche la limite d'exctinction (à bien choisir!!)
   float borne2=b;
   float mid; // milieu ds bornes
 
-  while(abs(borne1-borne2)>0.001){ // condition définissant la précision de la recherche
+  while(abs(borne1-borne2)>e){ // condition définissant la précision de la recherche
 
     
 
@@ -92,13 +92,13 @@ float searchExtinction(float T, float a, float b, float D=0.1){
 
 
 // même méthode que ci-dessus, adaptée pour la recherche de la limite d'exclusion
-float searchExclusion(float T, float a, float b, float D=0.1){
+float searchExclusion(float T, float a, float b, float e, float D=0.1){
 
   float borne1=a;
   float borne2=b;
   float mid;
 
-  while(abs(borne1-borne2)>0.001){
+  while(abs(borne1-borne2)>e){
 
     
 
@@ -179,7 +179,7 @@ void getCurve(){
     if(fichier){
 
       //bornes optimisées pour la recherche des limites avec P-mutation=0
-
+      float e(0.001);
       float a1(0); //bornes initiales pour la recherche de la limite d'extinction
       float b1(0.005);
 
@@ -187,13 +187,13 @@ void getCurve(){
       float b2(0.01);
 
       fichier << "#A_init"<<" "<<"Textinction"<<" "<<"Texclusion"<<endl;
-      fichier <<1<<" "<<searchExtinction(1, a1, b1)<<" "<<searchExclusion(1, a2, b2)<<endl;
+      fichier <<1<<" "<<searchExtinction(1, a1, b1, e)<<" "<<searchExclusion(1, a2, b2, e)<<endl;
  
 
       for(int i=5; i<30; i+=5){//on fait varier la valeur de T
       
 
-        fichier <<i<<" "<<searchExtinction(i, a1, b1)<<" "<<searchExclusion(i, a2, b2)<<endl;
+        fichier <<i<<" "<<searchExtinction(i, a1, b1, e)<<" "<<searchExclusion(i, a2, b2, e)<<endl;
  
       }
 
@@ -201,15 +201,25 @@ void getCurve(){
 
       for(int i=30; i<=330; i+=100){
 
-        fichier <<i<<" "<<searchExtinction(i, a1, b1)<<" "<<searchExclusion(i, a2, b2)<<endl;
+        fichier <<i<<" "<<searchExtinction(i, a1, b1, e)<<" "<<searchExclusion(i, a2, b2, e)<<endl;
 
       }
 
-      b1=20;
+      b1=1;
+      for(int i=430; i<=630; i+=100){
 
-      for(int i=340; i<1500; i+=100){
+        fichier <<i<<" "<<searchExtinction(i, a1, b1, e)<<" "<<searchExclusion(i, a2, b2, e)<<endl;
 
-        fichier <<i<<" "<<searchExtinction(i, a1, b1)<<" "<<searchExclusion(i, a2, b2)<<endl;
+      }
+
+
+
+      b1=50;
+      e=0.1;
+
+      for(int i=730; i<=1530; i+=100){
+
+        fichier <<i<<" "<<searchExtinction(i, a1, b1, e)<<" "<<searchExclusion(i, a2, b2, e)<<endl;
 
       }
 
@@ -236,7 +246,7 @@ void plotCurve(){
     fprintf(f, "set ylabel \"Intervalle de renouvellement du milieu\" \n ");
     fprintf(f, "set key outside \n");
 
-    fprintf(f, " plot \"data.dat\" using 1:2 with filledcurve x2 lt rgb \"cyan\" title 'exclusion', \"data.dat\" using 1:3 with filledcurve x1 lt rgb \"magenta\" title 'extinction' \n ");
+    fprintf(f, " plot \"data.dat\" using 2:1 with filledcurve x2 lt rgb \"cyan\" title 'exclusion', \"data.dat\" using 3:1 with filledcurve x1 lt rgb \"magenta\" title 'extinction' \n ");
     
     fflush(f);
     // terminer l'envoi de commandes et fermer gnuplot
@@ -256,7 +266,7 @@ void getCurve3D(){
     if(fichier){
 
       //bornes optimisées pour la recherche des limites avec P-mutation=0
-
+      float e(0.001);
       float a1(0); //bornes initiales pour la recherche de la limite d'extinction
       float b1(0.002);
 
@@ -270,7 +280,7 @@ void getCurve3D(){
         for(int i=1; i<50; i+=5){//on fait varier la valeur de T
       
 
-          fichier <<d<<" "<<i<<" "<<searchExtinction(i, a1, b1, d)<<" "<<searchExclusion(i, a2, b2, d)<<endl;
+          fichier <<d<<" "<<i<<" "<<searchExtinction(i, a1, b1, e, d)<<" "<<searchExclusion(i, a2, b2, e, d)<<endl;
  
         }
 
@@ -278,7 +288,7 @@ void getCurve3D(){
 
         for(int i=50; i<1500; i+=100){
 
-          fichier <<d<<" "<<i<<" "<<searchExtinction(i, a1, b1)<<" "<<searchExclusion(i, a2, b2)<<endl;
+          fichier <<d<<" "<<i<<" "<<searchExtinction(i, a1, b1, e, d)<<" "<<searchExclusion(i, a2, b2, e, d)<<endl;
 
         }
 
