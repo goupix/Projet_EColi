@@ -199,15 +199,10 @@ void getCurve_no_mutation(){
       }
 
       b2=50;
-
-      for(int i=40; i<=130; i+=10){
-
-        fichier <<i<<" "<<searchExtinction(i, a1, b1, e)<<" "<<searchExclusion(i, a2, b2, e)<<endl;
-
-      }
-
-     
-      for(int i=230; i<=330; i+=100){
+   
+      fichier <<60<<" "<<searchExtinction(60, a1, b1, e)<<" "<<searchExclusion(60, a2, b2, e)<<endl;
+ 
+      for(int i=130; i<=330; i+=100){
 
         fichier <<i<<" "<<searchExtinction(i, a1, b1, e)<<" "<<searchExclusion(i, a2, b2, e)<<endl;
 
