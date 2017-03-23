@@ -199,7 +199,6 @@ void getCurve_no_mutation(){
       }
 
       b2=50;
-      e=0.1;
 
       for(int i=40; i<=130; i+=10){
 
@@ -217,6 +216,7 @@ void getCurve_no_mutation(){
 
 
       b1=50;
+      e=0.1;
       
 
       for(int i=430; i<=1530; i+=100){
@@ -437,8 +437,8 @@ int main(){
   cout<<" Running... "<<endl;
   cout<<""<<endl;
 
-  getCurve_with_mutation();
-  plotCurve_mutation();
+  getCurve_no_mutation();
+  plotCurve_no_mutation();
 
 
   return 0;
