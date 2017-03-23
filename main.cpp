@@ -7,6 +7,7 @@
 #include <fstream>
 #include <stdio.h>
 #include <unistd.h>
+#include <string>
 
 using namespace std;
 
@@ -172,25 +173,25 @@ float searchExclusion(float T, float a, float b, float e, float D=0.1){
 
 
 //écrit dans un fichier les valeurs de transitions de phases obtenues
-void getCurve(){
+void getCurve_no_mutation(){
   
-  ofstream fichier("data.dat", ios::out | ios::trunc);  // ouverture en écriture avec effacement du fichier ouvert
+  ofstream fichier("diagramme_no_mutation.dat", ios::out | ios::trunc);  // ouverture en écriture avec effacement du fichier ouvert
  
     if(fichier){
 
-      //bornes optimisées pour la recherche des limites avec P-mutation=0
+      //bornes optimisées pour la recherche des limites avec P-mutation=0, afin d'optimiser le programme tout en augmentant la précision au niveau des "virages" des courbes
       float e(0.001);
       float a1(0); //bornes initiales pour la recherche de la limite d'extinction
-      float b1(0.005);
+      float b1(0.003);
 
       float a2(0); //bornes initiales pour la recherche de la limite d'exclusion
-      float b2(0.01);
+      float b2(0.003);
 
       fichier << "#A_init"<<" "<<"Textinction"<<" "<<"Texclusion"<<endl;
       fichier <<1<<" "<<searchExtinction(1, a1, b1, e)<<" "<<searchExclusion(1, a2, b2, e)<<endl;
  
 
-      for(int i=5; i<30; i+=5){//on fait varier la valeur de T
+      for(int i=5; i<=30; i+=5){//on fait varier la valeur de T
       
 
         fichier <<i<<" "<<searchExtinction(i, a1, b1, e)<<" "<<searchExclusion(i, a2, b2, e)<<endl;
@@ -198,15 +199,16 @@ void getCurve(){
       }
 
       b2=50;
+      e=0.1;
 
-      for(int i=30; i<=330; i+=100){
+      for(int i=40; i<=130; i+=10){
 
         fichier <<i<<" "<<searchExtinction(i, a1, b1, e)<<" "<<searchExclusion(i, a2, b2, e)<<endl;
 
       }
 
-      b1=1;
-      for(int i=430; i<=630; i+=100){
+     
+      for(int i=230; i<=330; i+=100){
 
         fichier <<i<<" "<<searchExtinction(i, a1, b1, e)<<" "<<searchExclusion(i, a2, b2, e)<<endl;
 
@@ -215,9 +217,9 @@ void getCurve(){
 
 
       b1=50;
-      e=0.1;
+      
 
-      for(int i=730; i<=1530; i+=100){
+      for(int i=430; i<=1530; i+=100){
 
         fichier <<i<<" "<<searchExtinction(i, a1, b1, e)<<" "<<searchExclusion(i, a2, b2, e)<<endl;
 
@@ -234,28 +236,72 @@ void getCurve(){
 
 
 
-//Trace le diagramme
-void plotCurve(){
 
-    FILE * f;
-    // Ouverture du shell et lancement de gnuplot
-    f = popen("gnuplot", "w");
-    // exécution de la commande gnuplot
-    fprintf(f, " set title \"Diagramme de phase\"\n ");
-    fprintf(f, "set xlabel \"Concentration initiale en glucose\" \n ");
-    fprintf(f, "set ylabel \"Intervalle de renouvellement du milieu\" \n ");
-    fprintf(f, "set xrange [0:50] \n");
-    fprintf(f, "set yrange [0:1500] \n");
-    fprintf(f, "set key outside \n");
 
-    fprintf(f, " plot \"data.dat\" using 2:1 with filledcurve x2 lt rgb \"cyan\" title 'exclusion', \"data.dat\" using 3:1 with filledcurve x1 lt rgb \"magenta\" title 'extinction' \n ");
+
+
+//écrit dans un fichier les valeurs de transitions de phases obtenues
+void getCurve_with_mutation(){
+  
+  ofstream fichier("diagramme_mutation.dat", ios::out | ios::trunc);  // ouverture en écriture avec effacement du fichier ouvert
+ 
+    if(fichier){
+
+      //bornes optimisées pour la recherche des limites avec P-mutation=0.001
+      float e(0.001);
+      float a1(0); //bornes initiales pour la recherche de la limite d'extinction
+      float b1(0.003);
+
+      float a2(0); //bornes initiales pour la recherche de la limite d'exclusion
+      float b2(50);
+
+      fichier << "#A_init"<<" "<<"Textinction"<<" "<<"Texclusion"<<endl;
+      fichier <<1<<" "<<searchExtinction(1, a1, b1, e)<<" "<<searchExclusion(1, a2, b2, e)<<endl;
+      
+      for(int i=10; i<=90; i+=10){//on fait varier la valeur de T
+      
+
+        fichier <<i<<" "<<searchExtinction(i, a1, b1, e)<<" "<<searchExclusion(i, a2, b2, e)<<endl;
+ 
+      }
+
+      for(int i=100; i<=300; i+=100){//on fait varier la valeur de T
+      
+
+        fichier <<i<<" "<<searchExtinction(i, a1, b1, e)<<" "<<searchExclusion(i, a2, b2, e)<<endl;
+ 
+      }
+      
+      b1=50;
+      e=0.1;
+
+      for(int i=310; i<=390; i+=10){//on fait varier la valeur de T
+      
+
+        fichier <<i<<" "<<searchExtinction(i, a1, b1, e)<<" "<<searchExclusion(i, a2, b2, e)<<endl;
+ 
+      }
+
+      
+
+      for(int i=400; i<=1500; i+=100){
+
+        fichier <<i<<" "<<searchExtinction(i, a1, b1, e)<<" "<<searchExclusion(i, a2, b2, e)<<endl;
+
+      }
+
+
+
+      fichier.close();
+    }
     
-    fflush(f);
-    // terminer l'envoi de commandes et fermer gnuplot
-    sleep(50);
-    pclose(f);
+    else
+      cerr << "Impossible d'ouvrir le fichier !" << endl;
+ 
+}
 
-}        
+
+
 
 
 
@@ -268,31 +314,24 @@ void getCurve3D(){
     if(fichier){
 
       //bornes optimisées pour la recherche des limites avec P-mutation=0
-      float e(0.001);
+      float e(1);
       float a1(0); //bornes initiales pour la recherche de la limite d'extinction
-      float b1(0.002);
+      float b1(50);
 
       float a2(0); //bornes initiales pour la recherche de la limite d'exclusion
-      float b2(0.002);
+      float b2(50);
 
       fichier <<"D "<< "#A_init"<<" "<<"Textinction"<<" "<<"Texclusion"<<endl;
-
+      fichier <<1<<" "<<searchExtinction(1, a1, b1, e)<<" "<<searchExclusion(1, a2, b2, e)<<endl;
+ 
 
       for(int d=0; d<0.1; d+=0.01){
-        for(int i=1; i<50; i+=5){//on fait varier la valeur de T
+        for(int i=100; i<1500; i+=100){//on fait varier la valeur de T
       
-
           fichier <<d<<" "<<i<<" "<<searchExtinction(i, a1, b1, e, d)<<" "<<searchExclusion(i, a2, b2, e, d)<<endl;
  
         }
 
-        b2=50;
-
-        for(int i=50; i<1500; i+=100){
-
-          fichier <<d<<" "<<i<<" "<<searchExtinction(i, a1, b1, e, d)<<" "<<searchExclusion(i, a2, b2, e, d)<<endl;
-
-        }
 
         fichier.close();
       }
@@ -305,17 +344,101 @@ void getCurve3D(){
 
 
 
+
+
+//Trace le diagramme
+void plotCurve_no_mutation(){
+
+    FILE * f;
+    // Ouverture du shell et lancement de gnuplot
+    f = popen("gnuplot", "w");
+    // exécution de la commande gnuplot
+    fprintf(f, " set title \"Diagramme de phase, avec une probabilité de mutation de 0\"\n ");
+    fprintf(f, "set xlabel \"Concentration initiale en glucose\" \n ");
+    fprintf(f, "set ylabel \"Intervalle de renouvellement du milieu\" \n ");
+    fprintf(f, "set xrange [0:50] \n");
+    fprintf(f, "set yrange [0:1500] \n");
+    fprintf(f, "set key outside \n");
+
+    fprintf(f, " plot \"diagramme_no_mutation.dat\" using 2:1 with filledcurve x2 lt rgb \"cyan\" title 'extinction', \"data.dat\" using 3:1 with filledcurve x1 lt rgb \"magenta\" title 'exclusion' \n ");
+    
+    fflush(f);
+    // terminer l'envoi de commandes et fermer gnuplot
+    sleep(5000);
+    pclose(f);
+
+}  
+
+
+//Trace le diagramme
+void plotCurve_mutation(){
+
+    FILE * f;
+    // Ouverture du shell et lancement de gnuplot
+    f = popen("gnuplot", "w");
+    // exécution de la commande gnuplot
+    fprintf(f, " set title \"Diagramme de phase, avec une probabilité de mutation de 0.001\"\n ");
+    fprintf(f, "set xlabel \"Concentration initiale en glucose\" \n ");
+    fprintf(f, "set ylabel \"Intervalle de renouvellement du milieu\" \n ");
+    fprintf(f, "set xrange [0:50] \n");
+    fprintf(f, "set yrange [0:1500] \n");
+    fprintf(f, "set key outside \n");
+
+    fprintf(f, " plot \"diagramme_mutation.dat\" using 2:1 with filledcurve x2 lt rgb \"cyan\" title 'extinction', \"data.dat\" using 3:1 with filledcurve x1 lt rgb \"magenta\" title 'exclusion' \n ");
+    
+    fflush(f);
+    // terminer l'envoi de commandes et fermer gnuplot
+    sleep(5000);
+    pclose(f);
+
+}     
+
+
+
+
+void plotCurve3D(){
+
+
+
+ FILE * f;
+    // Ouverture du shell et lancement de gnuplot
+    f = popen("gnuplot", "w");
+    // exécution de la commande gnuplot
+    fprintf(f, " set title \"Diagramme de phase, avec une probabilité de mutation de 0.001\"\n ");
+    fprintf(f, "set xlabel \"Concentration initiale en glucose\" \n ");
+    fprintf(f, "set ylabel \"Intervalle de renouvellement du milieu\" \n ");
+    fprintf(f, "set xrange [0:50] \n");
+    fprintf(f, "set yrange [0:1500] \n");
+    fprintf(f, "set key outside \n");
+
+    fprintf(f,"set dgrid3d 30,30 \n ");
+    fprintf(f,"set hidden3d\n ");
+    fprintf(f,"splot \"diagramme_3D.dat\" u 2:1:3 with lines lt rgb \"cyan\" title 'extinction', \"diagramme_3D.dat\" u 2:1:4 with lines lt rgb \"magenta\" title 'exclusion' \n ");
+    
+    fflush(f);
+    // terminer l'envoi de commandes et fermer gnuplot
+    sleep(5000);
+    pclose(f);
+
+
+}
+
+
+
+
+
+
 int main(){
 
-srand(time(NULL)); //initiale un générateur de nombre pseudo-aléatoire 
+  srand(time(NULL)); //initialise un générateur de nombre pseudo-aléatoire 
 
 
-cout<<""<<endl;
-cout<<" Running... "<<endl;
-cout<<""<<endl;
+  cout<<""<<endl;
+  cout<<" Running... "<<endl;
+  cout<<""<<endl;
 
-getCurve();
-plotCurve();
+  getCurve_with_mutation();
+  plotCurve_mutation();
 
 
   return 0;
