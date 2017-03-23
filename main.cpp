@@ -348,14 +348,14 @@ void plotCurve_no_mutation(){
     // Ouverture du shell et lancement de gnuplot
     f = popen("gnuplot", "w");
     // exécution de la commande gnuplot
-    fprintf(f, " set title \"Diagramme de phase, avec une probabilité de mutation de 0\"\n ");
+    fprintf(f, " set title \"Diagramme de phase, avec p_mutation=0\"\n ");
     fprintf(f, "set xlabel \"Concentration initiale en glucose\" \n ");
     fprintf(f, "set ylabel \"Intervalle de renouvellement du milieu\" \n ");
     fprintf(f, "set xrange [0:50] \n");
     fprintf(f, "set yrange [0:1500] \n");
     fprintf(f, "set key outside \n");
 
-    fprintf(f, " plot \"diagramme_no_mutation.dat\" using 2:1 with filledcurve x2 lt rgb \"cyan\" title 'extinction', \"data.dat\" using 3:1 with filledcurve x1 lt rgb \"magenta\" title 'exclusion' \n ");
+    fprintf(f, " plot \"diagramme_no_mutation.dat\" using 2:1 with filledcurve x2 lt rgb \"cyan\" title 'extinction', \"diagramme_no_mutation.dat\" using 3:1 with filledcurve x1 lt rgb \"magenta\" title 'exclusion' \n ");
     
     fflush(f);
     // terminer l'envoi de commandes et fermer gnuplot
@@ -372,14 +372,14 @@ void plotCurve_mutation(){
     // Ouverture du shell et lancement de gnuplot
     f = popen("gnuplot", "w");
     // exécution de la commande gnuplot
-    fprintf(f, " set title \"Diagramme de phase, avec une probabilité de mutation de 0.001\"\n ");
+    fprintf(f, " set title \"Diagramme de phase, avec p_mutation=0.001\"\n ");
     fprintf(f, "set xlabel \"Concentration initiale en glucose\" \n ");
     fprintf(f, "set ylabel \"Intervalle de renouvellement du milieu\" \n ");
     fprintf(f, "set xrange [0:50] \n");
     fprintf(f, "set yrange [0:1500] \n");
     fprintf(f, "set key outside \n");
 
-    fprintf(f, " plot \"diagramme_mutation.dat\" using 2:1 with filledcurve x2 lt rgb \"cyan\" title 'extinction', \"data.dat\" using 3:1 with filledcurve x1 lt rgb \"magenta\" title 'exclusion' \n ");
+    fprintf(f, " plot \"diagramme_mutation.dat\" using 2:1 with filledcurve x2 lt rgb \"cyan\" title 'extinction', \"diagramme_mutation.dat\" using 3:1 with filledcurve x1 lt rgb \"magenta\" title 'exclusion' \n ");
     
     fflush(f);
     // terminer l'envoi de commandes et fermer gnuplot
