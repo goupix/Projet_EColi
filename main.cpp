@@ -253,13 +253,7 @@ void getCurve_with_mutation(){
       fichier << "#A_init"<<" "<<"Textinction"<<" "<<"Texclusion"<<endl;
       fichier <<1<<" "<<searchExtinction(1, a1, b1, e)<<" "<<searchExclusion(1, a2, b2, e)<<endl;
       
-      for(int i=10; i<=90; i+=10){//on fait varier la valeur de T
-      
-
-        fichier <<i<<" "<<searchExtinction(i, a1, b1, e)<<" "<<searchExclusion(i, a2, b2, e)<<endl;
- 
-      }
-
+   
       for(int i=100; i<=300; i+=100){//on fait varier la valeur de T
       
 
@@ -269,23 +263,16 @@ void getCurve_with_mutation(){
       
       b1=50;
       e=0.1;
-
-      for(int i=310; i<=390; i+=10){//on fait varier la valeur de T
-      
-
-        fichier <<i<<" "<<searchExtinction(i, a1, b1, e)<<" "<<searchExclusion(i, a2, b2, e)<<endl;
- 
-      }
-
-      
-
+       
+      fichier <<350<<" "<<searchExtinction(350, a1, b1, e)<<" "<<searchExclusion(350, a2, b2, e)<<endl;
+     
       for(int i=400; i<=1500; i+=100){
 
         fichier <<i<<" "<<searchExtinction(i, a1, b1, e)<<" "<<searchExclusion(i, a2, b2, e)<<endl;
 
       }
 
-
+      
 
       fichier.close();
     }
@@ -432,8 +419,8 @@ int main(){
   cout<<" Running... "<<endl;
   cout<<""<<endl;
 
-  getCurve_no_mutation();
-  plotCurve_no_mutation();
+  getCurve_with_mutation();
+  plotCurve_mutation();
 
 
   return 0;
