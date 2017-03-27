@@ -21,7 +21,7 @@ Bacterie::Bacterie(){
 
 
 p_death=0.02; 
-p_mutation=0.001; 
+p_mutation=0.00; 
 W_min=0.001; 
 
 

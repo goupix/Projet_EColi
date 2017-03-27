@@ -291,32 +291,33 @@ void getCurve_with_mutation(){
 //écrit dans un fichier les valeurs de transitions de phases obtenues
 void getCurve3D(){
   
-  ofstream fichier("data.dat", ios::out | ios::trunc);  // ouverture en écriture avec effacement du fichier ouvert
+  ofstream fichier("graphique3D.dat", ios::out | ios::trunc);  // ouverture en écriture avec effacement du fichier ouvert
  
     if(fichier){
 
       //bornes optimisées pour la recherche des limites avec P-mutation=0
-      float e(1);
+      float e(0.01);
       float a1(0); //bornes initiales pour la recherche de la limite d'extinction
       float b1(50);
 
       float a2(0); //bornes initiales pour la recherche de la limite d'exclusion
       float b2(50);
 
-      fichier <<"D "<< "#A_init"<<" "<<"Textinction"<<" "<<"Texclusion"<<endl;
-      fichier <<1<<" "<<searchExtinction(1, a1, b1, e)<<" "<<searchExclusion(1, a2, b2, e)<<endl;
- 
-
-      for(int d=0; d<0.1; d+=0.01){
-        for(int i=100; i<1500; i+=100){//on fait varier la valeur de T
+      fichier <<"#D "<< "A_init"<<" "<<"Textinction"<<" "<<"Texclusion"<<endl;
       
+
+      for(float d=0; d<0.1; d+=0.01){
+        
+        fichier <<d<<" "<<1<<" "<<searchExtinction(1, a1, b1, e, d)<<" "<<searchExclusion(1, a2, b2, e, d)<<endl;
+
+        for(int i=100; i<=1500; i+=100){//on fait varier la valeur de T
+
           fichier <<d<<" "<<i<<" "<<searchExtinction(i, a1, b1, e, d)<<" "<<searchExclusion(i, a2, b2, e, d)<<endl;
  
         }
-
-
-        fichier.close();
       }
+
+      fichier.close();
     }
 
     else
@@ -419,8 +420,7 @@ int main(){
   cout<<" Running... "<<endl;
   cout<<""<<endl;
 
-  getCurve_with_mutation();
-  plotCurve_mutation();
+  getCurve3D();
 
 
   return 0;
