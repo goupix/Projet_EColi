@@ -354,32 +354,10 @@ void plotGraphs(){
     fprintf(f, " set title \"Diagramme de phase, avec p_mutation=0.001\"\n ");
     fprintf(f, " plot \"diagramme_mutation.dat\" using 2:1 with filledcurve x2 lt rgb \"cyan\" title 'extinction', \"diagramme_mutation.dat\" using 3:1 with filledcurve x1 lt rgb \"magenta\" title 'exclusion' \n ");
     
+    fprintf(f, "set size 0.7,0.7 \n");
+    fprintf(f, "set origin 0.6,0.2 \n");
 
-    fflush(f);
-    // terminer l'envoi de commandes et fermer gnuplot
-    sleep(5000);
-    pclose(f);
-
-}  
-
-
-
-
-void plotCurve3D(){
-
-
-
- FILE * f;
-    // Ouverture du shell et lancement de gnuplot
-    f = popen("gnuplot", "w");
-    // exécution de la commande gnuplot
     fprintf(f, " set title \"Diagramme de phase 3D\"\n ");
-    fprintf(f, "set xlabel \"Concentration initiale en glucose\" \n ");
-    fprintf(f, "set ylabel \"Intervalle de renouvellement du milieu\" \n ");
-    fprintf(f, "set xrange [0:50] \n");
-    fprintf(f, "set yrange [0:1500] \n");
-    fprintf(f, "set key outside \n");
-
     fprintf(f,"set dgrid3d 30,30 \n ");
     fprintf(f,"set hidden3d\n ");
     fprintf(f,"splot \"diagramme_3D.dat\" u 2:1:3 with lines lt rgb \"cyan\" title 'extinction', \"diagramme_3D.dat\" u 2:1:4 with lines lt rgb \"magenta\" title 'exclusion' \n ");
@@ -389,9 +367,7 @@ void plotCurve3D(){
     sleep(5000);
     pclose(f);
 
-
-}
-
+}  
 
 
 
