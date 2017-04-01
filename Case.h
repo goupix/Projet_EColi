@@ -10,8 +10,8 @@
  * @brief Creates a Character
  */
 #include "Bacterie.h"
-#include "Lignee_A.h"
-#include "Lignee_B.h"
+#include "Lignee_L.h"
+#include "Lignee_S.h"
 
 class Case
 {

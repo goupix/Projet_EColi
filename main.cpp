@@ -1,8 +1,8 @@
 #include <iostream>
 #include "Map.h"
 #include "Bacterie.h"
-#include "Lignee_A.h"
-#include "Lignee_B.h"
+#include "Lignee_L.h"
+#include "Lignee_S.h"
 #include "Case.h"
 #include <fstream>
 #include <stdio.h>
@@ -29,16 +29,16 @@ float searchExtinction(float T, float a, float b, float e, float D=0.1){
     Map* a=new Map(borne1, T, D); //on créé des Maps aux bornes (A_init correspond aux bornes)
     Map* b=new Map(borne2, T, D);
 
-    char state_A=a->run(); 
+    char state_L=a->run(); 
     delete(a);
 
-    char state_B=b->run();
+    char state_S=b->run();
     delete(b);
 
-    cout<<"D= "<<D<<" et T= "<<T<<" => "<<"Bornes "<<borne1<<" :"<<state_A<<" "<<borne2<<" :"<<state_B<<endl;
+    cout<<"D= "<<D<<" et T= "<<T<<" => "<<"Bornes "<<borne1<<" :"<<state_L<<" "<<borne2<<" :"<<state_S<<endl;
 
 
-    if((state_A=='E' && state_B=='C') || (state_A=='E' && state_B=='A')){ //teste si la limite se trouve toujours entre les bornes
+    if((state_L=='E' && state_S=='C') || (state_L=='E' && state_S=='A')){ //teste si la limite se trouve toujours entre les bornes
 
       mid=(borne1+borne2)/2;
 
@@ -63,7 +63,7 @@ float searchExtinction(float T, float a, float b, float e, float D=0.1){
     }
 
     // prise en compte de la nature stochastique du modèle: si la limite se déplace, on garde la borne la plus proche d'elle
-    else if (state_B=='E'){ 
+    else if (state_S=='E'){ 
 
       
       mid=borne2;
@@ -71,7 +71,7 @@ float searchExtinction(float T, float a, float b, float e, float D=0.1){
     
     }
 
-    else if (state_A=='C' || state_A=='A'){
+    else if (state_L=='C' || state_L=='A'){
 
      
       mid=borne1;
@@ -106,16 +106,16 @@ float searchExclusion(float T, float a, float b, float e, float D=0.1){
     Map* a=new Map(borne1, T, D);
     Map* b=new Map(borne2, T, D);
 
-    char state_A=a->run();
+    char state_L=a->run();
     delete(a);
 
-    char state_B=b->run();
+    char state_S=b->run();
     delete(b);
 
-    cout<<"D= "<<D<<" et T= "<<T<<" => "<<"Bornes "<<borne1<<" :"<<state_A<<" "<<borne2<<" :"<<state_B<<endl;
+    cout<<"D= "<<D<<" et T= "<<T<<" => "<<"Bornes "<<borne1<<" :"<<state_L<<" "<<borne2<<" :"<<state_S<<endl;
 
 
-    if((state_A=='C' && state_B=='A') || (state_A=='E' && state_B=='A')){
+    if((state_L=='C' && state_S=='A') || (state_L=='E' && state_S=='A')){
 
       mid=(borne1+borne2)/2;
       Map* m=new Map(mid, T, D);
@@ -140,7 +140,7 @@ float searchExclusion(float T, float a, float b, float e, float D=0.1){
     }
 
 
-    else if (state_A=='A'){
+    else if (state_L=='L'){
 
     
       mid=borne1;
@@ -148,7 +148,7 @@ float searchExclusion(float T, float a, float b, float e, float D=0.1){
     
     }
 
-    else if (state_B=='C' || state_B=='E'){
+    else if (state_S=='C' || state_S=='E'){
 
     
       mid=borne2;

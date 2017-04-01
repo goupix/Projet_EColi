@@ -98,7 +98,7 @@ Map::~Map(){
 
 void Map::set(){
 
-  /*Creation d'un vecteur contenant moitié de 0 (correspondant à la lignée A) et moitié de 1 (lignée B) */
+  /*Creation d'un vecteur contenant moitié de 0 (correspondant à la lignée L) et moitié de 1 (lignée S) */
   
   vector<int> tableDeNombres;
   for(int i=0; i<(height*width)/2; i++){
@@ -115,21 +115,21 @@ void Map::set(){
   }*/
 
   /* Pour chaque case de l'attribut grille, on crée un métabolite avec une concentration A_init. Chaque métabolite pointe 
-  vers une bactérie. Le type des bactéries est choisi suivant le vecteur créé precédement (0=type A, 1=type B)*/
+  vers une bactérie. Le type des bactéries est choisi suivant le vecteur créé precédement (0=type L, 1=type S)*/
   int compteur=0;
   while(compteur<width*height){
     for(int i=0; i<width; i++){
       for(int j=0; j<height; j++){
         if(tableDeNombres[compteur]==0){
     
-          Lignee_A* a= new Lignee_A();
+          Lignee_L* a= new Lignee_L();
 	        grille[i][j]= new Case(i, j, A_init, a); 
           compteur++;
         }
 
         else{
           
-          Lignee_B* b= new Lignee_B();
+          Lignee_S* b= new Lignee_S();
           grille[i][j]= new Case(i, j, A_init, b);
           compteur++;
         }
@@ -434,23 +434,23 @@ void Map::update(){
 }
 
 
-char Map::state(int nbA, int nbB){ // renvoit l'état final du système sous forme de char
+char Map::state(int nbL, int nbS){ // renvoit l'état final du système sous forme de char
 
-  if(nbA!=0 && nbB==0){
+  if(nbL!=0 && nbS==0){
     
     cout<<"Exclusion"<<endl;
     return 'A';
     
   }
 
-  else if(nbA==0 && nbB==0){
+  else if(nbL==0 && nbS==0){
 
     cout<<"Extinction"<<endl;
     return 'E';
     
   }
 
-  else if(nbA!=0 && nbB!=0){
+  else if(nbL!=0 && nbS!=0){
 
     cout<<"Cohabitation"<<endl;
     return 'C';
@@ -461,7 +461,7 @@ char Map::state(int nbA, int nbB){ // renvoit l'état final du système sous for
   else{ 
 
     
-    cout<<"Exclusion de la lignée A"<<endl;
+    cout<<"Exclusion de la lignée L"<<endl;
     return 'X';
 
   }
@@ -481,9 +481,9 @@ char Map::run(){ // update l'environnement pendant le temps de simulation indiqu
     while(tours<t){
 
       update();
-      // arrête l'execution si toutes les bactéries sont éteintes ou si il ne reste que des A
-      // par soucis de gain de temps
-      if(Lignee_B::nombre_B()+Lignee_A::nombre_A()==0){
+      // arrête l'execution si toutes les bactéries sont éteintes ou si il ne reste que des lignées L
+      // par souci de gain de temps
+      if(Lignee_S::nombre_S()+Lignee_S::nombre_S()==0){
         
         tours=t;
         temps=T;
@@ -491,7 +491,7 @@ char Map::run(){ // update l'environnement pendant le temps de simulation indiqu
 
       }
 
-      if(Lignee_A::nombre_A()==width*height){
+      if(Lignee_L::nombre_L()==width*height){
         
         tours=t;
         temps=T;
@@ -514,8 +514,8 @@ char Map::run(){ // update l'environnement pendant le temps de simulation indiqu
   cout<<" "<<endl;
   DescribeBacteries();
   
-  cout<<"Il y a "<<BOLDCYAN<<Lignee_A::nombre_A()<<RESET<<" bactéries de type A, et "<<BOLDMAGENTA<<Lignee_B::nombre_B()<<RESET<<" bactéries de type B"<<endl;
-  char s=state(Lignee_A::nombre_A(), Lignee_B::nombre_B());
+  cout<<"Il y a "<<BOLDCYAN<<Lignee_L::nombre_L()<<RESET<<" bactéries de type L, et "<<BOLDMAGENTA<<Lignee_S::nombre_S()<<RESET<<" bactéries de type S"<<endl;
+  char s=state(Lignee_L::nombre_L(), Lignee_S::nombre_S());
 
   return s;
 

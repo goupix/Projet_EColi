@@ -115,9 +115,9 @@ void Case::makeMute(){
   
 
   if(ptr->Mute()==0){
-    if(ptr->Gettype()=='A'){
+    if(ptr->Gettype()=='L'){
 
-      Lignee_B* newcell=new Lignee_B(ptr->GetA_int(), ptr->GetB_int(), ptr->GetC_int());
+      Lignee_S* newcell=new Lignee_S(ptr->GetA_int(), ptr->GetB_int(), ptr->GetC_int());
 
       delete(ptr);
       ptr=newcell;
@@ -126,7 +126,7 @@ void Case::makeMute(){
 
     else{
 
-      Lignee_A* newcell=new Lignee_A(ptr->GetA_int(), ptr->GetB_int(), ptr->GetC_int());
+      Lignee_L* newcell=new Lignee_L(ptr->GetA_int(), ptr->GetB_int(), ptr->GetC_int());
       delete(ptr);
       ptr=newcell;
     }
@@ -139,7 +139,7 @@ void Case::makeMute(){
 
 void Case::makeEat(float h){
 
-  if(ptr->Gettype()=='A'){
+  if(ptr->Gettype()=='L'){
 
     A=ptr->absorb(A,h);
   }

@@ -11,8 +11,8 @@
  */
 #include "Bacterie.h"
 #include "Case.h"
-#include "Lignee_B.h"
-#include "Lignee_A.h"
+#include "Lignee_S.h"
+#include "Lignee_L.h"
 #include <vector>
 
 class Map
@@ -46,7 +46,7 @@ virtual ~Map();
 //    PUBLIC METHODS
 //==============================
 
-void DescribeBacteries();//renvoit un tableau avec le type (A ou B) de bactéries pour chaque case
+void DescribeBacteries();//renvoit un tableau avec le type (L ou S) de bactéries pour chaque case
 void DescribeABC();//renvoit un tableau avec les concentrations (A,B,C) pour chaque case
 void DescribeInt();////renvoit un tableau avec les concentrations (A_int,B_int,C_int) internes des bacteries pour chaque case
 char run();// exectute l'algorithme jusqu'a un temps T donné
@@ -63,7 +63,7 @@ void update(); // les bacteries se nourrissent, metabolisent, mutent, se divisen
 void diffusion(); // bouge les Cases
 void renew(); //reinitialise le milieu de culture
 Bacterie* competition(int x, int y); //renvoit le gagnant d'un gap sous forme de pointeur
-char state(int nbA, int nbB);
+char state(int nbL, int nbS);
 
 //==============================
 //    ATTRIBUTES
