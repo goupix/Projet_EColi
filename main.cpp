@@ -306,7 +306,7 @@ void getCurve3D(){
       fichier <<"#D "<< "A_init"<<" "<<"Textinction"<<" "<<"Texclusion"<<endl;
       
 
-      for(float d=0; d<0.1; d+=0.01){
+      for(float d=0; d<=0.1; d+=0.01){
         
         fichier <<d<<" "<<1<<" "<<searchExtinction(1, a1, b1, e, d)<<" "<<searchExclusion(1, a2, b2, e, d)<<endl;
 
@@ -336,7 +336,7 @@ void plotGraphs(){
     // Ouverture du shell et lancement de gnuplot
     f = popen("gnuplot", "w");
     // exécution de la commande gnuplot
-    fprintf(f, "set multiplot \n");
+     fprintf(f, "set multiplot \n");
     fprintf(f, "set size 0.55,0.5 \n");
     fprintf(f, "set origin 0,0.5 \n");
     fprintf(f, " set title \"Diagramme de phase, avec p_mutation=0\"\n ");
@@ -344,7 +344,7 @@ void plotGraphs(){
     fprintf(f, "set ylabel \"Intervalle de renouvellement du milieu\" \n ");
     fprintf(f, "set xrange [0:50] \n");
     fprintf(f, "set yrange [0:1500] \n");
-    fprintf(f, "set key outside \n");
+    fprintf(f, "set key rmargin \n");
     fprintf(f, " plot \"diagramme_no_mutation.dat\" using 2:1 with filledcurve x2 lt rgb \"cyan\" title 'extinction', \"diagramme_no_mutation.dat\" using 3:1 with filledcurve x1 lt rgb \"magenta\" title 'exclusion' \n ");
     
     fprintf(f, "set size 0.55,0.5 \n");
@@ -359,17 +359,22 @@ void plotGraphs(){
 
     fprintf(f, " set title \"Diagramme de phase 3D\"\n ");
     fprintf(f,"set ticslevel 0\n");
-    fprintf(f, "set xlabel \"Concentration initiale en glucose\" \n ");
-    fprintf(f, "set ylabel \"Coefficient de diffusion D\" \n ");
-    fprintf(f, "set zlabel \"Intervalle de renouvellement du milieu\" \n ");
+    fprintf(f, "set view 60,160 \n");
+    fprintf(f, "set xlabel \"Concentration initiale en glucose\"\n ");
+    fprintf(f, "set ylabel \"D\"\n ");
+    fprintf(f, "set zlabel \"Intervalle de renouvellement du milieu\" rotate parallel\n ");
     fprintf(f, "set xrange [0:50] \n");
     fprintf(f, "set yrange [0:0.1] \n");
     fprintf(f, "set zrange [0:1500] \n");
-    fprintf(f,"splot \"graphique3D.dat\" u 2:1:3 with lines title 'extinction', \"graphique3D.dat\" u 2:1:4 with lines title 'exclusion' \n ");
+    fprintf(f, "set hidden3d \n");
     
+    
+
+    fprintf(f,"splot \"graphique3D.dat\" u 3:1:2 with lines title 'extinction', \"graphique3D.dat\" u 4:1:2 with lines title 'exclusion'\n ");
+
     fflush(f);
     // terminer l'envoi de commandes et fermer gnuplot
-    sleep(50);
+    sleep(5000);
     pclose(f);
 
 }  
