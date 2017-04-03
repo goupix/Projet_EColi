@@ -92,11 +92,11 @@ float& Lignee_L::Getw(){return w;}
 
 int Lignee_L::nombre_L()
 {
-    return compteur_L;   //On renvoie simplement la valeur du compteur
+    return compteur_L;   // renvoie la valeur du compteur
 }
 
 
-float Lignee_L::absorb(float c, float h){ //système qui régit le réseau métabolique des individus de type Ga
+float Lignee_L::absorb(float c, float h){ // système qui régit le réseau métabolique des individus de type Ga
 
   float newa=c;
   float newbint=B_int;

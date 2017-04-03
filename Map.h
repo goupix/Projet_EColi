@@ -59,10 +59,10 @@ protected:
 //==============================
 
 void set(); // cree et positionne les bacteries 
-void update(); // les bacteries se nourrissent, metabolisent, mutent, se divisent, meurent eventuellement, les Cases diffusent
-void diffusion(); // bouge les Cases
+void update(); // les bacteries se nourrissent, metabolisent, mutent, se divisent, meurent eventuellement, les métabolites diffusent
+void diffusion(); // bouge les métabolites suivant un modèle de diffusion
 void renew(); //reinitialise le milieu de culture
-Bacterie* competition(int x, int y); //renvoit le gagnant d'un gap sous forme de pointeur
+Bacterie* competition(int x, int y); //renvoie le gagnant d'un gap sous forme de pointeur
 char state(int nbL, int nbS);
 
 //==============================
@@ -71,12 +71,12 @@ char state(int nbL, int nbS);
 static constexpr int width=32; //longueur grille
 static constexpr int height=32;//hauteur grille
 float A_init; //concentration initiale en glucose
-float D; //coef de diffusion
+float D; //coefficient de diffusion
 float T; //temps total de simulation
-int t; //pas de renewment
+int t; //pas de renouvellement
 float temps; //temps reel de la simulation
 float h; //pas de temps
-Case*** grille; //grille des concentrations en Cases
+Case*** grille; //grille des concentrations en métabolites
 
 
 

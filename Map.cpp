@@ -44,7 +44,8 @@ using namespace std;
 
 
 
-Map::Map(float a, int nb, float d){
+Map::Map(float a, int nb, float d){ // prend en argument la concentration initiale en glucose, la saisonnalité et le coef de diffusion 
+  //ce constructeur sera utilisé pour le tracé des diagrammes
 
   A_init=a;
   D=d;
@@ -101,6 +102,7 @@ void Map::set(){
   /*Creation d'un vecteur contenant moitié de 0 (correspondant à la lignée L) et moitié de 1 (lignée S) */
   
   vector<int> tableDeNombres;
+
   for(int i=0; i<(height*width)/2; i++){
     tableDeNombres.push_back(0);
   }
@@ -110,13 +112,12 @@ void Map::set(){
   random_shuffle(tableDeNombres.begin(), tableDeNombres.end()); /*Les nombres sont mélangés aléatoirement*/
 
 
-  /*for (vector<int>::iterator it=tableDeNombres.begin(); it!=tableDeNombres.end(); ++it){
-    cout << ' ' << *it;
-  }*/
 
-  /* Pour chaque case de l'attribut grille, on crée un métabolite avec une concentration A_init. Chaque métabolite pointe 
+  /* Pour chaque case de l'attribut grille, on crée une Case avec une concentration A_init. Chaque case pointe 
   vers une bactérie. Le type des bactéries est choisi suivant le vecteur créé precédement (0=type L, 1=type S)*/
+
   int compteur=0;
+
   while(compteur<width*height){
     for(int i=0; i<width; i++){
       for(int j=0; j<height; j++){
@@ -150,6 +151,7 @@ void Map::diffusion(){
 
 
 // Le contenu de la grille est "copié" dans une autre grille
+
   Case grille_init[height][width];
 
   for(int i=0; i<width; i++){
@@ -283,6 +285,7 @@ Bacterie* Map::competition(int x, int y){
 
   /* Pour la case dont les coordonnées sont données en argument, on cherche les Cases du voisinage de Moore et on 
   les stocke dans un vecteur*/
+
   int valx=0;
   int valy=0;
   for(int i=-1; i<2;i++){
@@ -483,7 +486,7 @@ char Map::run(){ // update l'environnement pendant le temps de simulation indiqu
       update();
       // arrête l'execution si toutes les bactéries sont éteintes ou si il ne reste que des lignées L
       // par souci de gain de temps
-      if(Lignee_S::nombre_S()+Lignee_S::nombre_S()==0){
+      if(Lignee_S::nombre_S()+Lignee_S::nombre_S()==0){ // stoppe la simulation si il n'y a plus de  bactéries, dans un soucis de gain de temps
         
         tours=t;
         temps=T;
@@ -491,7 +494,7 @@ char Map::run(){ // update l'environnement pendant le temps de simulation indiqu
 
       }
 
-      if(Lignee_L::nombre_L()==width*height){
+      if(Lignee_L::nombre_L()==width*height){ // stoppe la simulation si il n' y a plus que des bactéries de la lignee L dans un soucis de gain de temps
         
         tours=t;
         temps=T;

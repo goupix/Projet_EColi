@@ -50,7 +50,6 @@ public:
   virtual void Describe();
   virtual Bacterie* Division();
   virtual int Death();
-  /*virtual void Deplacement();*/
   virtual int Mute();
   static int nombre_S();
   virtual float absorb(float c, float h);
@@ -64,10 +63,10 @@ protected:
 //==============================
 //    ATTRIBUTES
 //==============================
-float Rbb;
-float Rbc;
-float& w=C_int;
-static int compteur_S;
+float Rbb; //taux d'absorption
+float Rbc; //taux de conversion
+float& w=C_int; //fitness
+static int compteur_S; //nombre de bactérie Lignee_S
 
 
 

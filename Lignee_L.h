@@ -65,7 +65,7 @@ protected:
   float Raa;// taux d'absorption
   float Rab;//taux de conversion
   float& w=B_int;//fitness
-  static int compteur_L;//variable qui compte les instances de la classe Lignee_A
+  static int compteur_L;//variable qui compte les instances de la classe Lignee_L
   
 
 //==============================

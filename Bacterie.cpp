@@ -49,7 +49,7 @@ int Bacterie::Death(){
   
   float nombre =  (rand()%(1000))/1000.0;  //tire un nombre pseudo-aléatoire entier positif entre 0 et 1 
   
-    if(nombre<p_death){ //et ce nombre est comparé à la probabilité de mort que nous avons déclaré
+    if(nombre<p_death){ // ce nombre est comparé à la probabilité de mort que nous avons déclaré
 
       return 0; 
       
@@ -70,7 +70,7 @@ int Bacterie::Mute(){
 
   float nombre =  (rand()%(1000))/1000.0; //idem
 
-  if (nombre<p_mutation){ //et on compare ce nombre à la probabilité de mutation que nous avons déclaré
+  if (nombre<p_mutation){ // on compare ce nombre à la probabilité de mutation que nous avons déclaré
 
     return 0;
   }

@@ -99,12 +99,12 @@ void Case::makeDie(){
 
   if(ptr->Death()==0){
     
-    A+=ptr->GetA_int();
+    A+=ptr->GetA_int();  // les métabolites de la bactérie défunte s'ajoutent aux concentrations de la case
     B+=ptr->GetB_int();
     C+=ptr->GetC_int();
 
-    delete(ptr);
-    ptr=nullptr;
+    delete(ptr); 
+    ptr=nullptr; 
 
   }
   
@@ -117,9 +117,10 @@ void Case::makeMute(){
   if(ptr->Mute()==0){
     if(ptr->Gettype()=='L'){
 
-      Lignee_S* newcell=new Lignee_S(ptr->GetA_int(), ptr->GetB_int(), ptr->GetC_int());
+      Lignee_S* newcell=new Lignee_S(ptr->GetA_int(), ptr->GetB_int(), ptr->GetC_int()); // on crée une nouvelle bactérie de type opposé
+      // avec les mêmes concentrations internes que la bactérie modèle
 
-      delete(ptr);
+      delete(ptr); // la bactérie modèle est détruite
       ptr=newcell;
 
     }
@@ -141,7 +142,7 @@ void Case::makeEat(float h){
 
   if(ptr->Gettype()=='L'){
 
-    A=ptr->absorb(A,h);
+    A=ptr->absorb(A,h); 
   }
 
   else{

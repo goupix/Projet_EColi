@@ -359,6 +359,7 @@ void plotGraphs(){
 
     fprintf(f, " set title \"Diagramme de phase 3D\"\n ");
     fprintf(f,"set ticslevel 0\n");
+    fprintf(f, "unset key \n");
     fprintf(f, "set view 60,160 \n");
     fprintf(f, "set xlabel \"Concentration initiale en glucose\"\n ");
     fprintf(f, "set ylabel \"D\"\n ");
@@ -374,7 +375,7 @@ void plotGraphs(){
 
     fflush(f);
     // terminer l'envoi de commandes et fermer gnuplot
-    sleep(5000);
+    sleep(5000); // on affiche le graphe pendant 5000 s
     pclose(f);
 
 }  
@@ -392,8 +393,16 @@ int main(){
   cout<<" Running... "<<endl;
   cout<<""<<endl;
 
-  plotGraphs();
+  plotGraphs(); // cette commande permet de tracer les diagrammes attendues à partir des fichiers déjà remplis disponibles sur github*/
 
+  // pour générer les fichiers, utilisez les commandes suivantes:  ATTENTION le fichiers actuels seront effacés !!!!!!!!!!!
+  
+
+  /*
+  getCurve3D(); // génere le fichier utilisé pour tracer le plot 3D  (temps estimé : 30 heures)
+  getCurve_no_mutation(); //génère le fichier utilisé pour tracer le diagramme 2d, avec p_mutation =0.00 (temps estimé: 2h)
+  getCurve_with_mutation(); //génère le fichier utilisé pour tracer le diagramme, avec p_mutation =0.001 ATTENTION il faut modifier manuellement le taux de mutation!!!!! (temps estimé: 2h)
+  */
 
   return 0;
 }
